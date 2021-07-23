@@ -20,7 +20,7 @@ export const DeckList = () => {
         <>
           <h2 className="deckHeader">My Decks</h2>
                 <button className="addDeckBut" onClick={() => {history.push("/decks/create")}}>
-                Add New Employee
+                Add New Deck
             </button>
     
           <div className="decks">

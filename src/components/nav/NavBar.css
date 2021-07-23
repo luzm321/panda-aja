@@ -2,19 +2,18 @@
     display: flex;
     flex-wrap: nowrap;
     justify-content: space-evenly;
-    background-color: rgb(56, 63, 63);
-    height: 50%;
 }
   
 .navbar__item {
-    flex-basis: 20%;
     list-style-type: none;
     text-align: center;
 }
   
 .active {
-    background-color: rgb(62, 131, 102);
+    background-color: rgb(200, 233, 225);
+    font-size: 20px;
     border-radius: 100px;
+    height: 50%;
     border: 0.5px solid;
 }
 
@@ -23,24 +22,32 @@
 }
 
 .navbar__link {
-    color: rgb(61, 163, 167);
-    margin: 5em;
+    color: rgb(69, 170, 162);
+    margin: 4em;
+    text-decoration: none;
 }
 
 .navbar__link:hover {
-    color: rgb(143, 231, 220);
+    color: rgb(35, 48, 46);
 }
 
-/* .logo {
-    width: 100px;
-    height: 70px;
+.logo {
+    width: 60px;
+    height: 60px;
     mix-blend-mode: multiply;
     cursor: pointer;
     transition: all .2s ease-in-out;
-    margin-right: 2em;
-    margin-left: 3em;
-} */
+    margin-right: 1.5em;
+} 
 
-/* .logo:hover {
+.logo:hover {
     transform: scale(1.1);
-} */
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}

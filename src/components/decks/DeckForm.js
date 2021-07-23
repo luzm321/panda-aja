@@ -72,6 +72,8 @@ export const DeckForm = () => {
     const handleClickSaveDeck = (event) => {
         event.preventDefault() //Prevents the browser from submitting the form
 
+        const topic = deck.topic
+        const description = deck.description
 
         if (topic === "" || description === "") {
         window.alert("Please provide values for both input fields. 👇")
@@ -106,7 +108,7 @@ export const DeckForm = () => {
             </div>
           </fieldset>
           <button className="handleDeck__btn" disabled={isLoading} onClick={handleClickSaveDeck}>
-          {animalId ? "Save Deck" : "Add Deck" }
+          {deckId ? "Save Deck" : "Add Deck" }
           </button>
         </form>
     );
