@@ -26,12 +26,11 @@ export const NavBar = (props) => {
   };
 
   return (
-    <nav className="navbar">
       <ul className="navbar">
-          <img className="logo navbar__item" src="./images/logo.PNG"/>
-          <li className={`navbar__item ${checkNavState("home")}`}
-              onClick={() => setIsActive("home")}>
-              <Link className="navbar__link" to="/">Profile</Link>
+          <img className="logo" src="./images/panda-aja.PNG"/>
+          <li className={`navbar__item ${checkNavState("decks")}`}
+              onClick={() => setIsActive("decks")}>
+              <Link className="navbar__link" to="/decks">Profile</Link>
           </li>
           <li className={`navbar__item ${checkNavState("studyTips")}`}
               onClick={() => setIsActive("studyTips")}>
@@ -50,6 +49,5 @@ export const NavBar = (props) => {
               <Link className="navbar__link" to="/login">Logout</Link>
           </li>
       </ul>
-    </nav>
   )
 };

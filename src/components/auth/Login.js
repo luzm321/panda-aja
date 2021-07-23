@@ -4,7 +4,11 @@ import "./Login.css";
 
 
 export const Login = () => {
-    const [loginUser, setLoginUser] = useState({ email: "" })
+
+    const [loginUser, setLoginUser] = useState({ 
+        username: "",
+        password: ""
+    })
     const [existDialog, setExistDialog] = useState(false)
 
     const history = useHistory()
@@ -17,8 +21,7 @@ export const Login = () => {
 
 
     const existingUserCheck = () => {
-        // If your json-server URL is different, please change it below!
-        return fetch(`http://localhost:8088/users?email=${loginUser.email}`)
+        return fetch(`http://localhost:8088/users?username=${loginUser.username}&?password=${loginUser.password}`)
             .then(res => res.json())
             .then(user => user.length ? user[0] : false)
     }
@@ -29,9 +32,8 @@ export const Login = () => {
         existingUserCheck()
             .then(exists => {
                 if (exists) {
-                    // The user id is saved under the key nutshell_user in session Storage. Change below if needed!
                     sessionStorage.setItem("pandaAja_user", exists.id)
-                    history.push("/")
+                    history.push("/decks")
                 } else {
                     setExistDialog(true)
                 }
@@ -49,13 +51,23 @@ export const Login = () => {
                     <h1>Panda-Aja!</h1>
                     <h2>Please Sign In</h2>
                     <fieldset>
-                        <label htmlFor="inputEmail"> Email address: </label>
-                        <input type="email"
-                            id="email"
+                        <label htmlFor="inputEmail"> Username: </label>
+                        <input type="text"
+                            id="username"
                             className="form-control"
-                            placeholder="Email address"
+                            placeholder="Username"
                             required autoFocus
-                            value={loginUser.email}
+                            value={loginUser.username}
+                            onChange={handleInputChange} />
+                    </fieldset>
+                    <fieldset>
+                        <label htmlFor="inputPassword"> Password: </label>
+                        <input type="password"
+                            id="password"
+                            className="form-control"
+                            placeholder="Password"
+                            required autoFocus
+                            value={loginUser.password}
                             onChange={handleInputChange} />
                     </fieldset>
                     <fieldset>
