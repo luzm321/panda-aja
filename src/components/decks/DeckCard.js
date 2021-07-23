@@ -7,7 +7,7 @@ export const DeckCard = ({ deck }) => (
     <section className="deck">
         <h3 className="deck__topic">
           <Link to={`/decks/detail/${deck.id}`}>
-            Topic: {deck.topic}
+            {deck.topic}
           </Link>
         </h3>
         <div className="deck__description">Description: { deck.description }</div>
