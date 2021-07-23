@@ -31,7 +31,7 @@ export const NavBar = (props) => {
           <img className="logo navbar__item" src="./images/logo.PNG"/>
           <li className={`navbar__item ${checkNavState("home")}`}
               onClick={() => setIsActive("home")}>
-              <Link className="navbar__link" to="/">Profile</Link>
+              <Link className="navbar__link" to="/decks">Profile</Link>
           </li>
           <li className={`navbar__item ${checkNavState("studyTips")}`}
               onClick={() => setIsActive("studyTips")}>
