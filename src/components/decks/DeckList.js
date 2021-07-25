@@ -95,8 +95,7 @@ export const DeckList = () => {
                 </>
               }
             })
-          }
-          
+          }          
         </div>
       </>
   )

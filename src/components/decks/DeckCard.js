@@ -40,9 +40,9 @@ export const DeckCard = ({ deck }) => {
       </div>
       { deck.userId === parseInt(sessionStorage.getItem("pandaAja_user")) ?
         <footer className="card-footer">
-        <a className="card-footer-item">Favorite</a>
-        <a onClick={() => {history.push(`/decks/edit/${deck.id}`)}} className="card-footer-item">Edit</a>
-        <a onClick={() => {handleDeleteDeck()}} className="card-footer-item">Delete</a>
+        <a className="card-footer-item">Favorite<img className="favoriteIcon" src="./images/emptyFingerHeart.jpg"/></a>
+        <a onClick={() => {history.push(`/decks/edit/${deck.id}`)}} className="card-footer-item">Edit<img className="pencilIcon" src="https://img.icons8.com/ios-glyphs/30/000000/pencil--v1.png"/></a>
+        <a onClick={() => {handleDeleteDeck()}} className="card-footer-item">Delete<img className="trashIcon" src="https://img.icons8.com/material/24/000000/trash--v1.png"/></a>
         </footer>
         :
         null
