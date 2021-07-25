@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React from "react";
 import { Route } from "react-router-dom";
 import { DeckProvider } from "./decks/DeckProvider";
@@ -20,7 +21,7 @@ export const ApplicationViews = () => {
                     </Route>
 
                     <Route exact path="/decks/detail/:deckId(\d+)">
-                        <DeckDetail />
+                        {/* <DeckDetail /> */}
                     </Route>
 
                     <Route exact path="/decks/create">

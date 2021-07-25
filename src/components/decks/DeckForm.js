@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { useContext, useEffect, useState } from "react";
 import { useHistory, useParams } from 'react-router-dom';
 import { DeckContext } from "./DeckProvider";
@@ -7,7 +8,7 @@ export const DeckForm = () => {
 
     const { addDeck, getDecks, getDeckById, updateDeck } = useContext(DeckContext);
 
-    // Define the intial state of the form inputs with useState()
+    // Define the initial state of the form inputs with useState()
     const [deck, setDeck] = useState({
         userId: 0,
         topic: "",
@@ -48,29 +49,32 @@ export const DeckForm = () => {
         setDeck(newDeck)
     };
 
-    const saveNewDeck = () => {
+    const saveNewDeck = (event) => {
+      event.preventDefault() //Prevents the browser from refreshing when submitting the form
         const newDeck = {
           topic: deck.topic,
           description: deck.description,
-          userId: parseInt(deck.userId),
+          userId: parseInt(sessionStorage.getItem("pandaAja_user")),
         }
+        console.log('new deck', newDeck);
         addDeck(newDeck)
           .then(() => history.push("/decks"))
     };
 
-    const saveEditDeck = () => {
+    const saveEditDeck = (event) => {
+        event.preventDefault() //Prevents the browser from refreshing when submitting the form
         updateDeck({
           id: deck.id,
           topic: deck.topic,
           description: deck.description,
-          userId: parseInt(deck.userId),
+          userId: parseInt(sessionStorage.getItem("pandaAja_user")),
         })
-        .then(() => history.push(`/decks/detail/${deck.id}`))
+        .then(() => history.push(`/decks`))
     };
 
     
     const handleClickSaveDeck = (event) => {
-        event.preventDefault() //Prevents the browser from submitting the form
+        event.preventDefault() //Prevents the browser from refreshing when submitting the form
 
         const topic = deck.topic
         const description = deck.description
@@ -84,9 +88,9 @@ export const DeckForm = () => {
 
             if (deckId) {
                 //PUT - update
-                saveEditDeck()
+                saveEditDeck(event)
             } else {
-                saveNewDeck()
+                saveNewDeck(event)
             }
         };
     };
@@ -107,7 +111,7 @@ export const DeckForm = () => {
               <input type="text" id="description" required autoFocus className="form-control" placeholder="Deck description..." value={deck.description} onChange={handleControlledInputChange} />
             </div>
           </fieldset>
-          <button className="handleDeck__btn" disabled={isLoading} onClick={handleClickSaveDeck}>
+          <button className="handleDeck__btn" disabled={isLoading} onClick={(event) => {handleClickSaveDeck(event)}}>
           {deckId ? "Save Deck" : "Add Deck" }
           </button>
         </form>
