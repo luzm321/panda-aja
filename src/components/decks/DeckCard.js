@@ -28,7 +28,7 @@ export const DeckCard = ({ deck, changeDeckState }) => {
   
   return (
     <div className="deck" onMouseOver={() => {
-      console.log('hi');
+       // onMouseOver event listener when user hovers mouse over the deck, app sends the deck object to ApplicationViews to change state of deck
       changeDeckState(deck);
     }}>
       <div className="card">
@@ -37,9 +37,9 @@ export const DeckCard = ({ deck, changeDeckState }) => {
             <Link to={`/decks/detail/${deck.id}`}  onClick={() => {
               // this onClick triggers when the user click on the Deck topic.
               // it invokes the changeDeckState function that was passed as a prop from applicationViews and sends it the deck object.
-              // add an on hover event listener that sends the deck to ApplicationViews instead?
-                // storing the deck id on click so that when the user refreshes the page we are able to remember which deck they were on.
-                sessionStorage.setItem("lastDeckView", deck.id)
+              // storing the deck id on click to lastDeck View so that when the user refreshes the page we are able to remember which deck they 
+              // were on (to be used on FlashCardProvider component)
+                sessionStorage.setItem("lastDeckView", deck.id) 
             }}>
               {deck.topic}
             </Link>
