@@ -8,7 +8,7 @@ import { UserWelcome } from "../UserWelcome";
 import "./Deck.css";
 
 
-export const DeckList = () => {
+export const DeckList = ({changeDeckState}) => {
 
     const { decks, getDecks } = useContext(DeckContext);
     const { users, getUsers } = useContext(UserContext);
@@ -48,9 +48,6 @@ export const DeckList = () => {
       createNewDeckButton = null;
     };
 
-
-    let deckButtons;
-
     return (
       <>
         {
@@ -84,14 +81,12 @@ export const DeckList = () => {
           {
             decks.map(deck => {
               if (deck.userId === parseInt(sessionStorage.getItem("pandaAja_user")) && myDecksTab === "is-active") {
-                deckButtons = true;
                 return <>
-                  <DeckCard key={deck.id} deck={deck} deckButProp={deckButtons}/>
+                  <DeckCard key={deck.id} deck={deck} changeDeckState={changeDeckState}/>
                 </>
               } else if (allDecksTab === "is-active"){
-                deckButtons = false;
                 return <>
-                  <DeckCard key={deck.id} deck={deck} deckButProp={deckButtons} />
+                  <DeckCard key={deck.id} deck={deck} changeDeckState={changeDeckState}/>
                 </>
               }
             })

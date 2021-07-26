@@ -23,7 +23,7 @@ export const DeckForm = () => {
     useEffect(() => {
         getDecks()
         .then(() => {
-          if (deckId){
+          if (deckId) {
             getDeckById(deckId)
             .then(deck => {
                 setDeck(deck)

@@ -1,12 +1,12 @@
 /* eslint-disable */
-import React, { useContext} from "react";
+import React, { useContext, useEffect} from "react";
 import { Link } from "react-router-dom";
 import { DeckContext } from "./DeckProvider";
 import { useHistory } from "react-router-dom";
 import "./Deck.css";
 
 
-export const DeckCard = ({ deck }) => {
+export const DeckCard = ({ deck, changeDeckState }) => {
 
   const { deleteDeck } = useContext(DeckContext);
 
@@ -19,14 +19,28 @@ export const DeckCard = ({ deck }) => {
       })
   };
 
+    // useEffect(() => {
+    //   getDecks();
+    // }, [])
+
+
 
   
   return (
-    <div className="deck">
+    <div className="deck" onMouseOver={() => {
+      console.log('hi');
+      changeDeckState(deck);
+    }}>
       <div className="card">
         <header className="card-header">
           <p className="card-header-title">
-            <Link to={`/decks/detail/${deck.id}`}>
+            <Link to={`/decks/detail/${deck.id}`}  onClick={() => {
+              // this onClick triggers when the user click on the Deck topic.
+              // it invokes the changeDeckState function that was passed as a prop from applicationViews and sends it the deck object.
+              // add an on hover event listener that sends the deck to ApplicationViews instead?
+                // storing the deck id on click so that when the user refreshes the page we are able to remember which deck they were on.
+                sessionStorage.setItem("lastDeckView", deck.id)
+            }}>
               {deck.topic}
             </Link>
           </p>
