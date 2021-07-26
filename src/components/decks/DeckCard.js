@@ -23,8 +23,6 @@ export const DeckCard = ({ deck, changeDeckState }) => {
     //   getDecks();
     // }, [])
 
-
-
   
   return (
     <div className="deck" onMouseOver={() => {

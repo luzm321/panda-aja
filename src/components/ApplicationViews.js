@@ -52,9 +52,14 @@ export const ApplicationViews = () => {
                             <DeckDetail deckData={deck}/>
                         </Route>
 
-                        <Route exact path="/flashCardForm/:cardId(\d+)">
+                        <Route exact path="/decks/detail/:deckId(\d+)/create"> 
+                        {/* <Route exact path="/flashCardForm/:cardId(\d+)"> */}
                             <FlashCardForm />
                         </Route>
+
+                        {/* <Route exact path="/decks/detail/:deckId(\d+)/edit">  */}
+                            {/* <FlashCardForm />
+                        </Route> */}
                         
 
                         <Route exact path="/decks/create">

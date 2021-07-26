@@ -4,6 +4,7 @@ import { FlashCardContext } from "../flashCards/FlashCardProvider";
 import { useParams, useHistory } from "react-router-dom";
 
 
+//Copy:
 export const DeckDetail = ({deckData}) => {
 
     const history = useHistory();
@@ -16,13 +17,15 @@ export const DeckDetail = ({deckData}) => {
     }, []);
 
 
-    const goToCardForm = () => {
-        history.push(`/flashCardForm/${0}`)
-    }
+    // const goToCardForm = () => {
+    //     history.push(`/FlashCardForm/create`)
+    // }
+    console.log("deckData id", deckData.id)
 
     return (
         <>
-            <button className="addCardBut" onClick={() => {goToCardForm()}}>Add New Card</button>
+            {/* <button className="addCardBut" onClick={() => {goToCardForm()}}>Add New Card</button> */}
+            <button className="addCardBut" onClick={() => {history.push(`/decks/detail/${deckData.id}/create`)}}>Add New Card</button>
             {
                 userDeckFlashCards.map((flashCard) => {
                     return <>
@@ -35,7 +38,7 @@ export const DeckDetail = ({deckData}) => {
                                                 </div>
                                         </div>
                                     </div>
-                                    <div class="card flip-card-back">
+                                    <div className="card flip-card-back">
                                         <div className="card-content">
                                             <h1>{flashCard.backSide}</h1>
                                         </div>
@@ -50,6 +53,60 @@ export const DeckDetail = ({deckData}) => {
     )
 };
 
+
+
+
+//Original:
+// export const DeckDetail = ({deckData}) => {
+
+//     const history = useHistory();
+
+
+//     const { getFlashCards, getAllCardsInThisDeck, userDeckFlashCards, getFlashCardById } = useContext(FlashCardContext);
+
+//     useEffect(() => {
+//         getAllCardsInThisDeck(deckData.id)
+//     }, []);
+
+
+//     const goToCardForm = () => {
+//         history.push(`/flashCardForm/${0}`)
+//     }
+
+//     return (
+//         <>
+//             <button className="addCardBut" onClick={() => {goToCardForm()}}>Add New Card</button>
+//             {
+//                 userDeckFlashCards.map((flashCard) => {
+//                     return <>
+//                             <div className="flip-card">
+//                                 <div className="flip-card-inner">
+//                                     <div className="card flip-card-front">
+//                                         <div className="card-content">
+//                                                 <div className="">
+//                                                     <h1>{flashCard.frontSide}</h1>
+//                                                 </div>
+//                                         </div>
+//                                     </div>
+//                                     <div className="card flip-card-back">
+//                                         <div className="card-content">
+//                                             <h1>{flashCard.backSide}</h1>
+//                                         </div>
+//                                     </div>
+//                                 </div>
+//                             </div>
+//                     </>
+//                 })
+//             }
+
+//         </>
+//     )
+// };
+
+
+
+
+//DeckDetail example
 // //     const { getDeckById, deleteDeck } = useContext(DeckContext);
 
 // //     const [deck, setDeck] = useState({});
