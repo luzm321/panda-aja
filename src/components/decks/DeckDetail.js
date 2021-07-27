@@ -27,7 +27,15 @@ export const DeckDetail = ({deckData}) => {
         <>
             <h1>Flashcards</h1>
 
-            <button className="addCardBut" onClick={() => {history.push(`/decks/detail/${sessionStorage.getItem("lastDeckView")}/create`)}}>Add New Card</button>
+            {
+                parseInt(sessionStorage.getItem("pandaAja_user")) === deckData.userId ? 
+                    <button className="addCardBut" onClick={() => {history.push(`/decks/detail/${sessionStorage.getItem("lastDeckView")}/create`)}}>
+                        Add New Card
+                    </button>
+                :
+                    null
+            }
+
             {
                 userDeckFlashCards.map((flashCard) => {
                     return <>
@@ -54,6 +62,7 @@ export const DeckDetail = ({deckData}) => {
                     </>
                 })
             }
+            
             <button className="cancel__btn" onClick={(event) => {handleClickCancel(event)}}>Return to Decks</button>
         </>
     )
