@@ -61,6 +61,7 @@ export const FlashCardDetail = () => {
                     }
                 })
             }
+            <button className="cancel__btn" onClick={(event) => {handleClickCancel(event)}}>Return to Flashcards</button>
         </>
     )
 };
