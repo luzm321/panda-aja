@@ -6,8 +6,10 @@ import { UserProvider } from "./users/UserProvider";
 import { FlashCardProvider } from "./flashCards/FlashCardProvider";
 import { DeckList } from "./decks/DeckList";
 import { DeckDetail } from "./decks/DeckDetail";
+import { FlashCardDetail } from "./flashCards/FlashCardDetail";
 import { DeckForm } from "./decks/DeckForm";
 import { FlashCardForm } from "./flashCards/FlashCardForm";
+
 
 
 
@@ -22,6 +24,7 @@ export const ApplicationViews = () => {
     //     userId: 0
     // });
 
+
     const [deck, setDeck] = useState({});
 
     // this function will be passed as a prop to DeckList, and then to DeckCard where it will be invoked. When the user clicks on a deck topic this function
@@ -33,8 +36,10 @@ export const ApplicationViews = () => {
         // newDeck = deckStateFromDeckCard
         setDeck(deckStateFromDeckCard)
         console.log('deck state', deck, 'value', deckStateFromDeckCard);
-    }
+    };
 
+    //The static String.raw() method is a tag function of template literals used to get the raw string form of template literals to escape out of it instead of using multiply backslashes.
+    let flashCardIdParameter = String.raw`:flashCardId(\d+)`;
 
     // after assigning the deck the user selected in DeckCard to the deck state, then pass that deck state as a prop to DeckDetail where it will be
     // rendered
@@ -53,7 +58,6 @@ export const ApplicationViews = () => {
                         </Route>
 
                         <Route exact path={`/decks/detail/${sessionStorage.getItem("lastDeckView")}/create`}> 
-                        {/* <Route exact path="/flashCardForm/:cardId(\d+)"> */}
                             <FlashCardForm deckData={deck} />
                         </Route>
 {/* 
@@ -69,6 +73,12 @@ export const ApplicationViews = () => {
                         <Route path="/decks/edit/:deckId(\d+)">
                             <DeckForm />
                         </Route>   
+
+                        {/* <Route exact path={`/decks/detail/${sessionStorage.getItem("lastDeckView")}/flashcard/:flashCardId(\d+)> */}
+                        <Route exact path={`/decks/detail/${sessionStorage.getItem("lastDeckView")}/flashcard/${flashCardIdParameter}`}>
+                            <FlashCardDetail />
+                        </Route>
+
                     </FlashCardProvider>
                 </UserProvider>          
             </DeckProvider>
