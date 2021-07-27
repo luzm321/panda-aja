@@ -228,10 +228,10 @@ export const FlashCardForm = ({deckData}) => {
                                 <input id="backSide" className="title is-4" placeholder="Enter English Word" value={englishWord} onChange={(event) => {
                                         userEnteringWord(event)
                                     }} />
-                                <button onClick={(event) => {listenToUser(event)}}>Listen To Me</button>
+                                <button onClick={(event) => {listenToUser(event)}}>Listen To Me<img src="https://img.icons8.com/fluent/48/000000/foreign-language-sound.png"/></button>
                             </div>
                         </div>
-                        <button onClick={(event) => {translateWord(event)}}>Translate</button>
+                        <button onClick={(event) => {translateWord(event)}}>Translate<img src="https://img.icons8.com/color/48/000000/language.png"/></button>
                         <div className="content">
                             <button className="cancel__btn" onClick={(event) => {handleClickCancel(event)}}>Cancel</button>
                             <button className="handleCard__btn" onClick={(event) => {handleClickSaveCard(event)}}>

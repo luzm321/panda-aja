@@ -19,10 +19,6 @@ export const DeckCard = ({ deck, changeDeckState }) => {
       })
   };
 
-    // useEffect(() => {
-    //   getDecks();
-    // }, [])
-
   
   return (
     <div className="deck" onMouseOver={() => {
