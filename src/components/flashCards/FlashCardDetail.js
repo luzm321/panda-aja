@@ -61,6 +61,19 @@ export const FlashCardDetail = () => {
                     }
                 })
             }
+            
+            <div className="card">
+                <footer className="card-footer">
+                    <a className="card-footer-item">Speak<img src="https://img.icons8.com/ios/50/000000/parrot-speaking.png"/></a>
+                    <a className="card-footer-item">Test Self<img src="https://img.icons8.com/office/40/000000/microphone--v1.png"/></a>
+                </footer>
+            </div>
+            <div className="card">
+                <footer className="card-footer">
+                    <a className="card-footer-item">Edit<img className="pencilIcon" src="https://img.icons8.com/ios-glyphs/30/000000/pencil--v1.png"/></a>
+                    <a className="card-footer-item">Delete<img className="trashIcon" src="https://img.icons8.com/material/24/000000/trash--v1.png"/></a>
+                </footer>
+            </div>
             <button className="cancel__btn" onClick={(event) => {handleClickCancel(event)}}>Return to Flashcards</button>
         </>
     )
