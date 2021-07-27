@@ -106,17 +106,21 @@ export const FlashCardForm = ({deckData}) => {
     const handleClickSaveCard = (event) => {
         event.preventDefault() //Prevents the browser from submitting the form
         console.log('card', card, 'deck data', deckData, "english word", englishWord);
+        
+        const frontSide = card.frontSide
+        const backSide = card.backSide
+        const transliteration = card.transliteration
+
+        if (frontSide === "" || backSide === "" || transliteration === "") {
+            window.alert("Please provide values for all input fields. 👇")
+        } else {
     
-        if(window.location.href.includes("create")) {
-            saveNewCard(event)
-        } else if (window.location.href.includes("edit")) {
-            saveEditCard(event)
-        }
-
-
-        // const deckId = parseInt(card.deckId)
-        // const frontSide = card.frontSide
-        // const backSide = card.backSide
+            if(window.location.href.includes("create")) {
+                saveNewCard(event)
+            } else if (window.location.href.includes("edit")) {
+                saveEditCard(event)
+            };
+        };
     
         // if (deckId === 0 || frontSide === "" || backSide === "") {
         //   window.alert("Please select a location and a customer")
@@ -134,7 +138,8 @@ export const FlashCardForm = ({deckData}) => {
     
 
     //Reroute to deck detail page on cancel
-    const handleClickCancel = () => {
+    const handleClickCancel = (event) => {
+        event.preventDefault() //Prevents the browser from refreshing when submitting the form/clicking cancel button
         window.history.back();
     };
    
@@ -228,7 +233,7 @@ export const FlashCardForm = ({deckData}) => {
                         </div>
                         <button onClick={(event) => {translateWord(event)}}>Translate</button>
                         <div className="content">
-                            <button onClick={() => {handleClickCancel()}}>Cancel</button>
+                            <button className="cancel__btn" onClick={(event) => {handleClickCancel(event)}}>Cancel</button>
                             <button className="handleCard__btn" onClick={(event) => {handleClickSaveCard(event)}}>
                                 Add Card
 

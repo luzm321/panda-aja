@@ -94,6 +94,12 @@ export const DeckForm = () => {
         };
     };
 
+    //Reroute to profile/decks page on cancel
+    const handleClickCancel = (event) => {
+      event.preventDefault() //Prevents the browser from refreshing when submitting the form/clicking cancel button
+      window.history.back();
+    };
+
     
     return (
         <form className="deckForm">
@@ -110,6 +116,7 @@ export const DeckForm = () => {
               <input type="text" id="description" required autoFocus className="form-control" placeholder="Deck description..." value={deck.description} onChange={handleControlledInputChange} />
             </div>
           </fieldset>
+          <button className="cancel__btn" onClick={(event) => {handleClickCancel(event)}}>Cancel</button>
           <button className="handleDeck__btn" disabled={isLoading} onClick={(event) => {handleClickSaveDeck(event)}}>
           { deckId ? "Save Deck" : "Add Deck" }
           </button>
