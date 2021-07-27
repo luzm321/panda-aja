@@ -52,13 +52,13 @@ export const ApplicationViews = () => {
                             <DeckDetail deckData={deck}/>
                         </Route>
 
-                        <Route exact path="/decks/detail/:deckId(\d+)/create"> 
+                        <Route exact path={`/decks/detail/${sessionStorage.getItem("lastDeckView")}/create`}> 
                         {/* <Route exact path="/flashCardForm/:cardId(\d+)"> */}
-                            <FlashCardForm />
+                            <FlashCardForm deckData={deck} />
                         </Route>
-
-                        {/* <Route exact path="/decks/detail/:deckId(\d+)/edit">  */}
-                            {/* <FlashCardForm />
+{/* 
+                        <Route exact path="/decks/detail/:deckId(\d+)/edit"> 
+                            <FlashCardForm />
                         </Route> */}
                         
 

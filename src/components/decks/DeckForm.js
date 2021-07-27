@@ -56,7 +56,8 @@ export const DeckForm = () => {
           description: deck.description,
           userId: parseInt(sessionStorage.getItem("pandaAja_user")),
         }
-        console.log('new deck', newDeck);
+        //Invoke addDeck passing the new deck object as an argument
+        //Once complete, change the url and display the deck list
         addDeck(newDeck)
           .then(() => history.push("/decks"))
     };
@@ -82,16 +83,14 @@ export const DeckForm = () => {
         if (topic === "" || description === "") {
         window.alert("Please provide values for both input fields. 👇")
         } else {
-        //Invoke addDeck passing the new deck object as an argument
-        //Once complete, change the url and display the deck list
-            setIsLoading(true);
+          setIsLoading(true);
 
-            if (deckId) {
-                //PUT - update
-                saveEditDeck(event)
-            } else {
-                saveNewDeck(event)
-            }
+          if (deckId) {
+              //PUT - update
+              saveEditDeck(event)
+          } else {
+              saveNewDeck(event)
+          }
         };
     };
 
@@ -112,7 +111,7 @@ export const DeckForm = () => {
             </div>
           </fieldset>
           <button className="handleDeck__btn" disabled={isLoading} onClick={(event) => {handleClickSaveDeck(event)}}>
-          {deckId ? "Save Deck" : "Add Deck" }
+          { deckId ? "Save Deck" : "Add Deck" }
           </button>
         </form>
     );
