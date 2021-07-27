@@ -8,7 +8,7 @@ export const FlashCardDetail = () => {
 
     const history = useHistory();
 
-    const { getFlashCardById, userDeckFlashCards } = useContext(FlashCardContext);
+    const { getFlashCardById, userDeckFlashCards, deleteFlashCard } = useContext(FlashCardContext);
 
     const [flashcard, setFlashCard] = useState({});
 
@@ -22,14 +22,20 @@ export const FlashCardDetail = () => {
         })
     }, []);
 
+    const handleDeleteCard = () => {
+        deleteFlashCard(flashCardId)
+          .then(() => {
+            history.push(`/decks/detail/${sessionStorage.getItem("lastDeckView")}`)
+          })
+    };
+
      //Reroute to deck detail page on cancel
      const handleClickCancel = (event) => {
         event.preventDefault() //Prevents the browser from refreshing when submitting the form/clicking cancel button
         window.history.back();
     };
 
-    // console.log("flash card id", flashCardId)
-    console.log(userDeckFlashCards)
+   
     return (
         <>
             <h1>Flashcard View</h1>
@@ -71,7 +77,7 @@ export const FlashCardDetail = () => {
             <div className="card">
                 <footer className="card-footer">
                     <a className="card-footer-item">Edit<img className="pencilIcon" src="https://img.icons8.com/ios-glyphs/30/000000/pencil--v1.png"/></a>
-                    <a className="card-footer-item">Delete<img className="trashIcon" src="https://img.icons8.com/material/24/000000/trash--v1.png"/></a>
+                    <a onClick={() => {handleDeleteCard()}} className="card-footer-item">Delete<img className="trashIcon" src="https://img.icons8.com/material/24/000000/trash--v1.png"/></a>
                 </footer>
             </div>
             <button className="cancel__btn" onClick={(event) => {handleClickCancel(event)}}>Return to Flashcards</button>
