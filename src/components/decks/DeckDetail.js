@@ -16,6 +16,13 @@ export const DeckDetail = ({deckData}) => {
     }, []);
 
 
+     //Reroute to deck detail page on cancel
+     const handleClickCancel = (event) => {
+        event.preventDefault() //Prevents the browser from refreshing when submitting the form/clicking cancel button
+        window.history.back();
+    };
+
+
     return (
         <>
             <h1>Flashcards</h1>
@@ -47,7 +54,7 @@ export const DeckDetail = ({deckData}) => {
                     </>
                 })
             }
-
+            <button className="cancel__btn" onClick={(event) => {handleClickCancel(event)}}>Return to Decks</button>
         </>
     )
 };
