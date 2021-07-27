@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from "react";
 import { FlashCardContext } from "../flashCards/FlashCardProvider";
 // import "./FlashCard.css";
-import { useParams, useHistory } from "react-router-dom";
+import { useParams, useHistory, Link } from "react-router-dom";
 
 
 export const DeckDetail = ({deckData}) => {
@@ -9,16 +9,17 @@ export const DeckDetail = ({deckData}) => {
     const history = useHistory();
 
 
-    const { getFlashCards, getAllCardsInThisDeck, userDeckFlashCards, getFlashCardById } = useContext(FlashCardContext);
+    const { getAllCardsInThisDeck, userDeckFlashCards } = useContext(FlashCardContext);
 
     useEffect(() => {
         getAllCardsInThisDeck(deckData.id)
     }, []);
 
-    console.log("deckData id", deckData.id)
 
     return (
         <>
+            <h1>Flashcards</h1>
+
             <button className="addCardBut" onClick={() => {history.push(`/decks/detail/${sessionStorage.getItem("lastDeckView")}/create`)}}>Add New Card</button>
             {
                 userDeckFlashCards.map((flashCard) => {
@@ -40,6 +41,9 @@ export const DeckDetail = ({deckData}) => {
                                     </div>
                                 </div>
                             </div>
+                            <Link to={`/decks/detail/${sessionStorage.getItem("lastDeckView")}/flashcard/${flashCard.id}`}>
+                                <button>Show Card Detail</button>
+                            </Link>
                     </>
                 })
             }
