@@ -1,3 +1,76 @@
+/* Styling for flashcard detail view */
+
+.cardViewHeader {
+  text-align: center;
+  font-size: 40px;
+  margin: 1em;
+}
+
+.cardFrontHeader {
+  text-align: center;
+  font-size: 25px;
+}
+
+.cardBackHeader {
+  text-align: center;
+  font-size: 25px;
+}
+
+.flipToggle {
+  margin: 1em;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.cardFrontDiv {
+  text-align: center;
+  margin: 5em 0 2em 33em;
+  border: 1px solid black;
+  padding: 3em;
+  width: 30%;
+  cursor: pointer;
+}
+
+.cardBackDiv {
+  text-align: center;
+  margin: 5em 0 2em 33em;
+  border: 1px solid black;
+  padding: 3em;
+  width: 30%;
+  cursor: pointer;
+}
+
+.frontHangeul {
+  font-size: 30px;
+  color: rgb(95, 165, 159);
+}
+
+.frontPhonetic {
+  font-size: 30px;
+  color: rgb(62, 131, 125);
+}
+
+.backEnglish {
+  font-size: 30px;
+  color: rgb(88, 182, 226);
+}
+
+.handleCard__btn {
+  cursor: pointer;
+}
+
+.listenBut {
+  cursor: pointer;
+}
+
+.translateBut {
+  cursor: pointer;
+}
+
+.langSelect {
+  cursor: pointer;
+}
+
 /* The switch - the box around the slider */
 .switch {
     position: relative;

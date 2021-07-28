@@ -218,10 +218,10 @@ export const FlashCardForm = () => {
                 <div className="card">
                     <div className="card-image">
                             <textarea disabled id="frontSide" value={`${translatedWord} ${transliteratedWord}`} placeholder="Translation..." onChange={handleControlledInputChange}></textarea>
-                            <select onChange={(event) => {selectLanguage(event)}}>
-                                <option value="ko--Kore">Korean</option>
-                                <option value="ja--Jpan">Japanese</option>
-                                <option value="en--Latn">Spanish</option>
+                            <select className="langSelect" onChange={(event) => {selectLanguage(event)}}>
+                                <option className="langSelect" value="ko--Kore">Korean</option>
+                                <option className="langSelect" value="ja--Jpan">Japanese</option>
+                                <option className="langSelect" value="en--Latn">Spanish</option>
                             </select>
                     </div>
                     <div className="card-content">
@@ -230,10 +230,10 @@ export const FlashCardForm = () => {
                                 <input id="backSide" className="title is-4" placeholder="Enter English Word" value={englishWord} onChange={(event) => {
                                         userEnteringWord(event)
                                     }} />
-                                <button onClick={(event) => {listenToUser(event)}}>Listen To Me<img src="https://img.icons8.com/fluent/48/000000/foreign-language-sound.png"/></button>
+                                <button className="listenBut" onClick={(event) => {listenToUser(event)}}>Listen To Me<img src="https://img.icons8.com/fluent/48/000000/foreign-language-sound.png"/></button>
                             </div>
                         </div>
-                        <button onClick={(event) => {translateWord(event)}}>Translate<img src="https://img.icons8.com/color/48/000000/language.png"/></button>
+                        <button className="translateBut" onClick={(event) => {translateWord(event)}}>Translate<img src="https://img.icons8.com/color/48/000000/language.png"/></button>
                         <div className="content">
                             <button className="cancel__btn" onClick={(event) => {handleClickCancel(event)}}>Cancel</button>
                             <button className="handleCard__btn" onClick={(event) => {handleClickSaveCard(event)}}>

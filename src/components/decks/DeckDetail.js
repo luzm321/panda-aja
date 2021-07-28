@@ -36,7 +36,7 @@ export const DeckDetail = () => {
 
     return (
         <>
-            <h1>Flashcards</h1>
+            <h1 className="flashCardHeader">Flashcards</h1>
             {/* Ternary below conditionally renders add new card affordance only if the current logged in user matches the deck userId or the deck id from sessionStorage */}
             {
                 parseInt(sessionStorage.getItem("pandaAja_user")) === currentDeck.userId ? 
@@ -53,7 +53,7 @@ export const DeckDetail = () => {
                         assignCurrentCard(flashCard);
                         }}>
                             <br></br>
-                            <button onClick={(event) => {toggleCardSide(event, flashCard)}}>Flip Card</button>
+                            <button className="flipBut" onClick={(event) => {toggleCardSide(event, flashCard)}}>Flip Card</button>
                             {flashCard.isFlipped ? 
                             <div className="flip-card">
                                 <div className="flip-card-inner">
@@ -93,7 +93,7 @@ export const DeckDetail = () => {
                             }
                             
                             <Link to={`/decks/detail/${sessionStorage.getItem("lastDeckView")}/flashcard/${flashCard.id}`}>
-                                <button onClick={() => {assignCurrentCard(flashCard);sessionStorage.setItem("currentCard", JSON.stringify(flashCard));}}>
+                                <button className="showDetailBut" onClick={() => {assignCurrentCard(flashCard);sessionStorage.setItem("currentCard", JSON.stringify(flashCard));}}>
                                     Show Card Detail
                                 </button>
                             </Link>
