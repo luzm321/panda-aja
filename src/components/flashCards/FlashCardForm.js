@@ -91,19 +91,19 @@ export const FlashCardForm = () => {
             .then(() => history.push(`/decks/detail/${currentDeck.id}`));
     };
 
-    const saveEditCard = (event) => {
-        event.preventDefault() //Prevents the browser from refreshing when submitting the form
-        updateFlashCard({
-          id: card.id,
-          frontSide: card.frontSide,
-          backSide: card.backSide,
-          deckId: parseInt(card.deckId),
-          userId: parseInt(sessionStorage.getItem("pandaAja_user")),
-          transliteration: card.transliteration,
-          isFlipped: true
-        })
-        .then(() => history.push(`/decks/detail/${card.id}/edit`))
-    };
+    // const saveEditCard = (event) => {
+    //     event.preventDefault() //Prevents the browser from refreshing when submitting the form
+    //     updateFlashCard({
+    //       id: card.id,
+    //       frontSide: card.frontSide,
+    //       backSide: card.backSide,
+    //       deckId: parseInt(card.deckId),
+    //       userId: parseInt(sessionStorage.getItem("pandaAja_user")),
+    //       transliteration: card.transliteration,
+    //       isFlipped: true
+    //     })
+    //     .then(() => history.push(`/decks/detail/${card.id}/edit`))
+    // };
 
     const handleClickSaveCard = (event) => {
         event.preventDefault() //Prevents the browser from submitting the form
@@ -119,6 +119,7 @@ export const FlashCardForm = () => {
     
             if(window.location.href.includes("create")) {
                 saveNewCard(event)
+                alert("New Card Created! 😊")
             } else if (window.location.href.includes("edit")) {
                 saveEditCard(event)
             };
@@ -222,6 +223,7 @@ export const FlashCardForm = () => {
                                 <option className="langSelect" value="ko--Kore">Korean</option>
                                 <option className="langSelect" value="ja--Jpan">Japanese</option>
                                 <option className="langSelect" value="en--Latn">Spanish</option>
+                                <option className="langSelect" value="en--Latn">English</option>
                             </select>
                     </div>
                     <div className="card-content">

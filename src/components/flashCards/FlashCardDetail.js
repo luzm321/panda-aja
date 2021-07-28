@@ -11,12 +11,17 @@ export const FlashCardDetail = () => {
 
     const history = useHistory();
 
-    const { getFlashCardById, deleteFlashCard, currentCard, patchFlashCard } = useContext(FlashCardContext);
+    const { getFlashCardById, deleteFlashCard, currentCard, updateFlashCard, patchFlashCard } = useContext(FlashCardContext);
 
     const [flashcard, setFlashCard] = useState({});
     const [flashCardToggle, setFlashCardSide] = useState(currentCard.isFlipped); // initial value of isFlipped property of card is true (front side)
 
-	const {flashCardId} = useParams();
+	const {flashCardId} = useParams(); //dynamic routing parameter for ApplicationViews
+
+    //Initial state of unedited flashcard object:
+    const [uneditedCard, setUneditedCard] = useState({
+        cardState: false
+    });
 
     useEffect(() => {
         console.log("useEffect", flashCardId)
@@ -26,6 +31,25 @@ export const FlashCardDetail = () => {
         })
     }, []);
 
+     //Function for handling and toggling edited vs unedited card views:
+     const handleEdit = () => {
+        setUneditedCard(true)
+    };
+
+    //Initial state of updated flashcard object with pre-populated data:
+      const [updatedCard, setUpdatedCard] = useState({
+        id: flashcard.id,
+        // userId: parseInt(sessionStorage.getItem("pandaAja_user"))
+        userId: flashcard.userId,
+        // deckId: parseInt(sessionStorage.getItem("lastDeckView"))
+        deckId: flashcard.deckId,
+        frontSide: flashcard.frontSide,
+        backSide: flashcard.backSide,
+        transliteration: flashcard.transliteration,
+        isFlipped: true
+    });
+
+    // Function for deleting a card:
     const handleDeleteCard = () => {
         deleteFlashCard(flashCardId)
           .then(() => {
