@@ -139,10 +139,10 @@ export const FlashCardForm = () => {
     };
     
 
-    //Reroute to deck detail page on cancel
+    //Reroute to deck detail page/flashcards list on cancel
     const handleClickCancel = (event) => {
         event.preventDefault() //Prevents the browser from refreshing when submitting the form/clicking cancel button
-        window.history.back();
+        history.push(`/decks/detail/${currentDeck.id}`)
     };
    
 

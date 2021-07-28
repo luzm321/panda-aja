@@ -33,10 +33,10 @@ export const FlashCardDetail = () => {
           })
     };
 
-     //Reroute to deck detail page on cancel
-     const handleClickCancel = (event) => {
+     //Reroute to deck detail page/flashcards list on click
+     const handleClickReturnToCards = (event) => {
         event.preventDefault() //Prevents the browser from refreshing when submitting the form/clicking cancel button
-        window.history.back();
+        history.push(`/decks/detail/${sessionStorage.getItem("lastDeckView")}`)
     };
 
     // function to toggle flashcard from front (default) to back side and vice versa
@@ -107,7 +107,7 @@ export const FlashCardDetail = () => {
                 </>
             }
 
-            <button className="cancel__btn" onClick={(event) => {handleClickCancel(event)}}>Return to Flashcards</button>
+            <button className="cancel__btn" onClick={(event) => {handleClickReturnToCards(event)}}>Return to Flashcards</button>
         </>
     )
 };

@@ -15,10 +15,10 @@ export const DeckDetail = () => {
         getAllCardsInThisDeck(currentDeck.id);
     }, []);
 
-     //Reroute to deck detail page on cancel
-     const handleClickCancel = (event) => {
+     //Reroute to deck list/profile page on click
+     const handleClickReturnToDecks = (event) => {
         event.preventDefault() //Prevents the browser from refreshing when submitting the form/clicking cancel button
-        window.history.back();
+        history.push("/decks")
     };
 
     // function to toggle flashcard from front (default) to back side and vice versa
@@ -101,7 +101,7 @@ export const DeckDetail = () => {
                 })
             }
             
-            <button className="cancel__btn" onClick={(event) => {handleClickCancel(event)}}>Return to Decks</button>
+            <button className="cancel__btn" onClick={(event) => {handleClickReturnToDecks(event)}}>Return to Decks</button>
         </>
     )
 };
