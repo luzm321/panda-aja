@@ -8,7 +8,7 @@ import "./Deck.css";
 
 export const DeckCard = ({ deck, changeDeckState }) => {
 
-  const { deleteDeck } = useContext(DeckContext);
+  const { deleteDeck, assignCurrentDeck } = useContext(DeckContext);
 
 	const history = useHistory();
 
@@ -23,7 +23,7 @@ export const DeckCard = ({ deck, changeDeckState }) => {
   return (
     <div className="deck" onMouseOver={() => {
        // onMouseOver event listener when user hovers mouse over the deck, app sends the deck object to ApplicationViews to change state of deck
-      changeDeckState(deck);
+      assignCurrentDeck(deck);
     }}>
       <div className="card">
         <header className="card-header">

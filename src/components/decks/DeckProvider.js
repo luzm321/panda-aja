@@ -6,6 +6,7 @@ export const DeckContext = createContext();
 export const DeckProvider = (props) => {
 
     const [decks, setDecks] = useState([]);
+    const [currentDeck, setCurrentDeck] = useState({});
 
     const getDecks = () => {
         return fetch("http://localhost:8088/decks?_expand=user")
@@ -47,9 +48,13 @@ export const DeckProvider = (props) => {
           .then(getDecks)
     };
 
+    const assignCurrentDeck = (currentlySelectedDeck) => {
+        setCurrentDeck(currentlySelectedDeck);
+    }
+
     return (
         <DeckContext.Provider value={{
-            decks, getDecks, addDeck, deleteDeck, getDeckById, updateDeck
+            decks, getDecks, addDeck, deleteDeck, getDeckById, updateDeck, currentDeck, assignCurrentDeck
         }}>
             {props.children}
         </DeckContext.Provider>

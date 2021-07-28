@@ -16,10 +16,10 @@ import { createRecognitionEvent } from "./../speech/SpeechRecognitionHelper";
 // let languageTransliterationCode = "Kore"
 
 
-export const FlashCardForm = ({deckData}) => {
+export const FlashCardForm = () => {
 
-    const { getFlashCards, addFlashCard, updateFlashCard, getFlashCardById } = useContext(FlashCardContext);
-    const { decks, getDecks, getDeckById } = useContext(DeckContext);
+    const { getFlashCards, addFlashCard, updateFlashCard } = useContext(FlashCardContext);
+    const { getDecks, currentDeck } = useContext(DeckContext);
 
 
     const [englishWord, setEnglishWord] = useState("");
@@ -36,7 +36,8 @@ export const FlashCardForm = ({deckData}) => {
         deckId: parseInt(sessionStorage.getItem("lastDeckView")),
         frontSide: "",
         backSide: "",
-        transliteration: ""
+        transliteration: "",
+        isFlipped: true
     });
 
     // const [isLoading, setIsLoading] = useState(true);
@@ -87,7 +88,7 @@ export const FlashCardForm = ({deckData}) => {
         //   console.log('new card', newCard);
         //   addFlashCard(newCard)
             addFlashCard(card)
-            .then(() => history.push(`/decks/detail/${deckData.id}`));
+            .then(() => history.push(`/decks/detail/${currentDeck.id}`));
     };
 
     const saveEditCard = (event) => {
@@ -98,14 +99,15 @@ export const FlashCardForm = ({deckData}) => {
           backSide: card.backSide,
           deckId: parseInt(card.deckId),
           userId: parseInt(sessionStorage.getItem("pandaAja_user")),
-          transliteration: card.transliteration
+          transliteration: card.transliteration,
+          isFlipped: true
         })
         .then(() => history.push(`/decks/detail/${card.id}/edit`))
     };
 
     const handleClickSaveCard = (event) => {
         event.preventDefault() //Prevents the browser from submitting the form
-        console.log('card', card, 'deck data', deckData, "english word", englishWord);
+        console.log('card', card, 'deck data', currentDeck, "english word", englishWord);
         
         const frontSide = card.frontSide
         const backSide = card.backSide
