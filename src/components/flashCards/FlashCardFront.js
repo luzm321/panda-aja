@@ -9,10 +9,10 @@ export const FlashCardFront = () => {
 
     return (
         <>
-            <h1>Flashcard Front</h1>
-            <div className="">   
-                <h1>{currentCard.frontSide}</h1>
-                <h2>{currentCard.transliteration}</h2>                     
+            <h1 className="cardFrontHeader">Flashcard Front</h1>
+            <div className="cardFrontDiv">   
+                <h1 className="frontHangeul">{currentCard.frontSide}</h1>
+                <h2 className="frontPhonetic">{currentCard.transliteration}</h2>                     
             </div>   
         </>
     )

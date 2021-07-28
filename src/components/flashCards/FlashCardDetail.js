@@ -55,9 +55,9 @@ export const FlashCardDetail = () => {
    
     return (
         <>
-            <h1>Flashcard View</h1>
+            <h1 className="cardViewHeader">Flashcard View</h1>
 
-            <label>Flip Card</label>
+            <label className="flipToggle">Flip Card</label>
             <label className="switch">
             {/* Ternary below conditionally renders which side of flashcard to display based on the flashCardToggle state (isFlipped property value) */}
             {flashCardToggle ?

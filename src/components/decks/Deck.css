@@ -1,3 +1,4 @@
+/* Styling for deck list */
 .deck {
     width: 25%;
     height: auto;
@@ -34,6 +35,30 @@
 
 
 .addCardBut {
+  cursor: pointer;
+}
+
+/* Styling for deck detail view */
+
+.flashCardHeader {
+  text-align: center;
+  margin: 1em;
+  font-size: 40px;
+}
+
+.cancel__btn {
+  cursor: pointer;
+}
+
+.handleDeck__btn {
+  cursor: pointer;
+}
+
+.showDetailBut {
+  cursor: pointer;
+}
+
+.flipBut {
   cursor: pointer;
 }
 
