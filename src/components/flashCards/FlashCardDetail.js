@@ -1,16 +1,20 @@
 import React, { useContext, useEffect, useState } from "react";
 import { FlashCardContext } from "../flashCards/FlashCardProvider";
-import "./FlashCard.css";
 import { useParams, useHistory } from "react-router-dom";
+import { FlashCardFront } from "./FlashCardFront";
+import { FlashCardBack } from "./FlashCardBack";
+import "./FlashCard.css";
+
 
 
 export const FlashCardDetail = () => {
 
     const history = useHistory();
 
-    const { getFlashCardById, userDeckFlashCards, deleteFlashCard } = useContext(FlashCardContext);
+    const { getFlashCardById, deleteFlashCard, currentCard, patchFlashCard } = useContext(FlashCardContext);
 
     const [flashcard, setFlashCard] = useState({});
+    const [flashCardToggle, setFlashCardSide] = useState(currentCard.isFlipped); // initial value of isFlipped property of card is true (front side)
 
 	const {flashCardId} = useParams();
 
@@ -35,39 +39,46 @@ export const FlashCardDetail = () => {
         window.history.back();
     };
 
+    // function to toggle flashcard from front (default) to back side and vice versa
+    const toggleCardSide = () => {
+        setFlashCardSide(!flashCardToggle);
+        let newCurrentCard = currentCard;
+        newCurrentCard["isFlipped"] = !flashCardToggle;
+        // need to stringify it because we are putting in session storage
+        sessionStorage.setItem("currentCard", JSON.stringify(newCurrentCard))
+        // patch
+        let patchedProperty = {
+            isFlipped: !flashCardToggle
+        }
+        patchFlashCard(patchedProperty, currentCard.id);
+    };
    
     return (
         <>
             <h1>Flashcard View</h1>
 
-            {
-                userDeckFlashCards.map((flashCard) => {
-                    if (flashCard.id === parseInt(flashCardId)) {
-                        return <>
-                                <div className="flip-card">
-                                    <div className="flip-card-inner">
-                                        <div className="card flip-card-front">
-                                            <div className="card-content">
-                                                    <div className="">
-                                                        <h1>{flashCard.frontSide}</h1>
-                                                        <h2>{flashCard.transliteration}</h2>
-                                                    </div>
-                                            </div>
-                                        </div>
-                                        <div className="card flip-card-back">
-                                            <div className="card-content">
-                                                <h1>{flashCard.backSide}</h1>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                        </>
-                    } else {
-                        return null;
-                    }
-                })
+            <label>Flip Card</label>
+            <label className="switch">
+            {/* Ternary below conditionally renders which side of flashcard to display based on the flashCardToggle state (isFlipped property value) */}
+            {flashCardToggle ?
+                <input type="checkbox" onClick={() => {
+                    toggleCardSide()
+                }}/> :
+                <input type="checkbox" defaultChecked onClick={() => {
+                    toggleCardSide()
+                }}/>
             }
+                <span className="slider round"></span>
+            </label>
 
+            {/* Ternary below conditionally renders which side of flashcard to display based on the flashCardToggle state (isFlipped property value) */}
+            {flashCardToggle ? 
+                <FlashCardFront />    
+            :
+                <FlashCardBack />
+            }
+            
+            {/* Ternary below conditionally renders the edit/delete affordances only for the current/active user in sessionStorage */}
             {
                 parseInt(sessionStorage.getItem("pandaAja_user")) === flashcard.userId ?
                 <>

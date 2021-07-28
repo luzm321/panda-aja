@@ -15,34 +15,9 @@ import { FlashCardForm } from "./flashCards/FlashCardForm";
 
 export const ApplicationViews = () => {
 
-    // make an empty state for the deck, assign an empty object as initial value because it doesn't matter, it will be replaced.
-    // const [deck, setDeck] = useState({
-    //     description: "",
-    //     id: 0,
-    //     topic: "",
-    //     user: {},
-    //     userId: 0
-    // });
-
-
-    const [deck, setDeck] = useState({});
-
-    // this function will be passed as a prop to DeckList, and then to DeckCard where it will be invoked. When the user clicks on a deck topic this function
-    // will be invoked and DeckCard will pass the deck object into the function as a parameter.
-    // This function lives here and its doing things here in this level, however its being invoked down in the DeckCard level so that the DeckCard component can
-    // send it the deck object. Then its received here and then gets assigned as the new value of the deck state.
-    const changeDeckState = (deckStateFromDeckCard) => {
-        // let newDeck = {...deck};
-        // newDeck = deckStateFromDeckCard
-        setDeck(deckStateFromDeckCard)
-        console.log('deck state', deck, 'value', deckStateFromDeckCard);
-    };
-
     //The static String.raw() method is a tag function of template literals used to get the raw string form of template literals to escape out of it instead of using multiply backslashes.
     let flashCardIdParameter = String.raw`:flashCardId(\d+)`;
 
-    // after assigning the deck the user selected in DeckCard to the deck state, then pass that deck state as a prop to DeckDetail where it will be
-    // rendered
     return (
         <>
             {/* Render the deck list on profile page when http://localhost:3000/decks */}
@@ -50,15 +25,15 @@ export const ApplicationViews = () => {
                 <UserProvider>
                     <FlashCardProvider>
                         <Route exact path="/decks">
-                            <DeckList changeDeckState={changeDeckState}/>
+                            <DeckList />
                         </Route>
                         
                         <Route exact path="/decks/detail/:deckId(\d+)">
-                            <DeckDetail deckData={deck}/>
+                            <DeckDetail />
                         </Route>
 
                         <Route exact path={`/decks/detail/${sessionStorage.getItem("lastDeckView")}/create`}> 
-                            <FlashCardForm deckData={deck} />
+                            <FlashCardForm />
                         </Route>
 {/* 
                         <Route exact path="/decks/detail/:deckId(\d+)/edit"> 

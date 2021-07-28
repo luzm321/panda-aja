@@ -8,6 +8,8 @@ export const FlashCardProvider = (props) => {
 
     const [flashCards, setFlashCards] = useState([]);
     const [userDeckFlashCards, setCardsInTheDeck] = useState([]);
+    const [currentCard, setCurrentCard] = useState(JSON.parse(sessionStorage.getItem("currentCard")));
+
 
     const getFlashCards = () => {
         return fetch("http://localhost:8088/flashCards?_expand=deck&_expand=user")
@@ -17,7 +19,6 @@ export const FlashCardProvider = (props) => {
 
     // this function gets all the flashcards of the user that is logged in that are related to the deck that was selected.
     const getAllCardsInThisDeck = (deckId) => {
-        console.log('deck id', deckId);
         // this is here in case the user refreshes the page so that the app can remember what deck they were looking at.
         if (typeof deckId === 'undefined') {
             deckId = parseInt(sessionStorage.getItem("lastDeckView"));    
@@ -26,13 +27,29 @@ export const FlashCardProvider = (props) => {
         .then(res => res.json())
         .then((flashCards) => {
             let filteredDeckFlashCards = flashCards.filter((flashCard) => {
-                console.log("flash card", flashCard);
                 if (deckId === flashCard.deckId) {
                     return flashCard;
                 }
             });
             console.log('filtered flashcards', filteredDeckFlashCards);
             return setCardsInTheDeck(filteredDeckFlashCards);
+        })
+    };
+
+    const getAllCardsInThisDeck2 = (deckId) => {
+        // this is here in case the user refreshes the page so that the app can remember what deck they were looking at.
+        if (typeof deckId === 'undefined') {
+            deckId = parseInt(sessionStorage.getItem("lastDeckView"));    
+        }
+        return fetch("http://localhost:8088/flashCards?_expand=deck&_expand=user")
+        .then(res => res.json())
+        .then((flashCards) => {
+            let filteredDeckFlashCards = flashCards.filter((flashCard) => {
+                if (deckId === flashCard.deckId) {
+                    return flashCard;
+                }
+            });
+            return filteredDeckFlashCards;
         })
     };
 
@@ -70,9 +87,30 @@ export const FlashCardProvider = (props) => {
           .then(getFlashCards)
     };
 
+    const patchFlashCard = (flashCardProperties, flashCardId) => {
+        return fetch(`http://localhost:8088/flashCards/${flashCardId}`, {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(flashCardProperties)
+        })
+        .then(getFlashCards)
+        // catch method handles any error
+        .catch((err) => {
+            console.error("ERROR", err);
+        })
+    };
+
+    // function assigns the current card user selected and sets the card object to the current card state
+    const assignCurrentCard = (currentlySelectedCard) => {
+        setCurrentCard(currentlySelectedCard);
+    };
+
     return (
         <FlashCardContext.Provider value={{
-            flashCards, getFlashCards, addFlashCard, deleteFlashCard, getFlashCardById, updateFlashCard, getAllCardsInThisDeck, userDeckFlashCards
+            flashCards, getFlashCards, addFlashCard, deleteFlashCard, getFlashCardById, updateFlashCard, getAllCardsInThisDeck, userDeckFlashCards,
+            assignCurrentCard, currentCard, patchFlashCard, getAllCardsInThisDeck2
         }}>
             {props.children}
         </FlashCardContext.Provider>
