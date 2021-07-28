@@ -1,6 +1,5 @@
 import React, { useState, createContext } from "react";
 
-const userId = parseInt(sessionStorage.getItem("pandaAja_user"));
 
 export const FlashCardContext = createContext();
 
