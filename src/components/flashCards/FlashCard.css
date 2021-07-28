@@ -43,16 +43,19 @@
 .frontHangeul {
   font-size: 30px;
   color: rgb(95, 165, 159);
+  text-align: center;
 }
 
 .frontPhonetic {
   font-size: 30px;
   color: rgb(62, 131, 125);
+  text-align: center;
 }
 
 .backEnglish {
   font-size: 30px;
   color: rgb(88, 182, 226);
+  text-align: center;
 }
 
 .handleCard__btn {

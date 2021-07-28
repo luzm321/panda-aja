@@ -88,8 +88,10 @@ export const DeckForm = () => {
           if (deckId) {
               //PUT - update
               saveEditDeck(event)
+              alert("Deck Updated! 😊")
           } else {
               saveNewDeck(event)
+              alert("New Deck Created! 😊")
           }
         };
     };

@@ -1,6 +1,6 @@
 import { speak } from "../speech/SpeechSynthesisHelper";
 import { useEffect, useState, useContext } from "react";
-import { useParams, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { translatePhrase, transliteratePhrase } from "./TranslationProvider"; 
 import { FlashCardContext } from "../flashCards/FlashCardProvider";
 import { DeckContext } from "../decks/DeckProvider"; 
@@ -20,7 +20,7 @@ export const FlashCardForm = () => {
 
     const { getFlashCards, addFlashCard, updateFlashCard } = useContext(FlashCardContext);
     const { getDecks, currentDeck } = useContext(DeckContext);
-
+    const history = useHistory();
 
     const [englishWord, setEnglishWord] = useState("");
     const [languageSelected, setLanguage] = useState("ko");
@@ -40,28 +40,11 @@ export const FlashCardForm = () => {
         isFlipped: true
     });
 
-    // const [isLoading, setIsLoading] = useState(true);
-
-    const { deckId } = useParams();
-    const history = useHistory();
-
 
     useEffect(() => {
         getFlashCards()
         .then(getDecks)
-        // .then(() => {
-        //     console.log('deck id', deckId);
-        //   if (deckId) {
-        //     getDeckById(deckId)
-        //     .then(card => {
-        //         setCard(card)
-        //         setIsLoading(false)
-        //     })
-        //   } else {
-        //     setIsLoading(false)
-        //   }
-        // })
-    }, [])
+    }, []);
 
      //when a field changes, update state. The return will re-render and display based on the values in state
     //Controlled component
@@ -77,33 +60,13 @@ export const FlashCardForm = () => {
         setCard(newCard)
     };
 
+    // Create new flashcard function:
     const saveNewCard = (event) => {
         event.preventDefault() //Prevents the browser from refreshing when submitting the form
-        //   const newCard = {
-        //     frontSide: card.frontSide,
-        //     backSide: card.backSide,
-        //     deckId: parseInt(deckData.id),
-        //     userId: parseInt(sessionStorage.getItem("pandaAja_user")),
-        //   }
-        //   console.log('new card', newCard);
-        //   addFlashCard(newCard)
-            addFlashCard(card)
-            .then(() => history.push(`/decks/detail/${currentDeck.id}`));
+        addFlashCard(card)
+        .then(() => history.push(`/decks/detail/${currentDeck.id}`));
     };
 
-    const saveEditCard = (event) => {
-        event.preventDefault() //Prevents the browser from refreshing when submitting the form
-        updateFlashCard({
-          id: card.id,
-          frontSide: card.frontSide,
-          backSide: card.backSide,
-          deckId: parseInt(card.deckId),
-          userId: parseInt(sessionStorage.getItem("pandaAja_user")),
-          transliteration: card.transliteration,
-          isFlipped: true
-        })
-        .then(() => history.push(`/decks/detail/${card.id}/edit`))
-    };
 
     const handleClickSaveCard = (event) => {
         event.preventDefault() //Prevents the browser from submitting the form
@@ -117,25 +80,11 @@ export const FlashCardForm = () => {
             window.alert("Please provide values for all input fields. 👇")
         } else {
     
-            if(window.location.href.includes("create")) {
+            if (window.location.href.includes("create")) {
                 saveNewCard(event)
-            } else if (window.location.href.includes("edit")) {
-                saveEditCard(event)
-            };
+                alert("New Card Created! 😊")
+            } 
         };
-    
-        // if (deckId === 0 || frontSide === "" || backSide === "") {
-        //   window.alert("Please select a location and a customer")
-        // } else {
-        //   setIsLoading(true);
-    
-        //   if (deckId) {
-        //     //PUT - update
-        //     saveEditCard(event)
-        //   } else {
-        //     saveNewCard(event)
-        //   }
-        // }
     };
     
 
@@ -214,7 +163,7 @@ export const FlashCardForm = () => {
     return (
         <>
             <form className="cardForm">
-                <h2 className="cardForm__title">{deckId ? "Edit Card" : "New Card" }</h2>
+                <h2 className="cardForm__title">New Card</h2>
                 <div className="card">
                     <div className="card-image">
                             <textarea disabled id="frontSide" value={`${translatedWord} ${transliteratedWord}`} placeholder="Translation..." onChange={handleControlledInputChange}></textarea>
@@ -222,6 +171,7 @@ export const FlashCardForm = () => {
                                 <option className="langSelect" value="ko--Kore">Korean</option>
                                 <option className="langSelect" value="ja--Jpan">Japanese</option>
                                 <option className="langSelect" value="en--Latn">Spanish</option>
+                                <option className="langSelect" value="en--Latn">English</option>
                             </select>
                     </div>
                     <div className="card-content">
@@ -237,10 +187,7 @@ export const FlashCardForm = () => {
                         <div className="content">
                             <button className="cancel__btn" onClick={(event) => {handleClickCancel(event)}}>Cancel</button>
                             <button className="handleCard__btn" onClick={(event) => {handleClickSaveCard(event)}}>
-                                Add Card
-
-                            {/* <button className="handleCard__btn" disabled={isLoading} onClick={(event) => {handleClickSaveCard(event)}}> */}
-                                {/* {deckId ? "Add Card" : "Save Card" } */}
+                                Add Card  
                             </button>
                         </div>
                     </div>
