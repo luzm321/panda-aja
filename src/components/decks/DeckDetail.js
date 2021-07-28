@@ -39,7 +39,7 @@ export const DeckDetail = () => {
             <h1>Flashcards</h1>
             {/* Ternary below conditionally renders add new card affordance only if the current logged in user matches the deck userId or the deck id from sessionStorage */}
             {
-                parseInt(sessionStorage.getItem("pandaAja_user")) === currentDeck.userId || parseInt(sessionStorage.getItem("lastDeckView")) ? 
+                parseInt(sessionStorage.getItem("pandaAja_user")) === currentDeck.userId ? 
                     <button className="addCardBut" onClick={() => {history.push(`/decks/detail/${sessionStorage.getItem("lastDeckView")}/create`)}}>
                         Add New Card
                     </button>
