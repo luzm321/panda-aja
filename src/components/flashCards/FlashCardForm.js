@@ -1,4 +1,3 @@
-import { speak } from "../speech/SpeechSynthesisHelper";
 import { useEffect, useState, useContext } from "react";
 import { useHistory } from "react-router-dom";
 import { translatePhrase, transliteratePhrase, detectLanguage } from "./TranslationProvider"; 
@@ -7,7 +6,6 @@ import { DeckContext } from "../decks/DeckProvider";
 import { createRecognitionEvent } from "./../speech/SpeechRecognitionHelper";
 
 
-// this will be for the text to speech functionality, not in use right now.
 // this is an array of some of the languageCountryCodes for the speech recognition from the web speech api
 // let languageCountryCodesArray = ["en-US", "ko-KR", "es-MX", "ja-JP"];
 // these are the default codes the app starts out with.
@@ -164,7 +162,7 @@ export const FlashCardForm = () => {
         };
         // it puts the recognition event into the speechRecognitionEvent state in case is needed for anything else.
         setSpeechRecognitionEvent(recognitionEvent);
-    }
+    };
 
     return (
         <>

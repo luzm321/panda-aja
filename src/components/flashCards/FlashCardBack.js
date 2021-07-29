@@ -17,13 +17,13 @@ export const FlashCardBack = ({uneditedCardState, updatedCardState, handleInputC
     const history = useHistory();
 
     let transliterationText;
-    if(currentCard.transliteration.length !== 0 && currentCard.backSideLang !== "en") { 
+    if (currentCard.transliteration.length !== 0 && currentCard.backSideLang !== "en") { 
         transliterationText = <h2 className="frontPhonetic">{currentCard.transliteration}</h2>
     } else {
         transliterationText = null;
     };
 
-     //Reroute to flashcard detail view on cancel
+     //Reroute to flashcards list/deck detail view on cancel
      const handleClickCancel = (event) => {
         event.preventDefault() //Prevents the browser from refreshing when submitting the form/clicking cancel button
         setUneditedCard(false);
