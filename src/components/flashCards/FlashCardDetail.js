@@ -4,16 +4,9 @@ import { useParams, useHistory } from "react-router-dom";
 import { FlashCardFront } from "./FlashCardFront";
 import { FlashCardBack } from "./FlashCardBack";
 import { speak } from "../speech/SpeechSynthesisHelper";
+import { createRecognitionEvent } from "../speech/SpeechRecognitionHelper";
 import "./FlashCard.css";
 
-
-
-// this is an array of some of the languageCountryCodes for the speech recognition from the web speech api
-// let languageCountryCodesArray = ["en-US", "ko-KR", "es-MX", "ja-JP"];
-// these are the default codes the app starts out with.
-// let languageCode = "ko";
-// let languageCountryCode = "ko-KR"
-// let languageTransliterationCode = "Kore"
 
 
 export const FlashCardDetail = () => {
@@ -43,6 +36,18 @@ export const FlashCardDetail = () => {
     const [uneditedCard, setUneditedCard] = useState({
         cardState: false
     });
+
+    const [langCountryCodeArray] = useState(["en-US", "ko-KR", "es-MX", "ja-JP"]);
+    const [currentLangCountryCode, setCurrentLangCountryCode] = useState("");
+
+    const findLangCountryCode = (languageCode) => {
+        return langCountryCodeArray.find((countryCode) => {
+            if (countryCode.includes(languageCode)) {
+                return countryCode;
+            }
+        });
+    }
+
 
     useEffect(() => {
         console.log("useEffect", flashCardId)
@@ -150,6 +155,48 @@ export const FlashCardDetail = () => {
         } 
     };
 
+    const listenToAnswer = (event) => {
+        event.preventDefault();
+            let countryCode;
+            let recognitionEvent;
+            // if flash card is currently on the front side, then start the recognition event 
+            if ( flashCardToggle ) {
+                countryCode  = findLangCountryCode(currentCard.frontSideLang);
+                console.log("countryCode", countryCode)
+                recognitionEvent = createRecognitionEvent(countryCode);
+                recognitionEvent.start();
+                recognitionEvent.onresult = (event) => {
+                    let answerGiven = event.results[0][0].transcript;
+                     if (answerGiven.includes(currentCard.frontSide.toLowerCase())) {
+                         // if what the user said matches the phrase/language on the front side of the card, then code below runs:
+                        speak("Great Job! You got it right", "en");
+                    } else {
+                        // if what the user said matches the phrase/language on the front side of the card, then code below runs and app will
+                        //repeat what the user said:
+                        speak(`Sorry, try again, you said`, "en");
+                        speak(`${answerGiven}`, currentCard.frontSideLang);
+                    }
+                }
+            } else {
+                  // else if flash card is currently on the back side, then start the recognition event 
+                countryCode  = findLangCountryCode(currentCard.backSideLang);
+                recognitionEvent = createRecognitionEvent(countryCode);
+                recognitionEvent.start();
+                recognitionEvent.onresult = (event) => {
+                    let answerGiven = event.results[0][0].transcript;
+                if (answerGiven.includes(currentCard.backSide.toLowerCase())) {
+                     // if what the user said matches the phrase/language on the back side of the card, then code below runs:
+                    speak("Great Job! You got it right", "en");
+                } else {
+                     // if what the user said matches the phrase/language on the back side of the card, then code below runs and app will
+                    //repeat what the user said:
+                    speak(`Sorry, try again, you said`, "en");
+                    speak(`${answerGiven}`, currentCard.backSideLang);
+                }
+            }
+        };
+    };
+
     return (
         <>
             <h1 className="cardViewHeader">Flashcard View</h1>
@@ -183,7 +230,7 @@ export const FlashCardDetail = () => {
                     <div className="card">
                         <footer className="card-footer">
                             <a onClick={(event) => {speakToUser(event)}} className="card-footer-item">Speak<img src="https://img.icons8.com/ios/50/000000/parrot-speaking.png"/></a>
-                            <a className="card-footer-item">Test Self<img src="https://img.icons8.com/office/40/000000/microphone--v1.png"/></a>
+                            <a onClick={(event) => {listenToAnswer(event)}} className="card-footer-item">Test Self<img src="https://img.icons8.com/office/40/000000/microphone--v1.png"/></a>
                         </footer>
                     </div>
                     <div className="card">
@@ -198,7 +245,7 @@ export const FlashCardDetail = () => {
                     <div className="card">
                         <footer className="card-footer">
                             <a onClick={(event) => {speakToUser(event)}} className="card-footer-item">Speak<img src="https://img.icons8.com/ios/50/000000/parrot-speaking.png"/></a>
-                            <a className="card-footer-item">Test Self<img src="https://img.icons8.com/office/40/000000/microphone--v1.png"/></a>
+                            <a onClick={(event) => {listenToAnswer(event)}} className="card-footer-item">Test Self<img src="https://img.icons8.com/office/40/000000/microphone--v1.png"/></a>
                         </footer>
                     </div>
                 </>
