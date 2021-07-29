@@ -1,7 +1,7 @@
 import { speak } from "../speech/SpeechSynthesisHelper";
 import { useEffect, useState, useContext } from "react";
 import { useHistory } from "react-router-dom";
-import { translatePhrase, transliteratePhrase } from "./TranslationProvider"; 
+import { translatePhrase, transliteratePhrase, detectLanguage } from "./TranslationProvider"; 
 import { FlashCardContext } from "../flashCards/FlashCardProvider";
 import { DeckContext } from "../decks/DeckProvider"; 
 import { createRecognitionEvent } from "./../speech/SpeechRecognitionHelper";
@@ -22,7 +22,7 @@ export const FlashCardForm = () => {
     const { getDecks, currentDeck } = useContext(DeckContext);
     const history = useHistory();
 
-    const [englishWord, setEnglishWord] = useState("");
+    const [typedPhrase, setTypedPhrase] = useState("");
     const [languageSelected, setLanguage] = useState("ko");
     const [transliterationCode, setTransliterationCode] = useState("Kore");
     const [translatedWord, setTranslation] = useState("");
@@ -36,6 +36,8 @@ export const FlashCardForm = () => {
         deckId: parseInt(sessionStorage.getItem("lastDeckView")),
         frontSide: "",
         backSide: "",
+        frontSideLang: "",
+        backsideLang: "",
         transliteration: "",
         isFlipped: true
     });
@@ -70,13 +72,13 @@ export const FlashCardForm = () => {
 
     const handleClickSaveCard = (event) => {
         event.preventDefault() //Prevents the browser from submitting the form
-        console.log('card', card, 'deck data', currentDeck, "english word", englishWord);
+        console.log('card', card, 'deck data', currentDeck, "english word", typedPhrase);
         
         const frontSide = card.frontSide
         const backSide = card.backSide
         const transliteration = card.transliteration
 
-        if (frontSide === "" || backSide === "" || transliteration === "") {
+        if (frontSide === "" || backSide === "") {
             window.alert("Please provide values for all input fields. 👇")
         } else {
     
@@ -100,7 +102,7 @@ export const FlashCardForm = () => {
         const newCard = { ...card }
         newCard[event.target.id] = event.target.value
         setCard(newCard);
-        setEnglishWord(event.target.value)
+        setTypedPhrase(event.target.value)
     };
 
     // this function is for the language selection drop down
@@ -124,22 +126,26 @@ export const FlashCardForm = () => {
         event.preventDefault()
         const newCard = { ...card }
         // this is the function in the TranslationProvider that calls the proxy
-        translatePhrase(languageSelected, englishWord).then((translation) => {
+        detectLanguage(typedPhrase).then((languageCodeDetected) => {
+            newCard["frontSideLang"] = languageCodeDetected;
+            newCard["backSideLang"] = languageSelected;
+            translatePhrase(languageSelected, typedPhrase, languageCodeDetected).then((translation) => {
             // it puts the translation in the translatedWord state in case is needed for anything else.
-            setTranslation(translation);
-            newCard["frontSide"] = translation;
-            setCard(newCard);
-                if (transliterationCode !== 'Latn') {
-                    transliteratePhrase(languageSelected, translation, transliterationCode).then((transliteration) => {
-                        // it puts the transliteration in the transliteratedWord state in case is needed for anything else.
-                        setTransliteration(transliteration);
-                        newCard["transliteration"] = transliteration;
-                    });
-                } else {
-                    // if the language is spanish the transliteration should not be there.
-                        setTransliteration("");
-                        newCard["transliteration"] = "";
-                }
+                setTranslation(translation);
+                newCard["frontSide"] = translation;
+                setCard(newCard);
+                    if (transliterationCode !== 'Latn') {
+                        transliteratePhrase(languageSelected, translation, transliterationCode).then((transliteration) => {
+                            // it puts the transliteration in the transliteratedWord state in case is needed for anything else.
+                            setTransliteration(transliteration);
+                            newCard["transliteration"] = transliteration;
+                        });
+                    } else {
+                        // if the language is spanish the transliteration should not be there.
+                            setTransliteration("");
+                            newCard["transliteration"] = "";
+                    }
+            });
         });
     }
 
@@ -154,7 +160,7 @@ export const FlashCardForm = () => {
             const newCard = { ...card }
             newCard['backSide'] = answerGiven
             setCard(newCard);
-            setEnglishWord(answerGiven);
+            setTypedPhrase(answerGiven);
         };
         // it puts the recognition event into the speechRecognitionEvent state in case is needed for anything else.
         setSpeechRecognitionEvent(recognitionEvent);
@@ -177,7 +183,7 @@ export const FlashCardForm = () => {
                     <div className="card-content">
                         <div className="media">
                             <div className="media-content">
-                                <input id="backSide" className="title is-4" placeholder="Enter English Word" value={englishWord} onChange={(event) => {
+                                <input id="backSide" className="title is-4" placeholder="Enter Text..." value={typedPhrase} onChange={(event) => {
                                         userEnteringWord(event)
                                     }} />
                                 <button className="listenBut" onClick={(event) => {listenToUser(event)}}>Listen To Me<img src="https://img.icons8.com/fluent/48/000000/foreign-language-sound.png"/></button>

@@ -11,9 +11,20 @@ export const FlashCardDetail = () => {
 
     const history = useHistory();
 
-    const { getFlashCardById, deleteFlashCard, currentCard, updateFlashCard, patchFlashCard } = useContext(FlashCardContext);
+    const { getFlashCardById, deleteFlashCard, currentCard, updateFlashCard, patchFlashCard, assignCurrentCard } = useContext(FlashCardContext);
 
-    const [flashcard, setFlashCard] = useState({});
+    const [flashcard, setFlashCard] = useState({
+        // setting initial values of flashcard object key-value pairs with data from the sessionStorage so it is not empty on initial render
+        id: parseInt(JSON.parse(sessionStorage.getItem("currentCard")).id),
+        userId: parseInt(sessionStorage.getItem("pandaAja_user")),
+        deckId: parseInt(sessionStorage.getItem("lastDeckView")),
+        frontSide:JSON.parse(sessionStorage.getItem("currentCard")).frontSide,
+        backSide: JSON.parse(sessionStorage.getItem("currentCard")).backSide,
+        transliteration: JSON.parse(sessionStorage.getItem("currentCard")).transliteration,
+        isFlipped: true,
+        backSideLang: JSON.parse(sessionStorage.getItem("currentCard")).backSideLang,
+        frontSideLang: JSON.parse(sessionStorage.getItem("currentCard")).frontSideLang
+    });
     const [flashCardToggle, setFlashCardSide] = useState(currentCard.isFlipped); // initial value of isFlipped property of card is true (front side)
 
 	const {flashCardId} = useParams(); //dynamic routing parameter for ApplicationViews
@@ -36,25 +47,30 @@ export const FlashCardDetail = () => {
         setUneditedCard(true)
     };
 
-    //Initial state of updated flashcard object with pre-populated data:
+    //Initial state of updated flashcard object with pre-populated data and setting initial values of updated card object key-value pairs with 
+    // data from the sessionStorage so it is not empty when page refreshes
       const [updatedCard, setUpdatedCard] = useState({
-        id: flashcard.id,
-        // userId: parseInt(sessionStorage.getItem("pandaAja_user"))
-        userId: flashcard.userId,
-        // deckId: parseInt(sessionStorage.getItem("lastDeckView"))
-        deckId: flashcard.deckId,
-        frontSide: flashcard.frontSide,
-        backSide: flashcard.backSide,
-        transliteration: flashcard.transliteration,
-        isFlipped: true
+        id: parseInt(JSON.parse(sessionStorage.getItem("currentCard")).id),
+        userId: parseInt(sessionStorage.getItem("pandaAja_user")),
+        deckId: parseInt(sessionStorage.getItem("lastDeckView")),
+        frontSide: JSON.parse(sessionStorage.getItem("currentCard")).frontSide,
+        backSide: JSON.parse(sessionStorage.getItem("currentCard")).backSide,
+        transliteration: JSON.parse(sessionStorage.getItem("currentCard")).transliteration,
+        isFlipped: true,
+        backSideLang: JSON.parse(sessionStorage.getItem("currentCard")).backSideLang,
+        frontSideLang: JSON.parse(sessionStorage.getItem("currentCard")).frontSideLang
     });
 
     
     //Change event listener for recording new flashcard input
     const handleControlledInputChange = (event) => {
+        console.log('event', event.target.value);
+        console.log('event in handle', updatedCard)
         /* When changing a state object or array,
         always create a copy, make changes, and then set state.*/
         const newCard = { ...updatedCard }
+        console.log('event in handle new card', newCard)
+
         /* Card is an object with properties.
         Set the property to the new value
         using object bracket notation. */
@@ -65,44 +81,22 @@ export const FlashCardDetail = () => {
 
      //Edit Flashcard function:
      const saveEditCard = () => {
+         // ensuring user does not delete data and try to save:
         if (updatedCard.frontSide.length === 0 || updatedCard.backSide.length === 0) {
-            updatedCard.frontSide = flashcard.frontSide
-            updatedCard.backSide = flashcard.backSide
-                updateFlashCard(updatedCard);
-                setUneditedCard(false);
-                alert("You cannot save an empty card! 🙅");
+            alert("You cannot save an empty card! 🙅");
         } else {
+            // ensuring user does not try to edit data without doing any changes to it:
             if (updatedCard.frontSide === flashcard.frontSide || updatedCard.backSide === flashcard.backSide) {
-                updateFlashCard(updatedCard);
-                setUneditedCard(false);
                 alert("You cannot save an empty card! 🙅");
             } else {
+                assignCurrentCard(updatedCard);
+                sessionStorage.setItem("currentCard", JSON.stringify(updatedCard));
                 updateFlashCard(updatedCard);
                 setUneditedCard(false);
             }
         }
     };
 
-    //Text area for message input conditionally rendered whether in unedited or updating state:
-
-    let cardInput;
-    if (uneditedCard === true) {
-        cardInput = 
-        <div className="update__card">
-            <input id="backSide" className="card__backSide" defaultValue={flashcard.backSide} onChange={(event) => {handleControlledInputChange(event)}}/>
-            <button className="update__button" onClick={() => {saveEditCard()}}>Save</button>                 
-        </div>
-    } else {
-        cardInput = 
-        <div className="update__card">
-            <input type="text" className="card__backSide" value={flashcard.backSide} />  
-            <select className="langSelect">
-            <option className="langSelect" value="ko--Kore">Korean</option>
-            <option className="langSelect" value="en--Latn">English</option>
-            </select>
-            <button>Translate</button>        
-        </div>
-    };
 
     // Function for deleting a card:
     const handleDeleteCard = () => {
@@ -152,9 +146,9 @@ export const FlashCardDetail = () => {
 
             {/* Ternary below conditionally renders which side of flashcard to display based on the flashCardToggle state (isFlipped property value) */}
             {flashCardToggle ? 
-                <FlashCardFront uneditedCardState={uneditedCard} updatedCardState={updatedCard} cardInput={cardInput} handleInputChange={handleControlledInputChange}/>    
+                <FlashCardFront uneditedCardState={uneditedCard} updatedCardState={updatedCard} handleInputChange={handleControlledInputChange} saveEditCard={saveEditCard}/>    
             :
-                <FlashCardBack uneditedCardState={uneditedCard} updatedCardState={updatedCard} cardInput={cardInput} handleInputChange={handleControlledInputChange}/>
+                <FlashCardBack uneditedCardState={uneditedCard} updatedCardState={updatedCard} handleInputChange={handleControlledInputChange} saveEditCard={saveEditCard}/>
             }
             
             {/* Ternary below conditionally renders the edit/delete affordances only for the current/active user in sessionStorage */}
