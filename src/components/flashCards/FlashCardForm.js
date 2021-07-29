@@ -37,7 +37,7 @@ export const FlashCardForm = () => {
         frontSide: "",
         backSide: "",
         frontSideLang: "",
-        backsideLang: "",
+        backSideLang: "",
         transliteration: "",
         isFlipped: true
     });
@@ -127,8 +127,8 @@ export const FlashCardForm = () => {
         const newCard = { ...card }
         // this is the function in the TranslationProvider that calls the proxy
         detectLanguage(typedPhrase).then((languageCodeDetected) => {
-            newCard["frontSideLang"] = languageCodeDetected;
-            newCard["backSideLang"] = languageSelected;
+            newCard["backSideLang"] = languageCodeDetected;
+            newCard["frontSideLang"] = languageSelected;
             translatePhrase(languageSelected, typedPhrase, languageCodeDetected).then((translation) => {
             // it puts the translation in the translatedWord state in case is needed for anything else.
                 setTranslation(translation);

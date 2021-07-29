@@ -6,7 +6,7 @@ import { translatePhrase, transliteratePhrase, detectLanguage } from "./Translat
 
 
 
-export const FlashCardBack = ({uneditedCardState, updatedCardState, handleInputChange, saveEditCard}) => {
+export const FlashCardBack = ({uneditedCardState, updatedCardState, handleInputChange, saveEditCard, setUneditedCard}) => {
 
     const { currentCard, assignCurrentCard } = useContext(FlashCardContext);
     const [ translatedWord, setTranslation ] = useState("");
@@ -21,7 +21,14 @@ export const FlashCardBack = ({uneditedCardState, updatedCardState, handleInputC
         transliterationText = <h2 className="frontPhonetic">{currentCard.transliteration}</h2>
     } else {
         transliterationText = null;
-    }
+    };
+
+     //Reroute to flashcard detail view on cancel
+     const handleClickCancel = (event) => {
+        event.preventDefault() //Prevents the browser from refreshing when submitting the form/clicking cancel button
+        setUneditedCard(false);
+
+    };
 
     return (
         <> 
@@ -75,7 +82,7 @@ export const FlashCardBack = ({uneditedCardState, updatedCardState, handleInputC
                             console.log('updated card', updatedCardState);
                             saveEditCard(updatedCardState);
                         }}>Save</button>
-                        <button className="cancel__btn" onClick={() => {history.push(`/decks/detail/${sessionStorage.getItem("lastDeckView")}/flashcard/${currentCard.id}`)}}>Cancel</button>               
+                        <button className="cancel__btn" onClick={(event) => {handleClickCancel(event)}}>Cancel</button>               
                     </div>
                 </>
                 :
