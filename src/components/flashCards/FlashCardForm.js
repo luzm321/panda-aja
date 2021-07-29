@@ -8,7 +8,7 @@ import { speak } from "../speech/SpeechSynthesisHelper";
 
 
 // this is an array of some of the languageCountryCodes for the speech recognition from the web speech api
-// let languageCountryCodesArray = ["en-US", "ko-KR", "es-MX", "ja-JP"];
+let languageCountryCodesArray = ["en-US", "ko-KR", "es-MX", "ja-JP"];
 // these are the default codes the app starts out with.
 // let languageCode = "ko";
 // let languageCountryCode = "ko-KR"
@@ -27,6 +27,16 @@ export const FlashCardForm = () => {
     const [translatedWord, setTranslation] = useState("");
     const [transliteratedWord, setTransliteration] = useState("");
     const [speechRecognitionEvent, setSpeechRecognitionEvent] = useState("");
+    const [langCountryCodeArray] = useState(["en-US", "ko-KR", "es-MX", "ja-JP"]);
+    const [currentLangCountryCode, setCurrentLangCountryCode] = useState("");
+
+    const findLangCountryCode = (languageCode) => {
+        return langCountryCodeArray.find((countryCode) => {
+            if (countryCode.includes(languageCode)) {
+                return countryCode;
+            }
+        });
+    }
 
 
      // Define the initial state of the form inputs with useState()
