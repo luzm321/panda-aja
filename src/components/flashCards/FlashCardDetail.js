@@ -146,9 +146,9 @@ export const FlashCardDetail = () => {
 
             {/* Ternary below conditionally renders which side of flashcard to display based on the flashCardToggle state (isFlipped property value) */}
             {flashCardToggle ? 
-                <FlashCardFront uneditedCardState={uneditedCard} updatedCardState={updatedCard} handleInputChange={handleControlledInputChange} saveEditCard={saveEditCard}/>    
+                <FlashCardFront uneditedCardState={uneditedCard} updatedCardState={updatedCard} handleInputChange={handleControlledInputChange} saveEditCard={saveEditCard} setUneditedCard={setUneditedCard}/>    
             :
-                <FlashCardBack uneditedCardState={uneditedCard} updatedCardState={updatedCard} handleInputChange={handleControlledInputChange} saveEditCard={saveEditCard}/>
+                <FlashCardBack uneditedCardState={uneditedCard} updatedCardState={updatedCard} handleInputChange={handleControlledInputChange} saveEditCard={saveEditCard} setUneditedCard={setUneditedCard}/>
             }
             
             {/* Ternary below conditionally renders the edit/delete affordances only for the current/active user in sessionStorage */}

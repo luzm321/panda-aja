@@ -1,4 +1,4 @@
-
+// function to translate a phrase/word:
 export const translatePhrase = (toLanguage, phrase, fromLanguage = "en") => {
     // with the parameter values passed to this function such as the language and phrase that store the data to send to the proxy server,
     // create a query which contains those values
@@ -14,6 +14,7 @@ export const translatePhrase = (toLanguage, phrase, fromLanguage = "en") => {
     });
 };
 
+// function to transliterate (phonetics) a phrase/word:
 export const transliteratePhrase = (language, phrase, transliterationCode) => {
     const query = `&language=${language}&phrase=${phrase}&transliterationCode=${transliterationCode}`;
     return fetch(`http://localhost:3000/api/transliterate?${query}`)
@@ -24,7 +25,7 @@ export const transliteratePhrase = (language, phrase, transliterationCode) => {
     });
 };
 
-
+// function to detect either the language typed or uttered:
 export const detectLanguage = (phrase) => {
     const query = `&phrase=${phrase}`;
     return fetch(`http://localhost:3000/api/detect?${query}`)
@@ -33,7 +34,7 @@ export const detectLanguage = (phrase) => {
         console.log('detection data', data);
         return data[0].language
     });
-}
+};
 
 
 // import React, { useState, createContext } from "react";

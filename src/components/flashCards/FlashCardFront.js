@@ -1,11 +1,12 @@
 import React, { useContext, useState, useEffect} from "react";
+import { useHistory } from "react-router-dom";
 import { FlashCardContext } from "../flashCards/FlashCardProvider";
 import { translatePhrase, transliteratePhrase, detectLanguage } from "./TranslationProvider";
 // import "./FlashCard.css";
 
 
 
-export const FlashCardFront = ({uneditedCardState, updatedCardState, handleInputChange, saveEditCard}) => {
+export const FlashCardFront = ({uneditedCardState, updatedCardState, handleInputChange, saveEditCard, setUneditedCard}) => {
 
     const { currentCard, getAllCardsInThisDeck, assignCurrentCard } = useContext(FlashCardContext);
     const [ translatedWord, setTranslation ] = useState("");
@@ -13,6 +14,7 @@ export const FlashCardFront = ({uneditedCardState, updatedCardState, handleInput
     const [ languageTransliterationCode, setTransliterationCode ] = useState("Kore");
     const [ transliteration, setTransliteration ] = useState("");
 
+    const history = useHistory();
 
     useEffect(() => {
         getAllCardsInThisDeck(parseInt(sessionStorage.getItem("lastDeckView")))
@@ -23,7 +25,13 @@ export const FlashCardFront = ({uneditedCardState, updatedCardState, handleInput
         transliterationText = <h2 className="frontPhonetic">{currentCard.transliteration}</h2>
     } else {
         transliterationText = null;
-    }
+    };
+
+    //Reroute to flashcard detail view on cancel
+    const handleClickCancel = (event) => {
+        event.preventDefault() //Prevents the browser from refreshing when submitting the form/clicking cancel button
+        setUneditedCard(false);
+    };
 
     return (
         <> 
@@ -46,7 +54,7 @@ export const FlashCardFront = ({uneditedCardState, updatedCardState, handleInput
                             <option className="langSelect" value="ko--Kore">Korean</option>
                             <option className="langSelect" value="en--Latn">English</option>
                         </select>
-                        <button onClick={() => {
+                        <button className="translateBut" onClick={() => {
                             console.log('updated card state on translate', updatedCardState, currentCard);
                             console.log('language code', languageCode)
                             detectLanguage(updatedCardState.frontSide).then((languageCodeDetected) => {
@@ -78,7 +86,7 @@ export const FlashCardFront = ({uneditedCardState, updatedCardState, handleInput
                             console.log('updated card', updatedCardState);
                             saveEditCard(updatedCardState);
                         }}>Save</button>
-                        <button>Cancel</button>                
+                        <button className="cancel__btn" onClick={(event) => {handleClickCancel(event)}}>Cancel</button>                
                     </div>
                 </>
                 :
