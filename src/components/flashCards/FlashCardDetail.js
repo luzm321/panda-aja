@@ -204,7 +204,7 @@ export const FlashCardDetail = () => {
                 </>
             }
 
-            <button className="cancel__btn" onClick={(event) => {handleClickReturnToCards(event)}}>Return to Flashcards</button>
+            <button className="return__btn" onClick={(event) => {handleClickReturnToCards(event)}}>Return to Flashcards</button>
         </>
     )
 };

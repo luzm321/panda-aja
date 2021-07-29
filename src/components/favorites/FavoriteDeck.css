@@ -1,0 +1,18 @@
+.faveHeader {
+    text-align: center;
+    font-size: 30px;
+}
+
+.faveGif {
+    width: 100px;
+    height: auto;
+    mix-blend-mode: multiply;
+    cursor: pointer;
+    border-radius: 70px;
+    margin: 2em 0 2em 49.5em;
+}
+
+.faveDeck__description {
+    text-align: center;
+    margin-bottom: 5em;
+}
