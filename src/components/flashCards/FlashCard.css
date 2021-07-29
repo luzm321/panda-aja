@@ -78,6 +78,15 @@
   cursor: pointer;
 }
 
+.speakBut {
+  cursor: pointer;
+}
+
+.cardForm__title {
+  text-align: center;
+  font-size: 30px;
+}
+
 /* The switch - the box around the slider */
 .switch {
     position: relative;

@@ -4,6 +4,7 @@ import { translatePhrase, transliteratePhrase, detectLanguage } from "./Translat
 import { FlashCardContext } from "../flashCards/FlashCardProvider";
 import { DeckContext } from "../decks/DeckProvider"; 
 import { createRecognitionEvent } from "./../speech/SpeechRecognitionHelper";
+import { speak } from "../speech/SpeechSynthesisHelper";
 
 
 // this is an array of some of the languageCountryCodes for the speech recognition from the web speech api
@@ -164,6 +165,14 @@ export const FlashCardForm = () => {
         setSpeechRecognitionEvent(recognitionEvent);
     };
 
+    // this function is invoked when the user clicks on the speak button:
+    const speakToUser = (event) => {
+        event.preventDefault();
+        // if toggle is true, front side, else back side
+        // this function from SpeechSynthesisHelper creates the speech synthesis event, passing the phrase and language code as parameters.
+        speak(card.frontSide, card.frontSideLang)
+    };
+
     return (
         <>
             <form className="cardForm">
@@ -185,6 +194,7 @@ export const FlashCardForm = () => {
                                         userEnteringWord(event)
                                     }} />
                                 <button className="listenBut" onClick={(event) => {listenToUser(event)}}>Listen To Me<img src="https://img.icons8.com/fluent/48/000000/foreign-language-sound.png"/></button>
+                                <button onClick={(event) => {speakToUser(event)}} className="speakBut">Speak<img src="https://img.icons8.com/ios/50/000000/parrot-speaking.png"/></button>
                             </div>
                         </div>
                         <button className="translateBut" onClick={(event) => {translateWord(event)}}>Translate<img src="https://img.icons8.com/color/48/000000/language.png"/></button>
