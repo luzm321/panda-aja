@@ -148,10 +148,10 @@ export const FlashCardForm = () => {
         });
     }
 
-    // this function is invoked when the user click on the listen to me button.
+    // this function is invoked when the user clicks on the listen to me button:
     const listenToUser = (event) => {
         event.preventDefault();
-        // this function from SpeechRecognitionHelper creates the speech recognition event.
+        // the createRecognitionEvent() function from SpeechRecognitionHelper creates the speech recognition event.
         let recognitionEvent = createRecognitionEvent();
         recognitionEvent.start();
         recognitionEvent.onresult = (event) => {
@@ -168,10 +168,10 @@ export const FlashCardForm = () => {
     // this function is invoked when the user clicks on the speak button:
     const speakToUser = (event) => {
         event.preventDefault();
-        // if toggle is true, front side, else back side
-        // this function from SpeechSynthesisHelper creates the speech synthesis event, passing the phrase and language code as parameters.
+        // speak() function from SpeechSynthesisHelper creates the speech synthesis event, passing the phrase and language code as parameters.
         speak(card.frontSide, card.frontSideLang)
     };
+
 
     return (
         <>

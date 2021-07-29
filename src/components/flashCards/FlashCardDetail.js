@@ -136,12 +136,18 @@ export const FlashCardDetail = () => {
         patchFlashCard(patchedProperty, currentCard.id);
     };
 
+
     // this function is invoked when the user clicks on the speak button:
     const speakToUser = (event) => {
         event.preventDefault();
-        // if toggle is true, front side, else back side
-        // this function from SpeechSynthesisHelper creates the speech synthesis event, passing the phrase and language code as parameters.
-        speak(flashcard.frontSide, flashcard.frontSideLang)
+        if (flashCardToggle) {
+            // speak() function from SpeechSynthesisHelper creates the speech synthesis event, passing the phrase and language code as parameters.
+            //currentCard object in sessionStorage has the updated flashcard data whenever user edits a card, otherwise, app will speak the
+            //previous phrase and language of the unedited version of card:
+            speak(JSON.parse(sessionStorage.getItem("currentCard")).frontSide, JSON.parse(sessionStorage.getItem("currentCard")).frontSideLang)
+        } else {
+            speak(JSON.parse(sessionStorage.getItem("currentCard")).backSide, JSON.parse(sessionStorage.getItem("currentCard")).backSideLang)
+        } 
     };
 
     return (
