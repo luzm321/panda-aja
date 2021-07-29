@@ -1,14 +1,17 @@
 /* eslint-disable */
-import React, { useState } from "react";
+import React from "react";
 import { Route } from "react-router-dom";
 import { DeckProvider } from "./decks/DeckProvider";
 import { UserProvider } from "./users/UserProvider";
 import { FlashCardProvider } from "./flashCards/FlashCardProvider";
+import { FavoriteDeckProvider } from "./favorites/FavoriteDeckProvider";
 import { DeckList } from "./decks/DeckList";
+import { FavoriteDeckList } from "./favorites/FavoriteDeckList";
 import { DeckDetail } from "./decks/DeckDetail";
 import { FlashCardDetail } from "./flashCards/FlashCardDetail";
 import { DeckForm } from "./decks/DeckForm";
 import { FlashCardForm } from "./flashCards/FlashCardForm";
+
 
 
 
@@ -57,6 +60,12 @@ export const ApplicationViews = () => {
                     </FlashCardProvider>
                 </UserProvider>          
             </DeckProvider>
+
+            <FavoriteDeckProvider>
+                <Route exact path="/favorites">
+                    <FavoriteDeckList />
+                </Route>
+            </FavoriteDeckProvider>
         </>
     )
 };

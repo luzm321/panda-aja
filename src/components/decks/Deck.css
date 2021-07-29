@@ -4,6 +4,12 @@
     height: auto;
     border: 1px solid rgb(156, 221, 221);
     margin: 2em 36em;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.deck__description {
+  text-align: center;
 }
 
 .addDeckBut {
@@ -36,6 +42,7 @@
 
 .addCardBut {
   cursor: pointer;
+  margin: 2em 0 3em 53em;
 }
 
 /* Styling for deck detail view */
@@ -62,6 +69,14 @@
   cursor: pointer;
 }
 
+.card {
+  border-radius: 20px;
+}
+
+.flashCardDiv {
+  text-align: center;
+}
+
 /* The flip card container - set the width and height to whatever you want. We have added the border property to demonstrate that the flip itself goes out of the box on hover (remove perspective if you don't want the 3D effect */
 .flip-card {
     background-color: transparent;
@@ -70,6 +85,10 @@
     border: 1px solid #f1f1f1;
     perspective: 1000px; /* Remove this if you don't want the 3D effect */
     cursor: pointer;
+    border-radius: 20px;
+    margin: auto;
+    margin-top: 1em;
+    margin-bottom: 1em;
   }
   
   /* This container is needed to position the front and back side */

@@ -49,7 +49,7 @@ export const DeckDetail = () => {
 
             {
                 userDeckFlashCards.map((flashCard) => {
-                    return <div onMouseOver={() => {
+                    return <div className="flashCardDiv" onMouseOver={() => {
                         assignCurrentCard(flashCard);
                         }}>
                             <br></br>
