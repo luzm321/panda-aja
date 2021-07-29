@@ -17,7 +17,7 @@ import { speak } from "../speech/SpeechSynthesisHelper";
 
 export const FlashCardForm = () => {
 
-    const { getFlashCards, addFlashCard, updateFlashCard } = useContext(FlashCardContext);
+    const { getFlashCards, addFlashCard } = useContext(FlashCardContext);
     const { getDecks, currentDeck } = useContext(DeckContext);
     const history = useHistory();
 

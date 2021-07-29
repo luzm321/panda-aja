@@ -32,6 +32,11 @@
     color: rgb(35, 48, 46);
 }
 
+.logoDiv {
+    display: flex;
+    flex-direction: column;
+}
+
 .logo {
     width: 60px;
     height: 60px;
@@ -39,9 +44,23 @@
     cursor: pointer;
     transition: all .2s ease-in-out;
     margin-right: 1.5em;
+    margin-left: 4em;
 } 
 
 .logo:hover {
+    transform: scale(1.4);
+}
+
+.logoName {
+    width: 200px;
+    height: auto;
+    mix-blend-mode: multiply;
+    cursor:pointer;
+    transition: all .2s ease-in-out;
+    margin-top: 1em;
+}
+
+.logoName:hover {
     transform: scale(1.3);
 }
 

@@ -28,7 +28,10 @@ export const NavBar = (props) => {
 
   return (
       <ul className="navbar">
-          <img className="logo" src="./images/panda-aja.PNG"/>
+          <div className="logoDiv">
+            <img className="logo" src="./images/panda-aja.PNG" alt="panda logo"/>
+            <img className="logoName" src="./images/pandaAja.PNG" alt="Panda-Aja!"/>
+          </div>
           <li className={`navbar__item ${checkNavState("decks")}`}
               onClick={() => setIsActive("decks")}>
               <Link className="navbar__link" to="/decks">Profile</Link>
