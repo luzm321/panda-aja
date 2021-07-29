@@ -1,4 +1,5 @@
 import React, { useContext, useState, useEffect} from "react";
+import { useHistory } from "react-router-dom";
 import { FlashCardContext } from "../flashCards/FlashCardProvider";
 import { translatePhrase, transliteratePhrase, detectLanguage } from "./TranslationProvider";
 // import "./FlashCard.css";
@@ -13,6 +14,7 @@ export const FlashCardFront = ({uneditedCardState, updatedCardState, handleInput
     const [ languageTransliterationCode, setTransliterationCode ] = useState("Kore");
     const [ transliteration, setTransliteration ] = useState("");
 
+    const history = useHistory();
 
     useEffect(() => {
         getAllCardsInThisDeck(parseInt(sessionStorage.getItem("lastDeckView")))
@@ -46,7 +48,7 @@ export const FlashCardFront = ({uneditedCardState, updatedCardState, handleInput
                             <option className="langSelect" value="ko--Kore">Korean</option>
                             <option className="langSelect" value="en--Latn">English</option>
                         </select>
-                        <button onClick={() => {
+                        <button className="translateBut" onClick={() => {
                             console.log('updated card state on translate', updatedCardState, currentCard);
                             console.log('language code', languageCode)
                             detectLanguage(updatedCardState.frontSide).then((languageCodeDetected) => {
@@ -78,7 +80,7 @@ export const FlashCardFront = ({uneditedCardState, updatedCardState, handleInput
                             console.log('updated card', updatedCardState);
                             saveEditCard(updatedCardState);
                         }}>Save</button>
-                        <button>Cancel</button>                
+                        <button className="cancel__btn" onClick={() => {history.push(`/decks/detail/${sessionStorage.getItem("lastDeckView")}/flashcard/${currentCard.id}`)}}>Cancel</button>                
                     </div>
                 </>
                 :
