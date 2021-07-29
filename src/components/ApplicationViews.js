@@ -27,36 +27,34 @@ export const ApplicationViews = () => {
             <DeckProvider>
                 <UserProvider>
                     <FlashCardProvider>
-                        <Route exact path="/decks">
-                            <DeckList />
-                        </Route>
-                        
-                        <Route exact path="/decks/detail/:deckId(\d+)">
-                            <DeckDetail />
-                        </Route>
+                        <FavoriteDeckProvider>
 
-                        <Route exact path={`/decks/detail/${sessionStorage.getItem("lastDeckView")}/create`}> 
-                            <FlashCardForm />
-                        </Route>
-{/* 
-                        <Route exact path="/decks/detail/:deckId(\d+)/edit"> 
-                            <FlashCardForm />
-                        </Route> */}
-                        
+                            <Route exact path="/decks">
+                                <DeckList />
+                            </Route>
+                            
+                            <Route exact path="/decks/detail/:deckId(\d+)">
+                                <DeckDetail />
+                            </Route>
 
-                        <Route exact path="/decks/create">
-                            <DeckForm />
-                        </Route>
+                            <Route exact path={`/decks/detail/${sessionStorage.getItem("lastDeckView")}/create`}> 
+                                <FlashCardForm />
+                            </Route>
+                            
+                            <Route exact path="/decks/create">
+                                <DeckForm />
+                            </Route>
 
-                        <Route path="/decks/edit/:deckId(\d+)">
-                            <DeckForm />
-                        </Route>   
+                            <Route path="/decks/edit/:deckId(\d+)">
+                                <DeckForm />
+                            </Route>   
 
-                        {/* <Route exact path={`/decks/detail/${sessionStorage.getItem("lastDeckView")}/flashcard/:flashCardId(\d+)> */}
-                        <Route exact path={`/decks/detail/${sessionStorage.getItem("lastDeckView")}/flashcard/${flashCardIdParameter}`}>
-                            <FlashCardDetail />
-                        </Route>
+                            {/* <Route exact path={`/decks/detail/${sessionStorage.getItem("lastDeckView")}/flashcard/:flashCardId(\d+)> */}
+                            <Route exact path={`/decks/detail/${sessionStorage.getItem("lastDeckView")}/flashcard/${flashCardIdParameter}`}>
+                                <FlashCardDetail />
+                            </Route>
 
+                        </FavoriteDeckProvider>
                     </FlashCardProvider>
                 </UserProvider>          
             </DeckProvider>

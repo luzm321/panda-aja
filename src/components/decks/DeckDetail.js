@@ -36,7 +36,7 @@ export const DeckDetail = () => {
 
     return (
         <>
-            <h1 className="flashCardHeader">Flashcards</h1>
+            <h1 className="flashCardHeader">My Flashcards</h1>
             {/* Ternary below conditionally renders add new card affordance only if the current logged in user matches the deck userId or the deck id from sessionStorage */}
             {
                 parseInt(sessionStorage.getItem("pandaAja_user")) === currentDeck.userId ? 
@@ -101,7 +101,7 @@ export const DeckDetail = () => {
                 })
             }
             
-            <button className="cancel__btn" onClick={(event) => {handleClickReturnToDecks(event)}}>Return to Decks</button>
+            <button className="return__btn" onClick={(event) => {handleClickReturnToDecks(event)}}>Return to Decks</button>
         </>
     )
 };

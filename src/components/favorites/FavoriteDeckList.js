@@ -16,7 +16,7 @@ export const FavoriteDeckList = () => {
 
     return (
         <>
-            <h1 className="faveHeader">Favorite Decks</h1><img className="faveGif" src="https://i.pinimg.com/originals/4a/82/e2/4a82e26bd1988b8f08fafc10892b8cd0.gif" />
+            <h1 className="faveHeader">My Favorite Decks</h1><img className="faveGif" src="https://i.pinimg.com/originals/4a/82/e2/4a82e26bd1988b8f08fafc10892b8cd0.gif" />
 
             {
                 favoriteDecks.map(favoriteDeck => {

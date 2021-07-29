@@ -1,14 +1,16 @@
 /* eslint-disable */
-import React, { useContext, useEffect} from "react";
+import React, { useContext} from "react";
 import { Link } from "react-router-dom";
 import { DeckContext } from "./DeckProvider";
+import { FavoriteDeckContext } from "../favorites/FavoriteDeckProvider";
 import { useHistory } from "react-router-dom";
 import "./Deck.css";
 
 
-export const DeckCard = ({ deck, changeDeckState }) => {
+export const DeckCard = ({ deck }) => {
 
   const { deleteDeck, assignCurrentDeck } = useContext(DeckContext);
+  const { addFavoriteDeck } = useContext(FavoriteDeckContext);
 
 	const history = useHistory();
 
@@ -17,6 +19,16 @@ export const DeckCard = ({ deck, changeDeckState }) => {
       .then(() => {
         history.push("/decks")
       })
+  };
+
+  const saveFaveDeck = () => {
+    const newFaveDeck = {
+        deckId: deck.id,
+        userId: parseInt(sessionStorage.getItem("pandaAja_user"))
+    };
+        
+        addFavoriteDeck(newFaveDeck);
+        alert("Deck added as a favorite! 💚")
   };
 
   
@@ -48,7 +60,7 @@ export const DeckCard = ({ deck, changeDeckState }) => {
       </div>
       { deck.userId === parseInt(sessionStorage.getItem("pandaAja_user")) ?
         <footer className="card-footer">
-        <a className="card-footer-item">Favorite<img className="favoriteIcon" src="./images/emptyFingerHeart.jpg"/></a>
+        <a onClick={() => {saveFaveDeck()}} className="card-footer-item">Favorite<img className="favoriteIcon" src="./images/emptyFingerHeart.jpg"/></a>
         <a onClick={() => {history.push(`/decks/edit/${deck.id}`)}} className="card-footer-item">Edit<img className="pencilIcon" src="https://img.icons8.com/ios-glyphs/30/000000/pencil--v1.png"/></a>
         <a onClick={() => {handleDeleteDeck()}} className="card-footer-item">Delete<img className="trashIcon" src="https://img.icons8.com/material/24/000000/trash--v1.png"/></a>
         </footer>

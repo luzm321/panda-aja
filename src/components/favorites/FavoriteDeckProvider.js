@@ -12,10 +12,21 @@ export const FavoriteDeckProvider = (props) => {
         .then(setFavoriteDecks)
     };
 
+    const addFavoriteDeck = (deck) => {
+        return fetch("http://localhost:8088/favoriteDecks", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(deck)
+        })
+        .then(getFavoriteDecks)
+    };
+
 
     return (
         <FavoriteDeckContext.Provider value={{
-            favoriteDecks, getFavoriteDecks
+            favoriteDecks, getFavoriteDecks, addFavoriteDeck
         }}>
             {props.children}
         </FavoriteDeckContext.Provider>
