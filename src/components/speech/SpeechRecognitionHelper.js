@@ -1,5 +1,4 @@
 
-
 export const createRecognitionEvent = (languageCountryCode) => {
     let grammar = "#JSGF V1.0; grammar colors; public <color> = aqua | azure | beige | bisque | black | blue | brown | chocolate | coral | crimson | cyan | fuchsia | ghostwhite | gold | goldenrod | gray | green | indigo | ivory | khaki | lavender | lime | linen | magenta | maroon | moccasin | navy | olive | orange | orchid | peru | pink | plum | purple | red | salmon | sienna | silver | snow | tan | teal | thistle | tomato | turquoise | violet | white | yellow ;";
     // let recognitionEvent = new webkitSpeechRecognition(); 
@@ -24,4 +23,4 @@ export const createRecognitionEvent = (languageCountryCode) => {
     recognitionEvent.interimResults = false; //Controls whether interim results should be returned (true) or not (false.) Interim results are results that are not yet final (e.g. the SpeechRecognitionResult.isFinal property is false.)
     recognitionEvent.maxAlternatives = 1; //Sets the maximum number of SpeechRecognitionAlternatives provided per result. The default value is 1.
     return recognitionEvent;
-}
+};

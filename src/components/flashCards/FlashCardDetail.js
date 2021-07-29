@@ -3,8 +3,17 @@ import { FlashCardContext } from "../flashCards/FlashCardProvider";
 import { useParams, useHistory } from "react-router-dom";
 import { FlashCardFront } from "./FlashCardFront";
 import { FlashCardBack } from "./FlashCardBack";
+import { speak } from "../speech/SpeechSynthesisHelper";
 import "./FlashCard.css";
 
+
+
+// this is an array of some of the languageCountryCodes for the speech recognition from the web speech api
+// let languageCountryCodesArray = ["en-US", "ko-KR", "es-MX", "ja-JP"];
+// these are the default codes the app starts out with.
+// let languageCode = "ko";
+// let languageCountryCode = "ko-KR"
+// let languageTransliterationCode = "Kore"
 
 
 export const FlashCardDetail = () => {
@@ -12,6 +21,7 @@ export const FlashCardDetail = () => {
     const history = useHistory();
 
     const { getFlashCardById, deleteFlashCard, currentCard, updateFlashCard, patchFlashCard, assignCurrentCard } = useContext(FlashCardContext);
+
 
     const [flashcard, setFlashCard] = useState({
         // setting initial values of flashcard object key-value pairs with data from the sessionStorage so it is not empty on initial render
@@ -125,7 +135,15 @@ export const FlashCardDetail = () => {
         }
         patchFlashCard(patchedProperty, currentCard.id);
     };
-   
+
+    // this function is invoked when the user clicks on the speak button:
+    const speakToUser = (event) => {
+        event.preventDefault();
+        // if toggle is true, front side, else back side
+        // this function from SpeechSynthesisHelper creates the speech synthesis event, passing the phrase and language code as parameters.
+        speak(flashcard.frontSide, flashcard.frontSideLang)
+    };
+
     return (
         <>
             <h1 className="cardViewHeader">Flashcard View</h1>
@@ -158,7 +176,7 @@ export const FlashCardDetail = () => {
                 
                     <div className="card">
                         <footer className="card-footer">
-                            <a className="card-footer-item">Speak<img src="https://img.icons8.com/ios/50/000000/parrot-speaking.png"/></a>
+                            <a onClick={(event) => {speakToUser(event)}} className="card-footer-item">Speak<img src="https://img.icons8.com/ios/50/000000/parrot-speaking.png"/></a>
                             <a className="card-footer-item">Test Self<img src="https://img.icons8.com/office/40/000000/microphone--v1.png"/></a>
                         </footer>
                     </div>
@@ -173,7 +191,7 @@ export const FlashCardDetail = () => {
                 <>
                     <div className="card">
                         <footer className="card-footer">
-                            <a className="card-footer-item">Speak<img src="https://img.icons8.com/ios/50/000000/parrot-speaking.png"/></a>
+                            <a onClick={(event) => {speakToUser(event)}} className="card-footer-item">Speak<img src="https://img.icons8.com/ios/50/000000/parrot-speaking.png"/></a>
                             <a className="card-footer-item">Test Self<img src="https://img.icons8.com/office/40/000000/microphone--v1.png"/></a>
                         </footer>
                     </div>
