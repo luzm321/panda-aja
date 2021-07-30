@@ -40,7 +40,7 @@ export const DeckDetail = () => {
             {/* Ternary below conditionally renders add new card affordance only if the current logged in user matches the deck userId or the deck id from sessionStorage */}
             {
                 parseInt(sessionStorage.getItem("pandaAja_user")) === currentDeck.userId ? 
-                    <button className="addCardBut" onClick={() => {history.push(`/decks/detail/${sessionStorage.getItem("lastDeckView")}/create`)}}>
+                    <button className="addCardButton" onClick={() => {history.push(`/decks/detail/${sessionStorage.getItem("lastDeckView")}/create`)}}>
                         Add New Card
                     </button>
                 :
@@ -101,7 +101,7 @@ export const DeckDetail = () => {
                 })
             }
             
-            <button className="return__btn" onClick={(event) => {handleClickReturnToDecks(event)}}>Return to Decks</button>
+            <button className="return__button" onClick={(event) => {handleClickReturnToDecks(event)}}>Return to Decks</button>
         </>
     )
 };

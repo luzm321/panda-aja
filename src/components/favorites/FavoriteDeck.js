@@ -1,9 +1,21 @@
-import React, { useContext, useEffect} from "react";
+import React, { useContext} from "react";
+import { useHistory } from "react-router-dom";
+import { FavoriteDeckContext } from "./FavoriteDeckProvider";
 import "./FavoriteDeck.css";
 
 
 
 export const FavoriteDeck = ({ favoriteDeck }) => {
+
+    const { deleteFavoriteDeck } = useContext(FavoriteDeckContext);
+    const history = useHistory();
+
+    const removeFaveDeck = () => {
+        deleteFavoriteDeck(favoriteDeck.id)
+        .then(() => {
+            history.push("/favorites")
+        })
+    };
 
 
     return (
@@ -17,6 +29,12 @@ export const FavoriteDeck = ({ favoriteDeck }) => {
                 <div className="card-content"></div>
                 <div className="content"></div>
                 <div className="faveDeck__description">Description: {favoriteDeck.deck.description}</div>
+                <footer className="card-footer">
+                    <a onClick={() => {removeFaveDeck()}} className="card-footer-item">
+                            Unfavorite
+                        <img className="unfavoriteIcon" src="./images/coloredFingerHeart.jpg"/>
+                    </a>
+                </footer>
             </div>
         </>
     )

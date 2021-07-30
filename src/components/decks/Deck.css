@@ -57,6 +57,36 @@
   margin: 2em 0 3em 59.5em;
 }
 
+/* Styling for deck creation form */
+
+.deckForm__title {
+  text-align: center;
+  font-size: 35px;
+  margin: 2em 0;
+}
+
+.deckFormField {
+  text-align: center;
+}
+
+.deckFormLabel {
+  margin-right: 1em;
+}
+
+.form-control {
+  border-radius: 5px;
+}
+
+.deckFormButtons {
+  text-align: center;
+  margin-top: 2em;
+}
+
+.handleDeck__btn {
+  cursor: pointer;
+  margin-left: 0.5em;
+}
+
 /* Styling for deck detail view */
 
 .flashCardHeader {
@@ -65,16 +95,23 @@
   font-size: 40px;
 }
 
-.cancel__btn {
+.addCardButton {
   cursor: pointer;
+  margin: 3em 0 3em 53em;
 }
 
-.handleDeck__btn {
+.return__button {
+  cursor: pointer;
+  margin: 4em 2em 3em 53em;
+}
+
+.cancel__btn {
   cursor: pointer;
 }
 
 .showDetailBut {
   cursor: pointer;
+  margin: 2em 0;
 }
 
 .flipBut {
@@ -94,7 +131,7 @@
     background-color: transparent;
     width: 300px;
     height: 200px;
-    border: 1px solid #f1f1f1;
+    border: 1px solid rgb(156, 221, 221);
     perspective: 1000px; /* Remove this if you don't want the 3D effect */
     cursor: pointer;
     border-radius: 20px;
