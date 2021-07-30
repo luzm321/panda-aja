@@ -173,7 +173,7 @@ export const FlashCardDetail = () => {
                     } else {
                         // if what the user said matches the phrase/language on the front side of the card, then code below runs and app will
                         //repeat what the user said:
-                        speak(`Sorry, try again, you said`, "en");
+                        speak(`Please try again, you said`, "en");
                         speak(`${answerGiven}`, currentCard.frontSideLang);
                     }
                 }
@@ -190,7 +190,7 @@ export const FlashCardDetail = () => {
                 } else {
                      // if what the user said matches the phrase/language on the back side of the card, then code below runs and app will
                     //repeat what the user said:
-                    speak(`Sorry, try again, you said`, "en");
+                    speak(`Please try again, you said`, "en");
                     speak(`${answerGiven}`, currentCard.backSideLang);
                 }
             }

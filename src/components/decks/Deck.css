@@ -2,7 +2,7 @@
 .deck {
     width: 25%;
     height: auto;
-    border: 1px solid rgb(156, 221, 221);
+    border: 1px solid rgb(69, 170, 162);
     margin: 4em 36em;
     border-radius: 5px;
     cursor: pointer;
@@ -131,7 +131,7 @@
     background-color: transparent;
     width: 300px;
     height: 200px;
-    border: 1px solid rgb(156, 221, 221);
+    border: 1px solid rgb(69, 170, 162);
     perspective: 1000px; /* Remove this if you don't want the 3D effect */
     cursor: pointer;
     border-radius: 20px;
