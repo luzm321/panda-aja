@@ -19,14 +19,14 @@
 }
 
 .flipToggle {
-  margin: 5em 1em 5em 36.7em;
+  margin: 5em 1em 5em 32.6em;
   font-size: 21px;
   cursor: pointer;
 }
 
 .cardFrontDiv {
   text-align: center;
-  margin: 5em 0 2em 36.5em;
+  margin: 5em 0 2em 33.5em;
   border: 1px solid rgb(156, 221, 221);
   border-radius: 20px;
   padding: 3em;
@@ -36,7 +36,7 @@
 
 .cardBackDiv {
   text-align: center;
-  margin: 5em 0 2em 36.5em;
+  margin: 5em 0 2em 33.5em;
   border: 1px solid rgb(156, 221, 221);
   border-radius: 20px;
   padding: 3em;
@@ -93,7 +93,7 @@
 
 .return__btn {
   cursor: pointer;
-  margin: 2em 0 4em 59em;
+  margin: 2em 0 4em 52em;
 }
 
 /* The switch - the box around the slider */

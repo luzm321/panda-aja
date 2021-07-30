@@ -106,22 +106,24 @@ export const DeckForm = () => {
     return (
         <form className="deckForm">
           <h2 className="deckForm__title">{deckId ? "Edit Deck" : "New Deck" }</h2>
-          <fieldset>
+          <fieldset className="deckFormField">
             <div className="form-group">
-              <label htmlFor="topic">Deck Topic:</label>
+              <label className="deckFormLabel" htmlFor="topic">Deck Topic:</label>
               <input type="text" id="topic" required autoFocus className="form-control" placeholder="Deck topic..." value={deck.topic} onChange={handleControlledInputChange} />
             </div>
           </fieldset>
-          <fieldset>
+          <fieldset className="deckFormField">
             <div className="form-group">
-              <label htmlFor="description">Description:</label>
+              <label className="deckFormLabel" htmlFor="description">Description:</label>
               <input type="text" id="description" required autoFocus className="form-control" placeholder="Deck description..." value={deck.description} onChange={handleControlledInputChange} />
             </div>
           </fieldset>
-          <button className="cancel__btn" onClick={(event) => {handleClickCancel(event)}}>Cancel</button>
-          <button className="handleDeck__btn" disabled={isLoading} onClick={(event) => {handleClickSaveDeck(event)}}>
-          { deckId ? "Save Deck" : "Add Deck" }
-          </button>
+          <div className="deckFormButtons"> 
+            <button className="cancel__btn" onClick={(event) => {handleClickCancel(event)}}>Cancel</button>
+            <button className="handleDeck__btn" disabled={isLoading} onClick={(event) => {handleClickSaveDeck(event)}}>
+              { deckId ? "Save Deck" : "Add Deck" }
+            </button>
+          </div>
         </form>
     );
 };

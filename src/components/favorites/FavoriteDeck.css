@@ -1,6 +1,7 @@
 .faveHeader {
     text-align: center;
     font-size: 30px;
+    margin-top: 2em;
 }
 
 .faveGif {
@@ -14,5 +15,7 @@
 
 .faveDeck__description {
     text-align: center;
-    margin-bottom: 5em;
+    margin-bottom: 2em;
+    margin-top: -1em;
+    font-size: 20px;
 }
