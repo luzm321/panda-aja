@@ -7,10 +7,10 @@ import { useHistory } from "react-router-dom";
 import "./Deck.css";
 
 
-export const DeckCard = ({ deck }) => {
+export const DeckCard = ({ deck, isFavorite, favoriteDeck }) => {
 
   const { deleteDeck, assignCurrentDeck } = useContext(DeckContext);
-  const { addFavoriteDeck } = useContext(FavoriteDeckContext);
+  const { addFavoriteDeck, deleteFavoriteDeck } = useContext(FavoriteDeckContext);
 
 	const history = useHistory();
 
@@ -28,9 +28,11 @@ export const DeckCard = ({ deck }) => {
     };
         
         addFavoriteDeck(newFaveDeck);
-        alert("Deck added as a favorite! 💚")
   };
 
+  const removeFaveDeck = () => {
+    deleteFavoriteDeck(favoriteDeck.id)
+  };
   
   return (
     <div className="deck" onMouseOver={() => {
@@ -59,6 +61,13 @@ export const DeckCard = ({ deck }) => {
         </div>
       </div>
       { deck.userId === parseInt(sessionStorage.getItem("pandaAja_user")) ?
+        isFavorite ?
+        <footer className="card-footer">
+        <a onClick={() => {removeFaveDeck()}} className="card-footer-item">Unfavorite<img className="unfavoriteIcon" src="./images/coloredFingerHeart.jpg"/></a>
+        <a onClick={() => {history.push(`/decks/edit/${deck.id}`)}} className="card-footer-item">Edit<img className="pencilIcon" src="https://img.icons8.com/ios-glyphs/30/000000/pencil--v1.png"/></a>
+        <a onClick={() => {handleDeleteDeck()}} className="card-footer-item">Delete<img className="trashIcon" src="https://img.icons8.com/material/24/000000/trash--v1.png"/></a>
+        </footer>
+        :
         <footer className="card-footer">
         <a onClick={() => {saveFaveDeck()}} className="card-footer-item">Favorite<img className="favoriteIcon" src="./images/emptyFingerHeart.jpg"/></a>
         <a onClick={() => {history.push(`/decks/edit/${deck.id}`)}} className="card-footer-item">Edit<img className="pencilIcon" src="https://img.icons8.com/ios-glyphs/30/000000/pencil--v1.png"/></a>

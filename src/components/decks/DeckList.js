@@ -6,12 +6,13 @@ import { UserContext } from "../users/UserProvider";
 import { DeckCard } from "./DeckCard";
 import { UserWelcome } from "../UserWelcome";
 import "./Deck.css";
-
+import { FavoriteDeckContext } from "../favorites/FavoriteDeckProvider";
 
 export const DeckList = () => {
 
     const { decks, getDecks } = useContext(DeckContext);
     const { users, getUsers } = useContext(UserContext);
+    const { getUserFavoriteDecks, favoriteDecks } = useContext(FavoriteDeckContext);
     let [ myDecksTab, setMyDecksTab ] = useState("is-active");
     let [ allDecksTab, setAllDecksTab ] = useState("");
 
@@ -21,6 +22,7 @@ export const DeckList = () => {
     useEffect(() => {
         getUsers()
         .then(getDecks)
+        .then(getUserFavoriteDecks)
     }, []);
 
     // handler function for myDecks and allDecks views to conditionally render the active tab 
@@ -47,6 +49,9 @@ export const DeckList = () => {
     } else {
       createNewDeckButton = null;
     };
+
+    // initial count value of i for the favorite decks array is zero;
+    let i = 0;
 
     return (
       <>
@@ -80,13 +85,33 @@ export const DeckList = () => {
 
           {
             decks.map(deck => {
+              // matching id of deck to userFavorite deckId
+              let favoritedDecks = favoriteDecks.filter((userFavorite) => {
+                if (deck.id === userFavorite.deckId) {
+                    return userFavorite;
+                }
+              });
+
+              let isFavorite;
+            // if the found user favorite decks array is empty and clicked, then the isFavorite prop passed to DeckCard component below will be true
+            // and app will render the colored finger heart icon and unfavorite button on deck
+              if (typeof favoritedDecks[i] !== 'undefined') {
+                  if (favoritedDecks[i].deckId === deck.id) {
+                      isFavorite = true
+                  }
+            // if the array is not empty when clicked, then the isFavorite prop passed to DeckCard component below will be false and app will 
+            // render the empty finger heart icon and favorite button on the deck
+              } else {
+                  isFavorite = false
+              };
+
               if (deck.userId === parseInt(sessionStorage.getItem("pandaAja_user")) && myDecksTab === "is-active") {
                 return <>
-                  <DeckCard key={deck.id} deck={deck} />
+                  <DeckCard key={deck.id} deck={deck} isFavorite={isFavorite} favoriteDeck={favoritedDecks[i]}/>
                 </>
               } else if (allDecksTab === "is-active"){
                 return <>
-                  <DeckCard key={deck.id} deck={deck} />
+                  <DeckCard key={deck.id} deck={deck} isFavorite={isFavorite} favoriteDeck={favoritedDecks[i]}/>
                 </>
               }
             })
