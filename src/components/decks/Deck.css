@@ -3,17 +3,18 @@
     width: 25%;
     height: auto;
     border: 1px solid rgb(156, 221, 221);
-    margin: 4em 40em;
+    margin: 4em 36em;
     border-radius: 5px;
     cursor: pointer;
 }
 
 .deck__description {
   text-align: center;
+  font-size: 20px;
 }
 
 .addDeckBut {
-    margin: 3em 48em;
+    margin: 3em 42.5em;
 }
 
 .createIcon {
@@ -31,14 +32,25 @@
 
 .favoriteIcon {
     mix-blend-mode: multiply;
-    width: 50px;
+    width: 90px;
+    border-radius: 20px;
+    margin-left: -1.4em;
+}
+
+.unfavoriteIcon {
+    mix-blend-mode: multiply;
+    width: 40px;
+}
+
+.card-footer-item {
+  margin-left: 1em;
 }
 
 .card-header-title {
     justify-content: center;
     align-items: center;
+    font-size: 25px;
 }
-
 
 .addCardBut {
   cursor: pointer;

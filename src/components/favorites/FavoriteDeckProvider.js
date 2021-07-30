@@ -12,6 +12,19 @@ export const FavoriteDeckProvider = (props) => {
         .then(setFavoriteDecks)
     };
 
+    const getUserFavoriteDecks = () => {
+        return fetch("http://localhost:8088/favoriteDecks?_expand=user&_expand=deck")
+        .then(res => res.json())
+        .then((allFavoriteDecks) => {
+            let userFavoriteDecks = allFavoriteDecks.filter((favoriteDeck) => {
+                if (favoriteDeck.userId === parseInt(sessionStorage.getItem("pandaAja_user"))) {
+                    return favoriteDeck;
+                }
+            })
+            setFavoriteDecks(userFavoriteDecks);
+        })
+    };
+
     const addFavoriteDeck = (deck) => {
         return fetch("http://localhost:8088/favoriteDecks", {
             method: "POST",
@@ -23,10 +36,17 @@ export const FavoriteDeckProvider = (props) => {
         .then(getFavoriteDecks)
     };
 
+    const deleteFavoriteDeck = (favoriteDeckId) => {
+        return fetch(`http://localhost:8088/favoriteDecks/${favoriteDeckId}`, {
+            method: "DELETE"
+        })
+        .then(getFavoriteDecks)
+    };  
+
 
     return (
         <FavoriteDeckContext.Provider value={{
-            favoriteDecks, getFavoriteDecks, addFavoriteDeck
+            favoriteDecks, getFavoriteDecks, addFavoriteDeck, getUserFavoriteDecks, deleteFavoriteDeck
         }}>
             {props.children}
         </FavoriteDeckContext.Provider>
