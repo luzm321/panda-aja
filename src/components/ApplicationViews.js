@@ -11,6 +11,7 @@ import { DeckDetail } from "./decks/DeckDetail";
 import { FlashCardDetail } from "./flashCards/FlashCardDetail";
 import { DeckForm } from "./decks/DeckForm";
 import { FlashCardForm } from "./flashCards/FlashCardForm";
+import { Quiz } from "./quizzes/Quiz";
 
 
 
@@ -64,6 +65,16 @@ export const ApplicationViews = () => {
                     <FavoriteDeckList />
                 </Route>
             </FavoriteDeckProvider>
+
+            <DeckProvider>
+                <UserProvider>
+                    <FlashCardProvider>
+                        <Route exact path="/quizzes">
+                            <Quiz />
+                        </Route>
+                    </FlashCardProvider>
+                </UserProvider>
+            </DeckProvider>
         </>
     )
 };

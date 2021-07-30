@@ -1,0 +1,39 @@
+/* Styling for Quiz component */
+
+.quizDiv {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+}
+
+.quizHeader {
+    font-size: 35px;
+    margin: 2em 0 2em 0;
+}
+
+.deckSelect {
+    width: 95%;
+    color: green;
+    border: 1px solid rgb(69, 170, 162);
+    font-family: 'Kaushan Script', cursive;
+}
+
+.quizLabel {
+    font-size: 21px;
+    margin: 0.2em 1em 1em 0;
+}
+
+/* Styling for Quiz Detail component */
+
+.quizDetailDiv {
+    margin: 4em 0 0 -6.5em;
+    border: 1px solid rgb(69, 170, 162);
+    padding: 2em;
+}
+
+.startQuizBut {
+    cursor: pointer;
+    margin: 2em 0 0 4em;
+}
