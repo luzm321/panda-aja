@@ -1,5 +1,9 @@
 /* Styling for flashcard detail view */
 
+* {
+  font-family: 'Kaushan Script', cursive;
+}
+
 .cardViewHeader {
   text-align: center;
   font-size: 40px;
@@ -64,6 +68,7 @@
 
 .handleCard__btn {
   cursor: pointer;
+  font-family: 'Kaushan Script', cursive;
 }
 
 .listenBut {
@@ -76,6 +81,7 @@
 
 .langSelect {
   cursor: pointer;
+  border: 1px solid rgb(69, 170, 162);
 }
 
 .update__button {
@@ -95,6 +101,93 @@
   cursor: pointer;
   margin: 2em 0 4em 52em;
 }
+
+.card-footer-item {
+  transition: all .2s ease-in-out;
+}
+
+.card-footer-item:hover {
+  transform: scale(1.2);
+}
+
+/* Styling for card creation form */
+
+.card-content {
+  text-align: center;
+}
+
+.card-image {
+  text-align: center;
+  margin: 3em 0 3em 0;
+}
+
+.media-content {
+  margin-top: -2em;
+}
+
+.textInput {
+  border-radius: 10px;
+  border: 1px solid rgb(69, 170, 162);
+  text-align: center;
+  color:rgb(123, 167, 163);
+  margin-right: 0.5em;
+  font-family: 'Kaushan Script', cursive;
+}
+
+.langSelect {
+  font-family: 'Kaushan Script', cursive;
+}
+
+.listenButton {
+  border-radius: 10px;
+  margin-right: 1em;
+  cursor: pointer;
+  font-family: 'Kaushan Script', cursive;
+  transition: all .2s ease-in-out;
+}
+
+.listenButton:hover {
+  transform: scale(1.1);
+}
+
+.speakButton {
+  border-radius: 10px;
+  cursor: pointer;
+  font-family: 'Kaushan Script', cursive;
+  transition: all .2s ease-in-out;
+}
+
+.speakButton:hover {
+  transform: scale(1.1);
+}
+
+.translateButton {
+  cursor: pointer;
+  border-radius: 12px;
+  margin-bottom: 1em;
+  font-family: 'Kaushan Script', cursive;
+  transition: all .2s ease-in-out;
+}
+
+.translateButton:hover {
+  transform: scale(1.1);
+}
+
+.cancel_btn {
+  cursor: pointer;
+  margin-right: 1em;
+  font-family: 'Kaushan Script', cursive;
+}
+
+.transOutput {
+  margin: 1em 0 0 0;
+  border-radius: 10px;
+  border: 1px solid rgb(69, 170, 162);
+  width: 350px;
+  height: 70px;
+  resize: none;
+}
+
 
 /* The switch - the box around the slider */
 .switch {

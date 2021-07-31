@@ -189,27 +189,31 @@ export const FlashCardForm = () => {
                 <h2 className="cardForm__title">New Card</h2>
                 <div className="card">
                     <div className="card-image">
-                            <textarea disabled id="frontSide" value={`${translatedWord} ${transliteratedWord}`} placeholder="Translation..." onChange={handleControlledInputChange}></textarea>
-                            <select className="langSelect" onChange={(event) => {selectLanguage(event)}}>
-                                <option className="langSelect" value="ko--Kore">Korean</option>
-                                <option className="langSelect" value="ja--Jpan">Japanese</option>
-                                <option className="langSelect" value="en--Latn">Spanish</option>
-                                <option className="langSelect" value="en--Latn">English</option>
-                            </select>
+                            <textarea className="transOutput" disabled id="frontSide" value={`${translatedWord} ${transliteratedWord}`} placeholder="Translation..." onChange={handleControlledInputChange}></textarea>
                     </div>
                     <div className="card-content">
                         <div className="media">
                             <div className="media-content">
-                                <input id="backSide" className="title is-4" placeholder="Enter Text..." value={typedPhrase} onChange={(event) => {
+                                <input id="backSide" className="title is-4 textInput" placeholder="Enter Text..." value={typedPhrase} onChange={(event) => {
                                         userEnteringWord(event)
                                     }} />
-                                <button className="listenBut" onClick={(event) => {listenToUser(event)}}>Listen To Me<img src="https://img.icons8.com/fluent/48/000000/foreign-language-sound.png"/></button>
-                                <button onClick={(event) => {speakToUser(event)}} className="speakBut">Speak<img src="https://img.icons8.com/ios/50/000000/parrot-speaking.png"/></button>
+                                <div class="select is-rounded select is-success">
+                                    <select className="langSelect" onChange={(event) => {selectLanguage(event)}}>
+                                        <option className="langOption" value="ko--Kore">Korean</option>
+                                        <option className="langOption" value="ja--Jpan">Japanese</option>
+                                        <option className="langOption" value="en--Latn">Spanish</option>
+                                        <option className="langOption" value="en--Latn">English</option>
+                                    </select>
+                                </div>
+                                <div className="speechBut">
+                                    <button className="listenButton" onClick={(event) => {listenToUser(event)}}>Listen To Me<img src="https://img.icons8.com/fluent/48/000000/foreign-language-sound.png"/></button>
+                                    <button onClick={(event) => {speakToUser(event)}} className="speakButton">Speak<img src="https://img.icons8.com/ios/50/000000/parrot-speaking.png"/></button>
+                                </div>
                             </div>
                         </div>
-                        <button className="translateBut" onClick={(event) => {translateWord(event)}}>Translate<img src="https://img.icons8.com/color/48/000000/language.png"/></button>
+                        <button className="translateButton" onClick={(event) => {translateWord(event)}}>Translate<img src="https://img.icons8.com/color/48/000000/language.png"/></button>
                         <div className="content">
-                            <button className="cancel__btn" onClick={(event) => {handleClickCancel(event)}}>Cancel</button>
+                            <button className="cancel_btn" onClick={(event) => {handleClickCancel(event)}}>Cancel</button>
                             <button className="handleCard__btn" onClick={(event) => {handleClickSaveCard(event)}}>
                                 Add Card  
                             </button>

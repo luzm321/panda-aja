@@ -35,6 +35,24 @@ export const FlashCardProvider = (props) => {
         })
     };
 
+    const getAllCardsInThisDeckForQuiz = (deckId) => { //not setting userDeckFlashCards in this fxn
+        // this is here in case the user refreshes the page so that the app can remember what deck they were looking at.
+        if (typeof deckId === 'undefined') {
+            deckId = parseInt(sessionStorage.getItem("lastDeckView"));    
+        }
+        return fetch("http://localhost:8088/flashCards?_expand=deck&_expand=user")
+        .then(res => res.json())
+        .then((flashCards) => {
+            let filteredDeckFlashCards = flashCards.filter((flashCard) => {
+                if (deckId === flashCard.deckId) {
+                    return flashCard;
+                }
+            });
+            console.log('filtered flashcards', filteredDeckFlashCards);
+            return filteredDeckFlashCards
+        })
+    };
+
     const addFlashCard = (flashCardObj) => {
         return fetch("http://localhost:8088/flashCards", {
             method: "POST",
@@ -91,7 +109,7 @@ export const FlashCardProvider = (props) => {
 
     return (
         <FlashCardContext.Provider value={{
-            flashCards, getFlashCards, addFlashCard, deleteFlashCard, getFlashCardById, updateFlashCard, getAllCardsInThisDeck, userDeckFlashCards,
+            flashCards, getFlashCards, addFlashCard, deleteFlashCard, getFlashCardById, updateFlashCard, getAllCardsInThisDeck,  getAllCardsInThisDeckForQuiz, userDeckFlashCards,
             assignCurrentCard, currentCard, patchFlashCard
         }}>
             {props.children}
