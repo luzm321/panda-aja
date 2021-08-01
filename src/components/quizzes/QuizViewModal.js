@@ -1,7 +1,9 @@
 import React, { useState, useContext, useEffect }from "react";
 import { DeckContext } from "../decks/DeckProvider";
 import { FlashCardContext } from "../flashCards/FlashCardProvider";
-import { QuizFlashCard } from "./QuizFlashCard";
+// import { QuizFlashCard } from "./QuizFlashCard";
+import { speak } from "../speech/SpeechSynthesisHelper";
+import { createRecognitionEvent } from "../speech/SpeechRecognitionHelper";
 import "./Quiz.css";
 
 
@@ -133,6 +135,19 @@ export const QuizViewModal = ({quizSelection, setShowQuizViewModal, updateQuiz})
         </>
     };
 
+    // this function is invoked when the user clicks on the speak button:
+    const speakToUser = (event) => {
+        console.log("event", event, "current flashcard", currentFlashCard)
+        event.preventDefault();
+        if (flashCardsArray[counter].isFlipped) {
+            // speak() function from SpeechSynthesisHelper creates the speech synthesis event, passing the phrase and language code as parameters.
+            //flashCardsArray[counter] contains the most current card being displayed (flipped or un-flipped)
+            speak(flashCardsArray[counter].frontSide, flashCardsArray[counter].frontSideLang)
+        } else {
+            speak(flashCardsArray[counter].backSide, flashCardsArray[counter].backSideLang)
+        } 
+    };
+
     return (
         <>
             <div className="modal is-active">
@@ -148,7 +163,7 @@ export const QuizViewModal = ({quizSelection, setShowQuizViewModal, updateQuiz})
                                     <div className="numbertext">{currentNumberOfCard} / {quizSelection.flashcards.length}</div>
                                         {cardView}
                                     <div className="quizButtons">
-                                        <button className="button is-primary is-rounded is-outlined quizSpeak">Speak<img className="speakParrot" src="https://img.icons8.com/ios/50/000000/parrot-speaking.png"/></button>
+                                        <button onClick={(event) => {speakToUser(event)}} className="button is-primary is-rounded is-outlined quizSpeak">Speak<img className="speakParrot" src="https://img.icons8.com/ios/50/000000/parrot-speaking.png"/></button>
                                         <button className="button is-primary is-rounded is-outlined quizTestSelf">Test Self<img className="micIcon" src="https://img.icons8.com/fluent/48/000000/foreign-language-sound.png"/></button>
                                         <button className="button is-primary is-rounded is-outlined quizTestSelf">Test Self<img className="pandaMic" src="./images/pandaMicrophone.jpg" alt="pandaMic"/></button>
                                     </div>
