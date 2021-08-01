@@ -37,16 +37,19 @@ export const FlashCardDetail = () => {
         cardState: false
     });
 
+    // array of some of the language country codes the web speech API and app starts out with:
     const [langCountryCodeArray] = useState(["en-US", "ko-KR", "es-MX", "ja-JP"]);
+    // creating state for current language country code for speech recognition:
     const [currentLangCountryCode, setCurrentLangCountryCode] = useState("");
 
+    // function that finds the current language country code in the array above to match what is spoken for speech recognition
     const findLangCountryCode = (languageCode) => {
         return langCountryCodeArray.find((countryCode) => {
             if (countryCode.includes(languageCode)) {
                 return countryCode;
             }
         });
-    }
+    };
 
 
     useEffect(() => {
@@ -155,6 +158,7 @@ export const FlashCardDetail = () => {
         } 
     };
 
+    // this function is invoked when user clicks on the test self button to check if pronunciation is correct:
     const listenToAnswer = (event) => {
         event.preventDefault();
             let countryCode;

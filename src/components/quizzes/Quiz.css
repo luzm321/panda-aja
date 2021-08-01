@@ -85,6 +85,7 @@
   text-align: center;
   font-size: 40px;
   font-family: 'Kaushan Script', cursive;
+  color: whitesmoke;
 }
 
 .quizFlipBut {
@@ -125,6 +126,7 @@
   margin-left: 5px;
   padding: 5px;
   mix-blend-mode: multiply;
+  border-radius: 20px;
 }
 
 
@@ -148,7 +150,7 @@
   position: absolute;
   top: 50%;
   width: auto;
-  margin-top: -22px;
+  margin-top: 4em;
   padding: 16px;
   color: white;
   font-weight: bold;
