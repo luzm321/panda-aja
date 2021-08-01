@@ -10,7 +10,7 @@ export const QuizViewModal = ({quizSelection, setShowQuizViewModal, updateQuiz})
     const {patchFlashCard, getFlashCards} = useContext(FlashCardContext);
     const {getDecks} = useContext(DeckContext);
     let numberOfCards = quizSelection.flashcards.length - 1; //need to subtract 1 because position in array is zero index
-    let flashCardsArray = quizSelection.flashcards;
+    let flashCardsArray = quizSelection.flashcards; //storing flashcards property of quizSelection prop into a new variable for use in this component
     const [counter, setCounter] = useState(0)
     const [currentFlashCard, setCurrentFlashCard] = useState(flashCardsArray[counter]);
     const [currentNumberOfCard, setCurrentNumberOfCard] = useState(1);
@@ -138,8 +138,8 @@ export const QuizViewModal = ({quizSelection, setShowQuizViewModal, updateQuiz})
             <div className="modal is-active">
                 <div className="modal-background"></div>
                     <div className="modal-content">
-                        <h1>My Quiz</h1>
-                        <button onClick={(event) => {
+                        <h1 className="quizViewHeader">~My Quiz~</h1>
+                        <button className="button is-primary is-light is-outlined is-inverted quizFlipBut" onClick={(event) => {
                             flipCurrentCard(event)
                         }}>Flip Card</button>
                         <div>
@@ -147,7 +147,11 @@ export const QuizViewModal = ({quizSelection, setShowQuizViewModal, updateQuiz})
                                 <div className="fade">
                                     <div className="numbertext">{currentNumberOfCard} / {quizSelection.flashcards.length}</div>
                                         {cardView}
-                                    <div className="text">Caption Text</div>
+                                    <div className="quizButtons">
+                                        <button className="button is-primary is-rounded is-outlined quizSpeak">Speak<img className="speakParrot" src="https://img.icons8.com/ios/50/000000/parrot-speaking.png"/></button>
+                                        <button className="button is-primary is-rounded is-outlined quizTestSelf">Test Self<img className="micIcon" src="https://img.icons8.com/fluent/48/000000/foreign-language-sound.png"/></button>
+                                        <button className="button is-primary is-rounded is-outlined quizTestSelf">Test Self<img className="pandaMic" src="./images/pandaMicrophone.jpg" alt="pandaMic"/></button>
+                                    </div>
                                 </div>
 
                                 <a className="prev" onClick={() => {showPreviousCard();showPreviousCardNumber()}}>&#10094;</a>

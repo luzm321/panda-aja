@@ -35,11 +35,13 @@
     margin: 4em 0 0 -6.5em;
     border: 1px solid rgb(69, 170, 162);
     padding: 2em;
+    border-radius: 50px;
 }
 
 .startQuizBut {
     cursor: pointer;
     margin: 2em 0 0 4em;
+    font-family: 'Kaushan Script', cursive;
 }
 
 /* Styling for Quiz View Modal component */
@@ -49,29 +51,80 @@
     color: white;
     margin-bottom: 1em;
     font-size: 2em;
+    font-family: 'Kaushan Script', cursive;
 }
 
 .transBack {
     text-align: center;
     color: white;
     margin-bottom: 1em;
-    font-size: 2em
+    font-size: 2em;
+    font-family: 'Kaushan Script', cursive;
 }
 
 .card__front {
     text-align: center;
     color: white;
     font-size: 5em;
+    font-family: 'Kaushan Script', cursive;
 }
 
 .card__back {
     text-align: center;
     color: white;
     font-size: 5em;
+    font-family: 'Kaushan Script', cursive;
 }
 
 .cardCount {
     text-align: center;
+    font-family: 'Kaushan Script', cursive;
+}
+
+.quizViewHeader {
+  text-align: center;
+  font-size: 40px;
+  font-family: 'Kaushan Script', cursive;
+}
+
+.quizFlipBut {
+  margin: 2em 0 2em 17.3em;
+  border-radius: 10px;
+  font-family: 'Kaushan Script', cursive;
+}
+
+.quizButtons {
+  margin: 0 0 0 9em;
+  font-family: 'Kaushan Script', cursive;
+}
+
+.quizSpeak {
+  margin-right: 1.5em;
+  font-family: 'Kaushan Script', cursive;
+  padding: 10px;
+}
+
+.quizTestSelf {
+  font-family: 'Kaushan Script', cursive;
+}
+
+.speakParrot {
+  width: 40px;
+  margin-left: 5px;
+  padding: 5px;
+}
+
+.micIcon {
+  width: 40px;
+  margin-left: 5px;
+  padding: 5px;
+}
+
+.pandaMic {
+  width: 35px;
+  margin-left: 5px;
+  padding: 5px;
+  mix-blend-mode: multiply;
 }
 
 
@@ -130,7 +183,7 @@
 /* Number text (1/3 etc) */
 .numbertext {
   color: #f2f2f2;
-  font-size: 12px;
+  font-size: 18px;
   padding: 8px 12px;
   position: absolute;
   top: 0;
