@@ -220,10 +220,10 @@ export const QuizViewModal = ({quizSelection, setShowQuizViewModal, updateQuiz})
     return (
         <>
             <div className="modal is-active">
-                <div className="modal-background"></div>
+                <div className="modal-background quizModalBgd"></div>
                     <div className="modal-content">
                         <h1 className="quizViewHeader">~My Quiz~</h1>
-                        <button className="button is-primary is-light is-outlined is-inverted quizFlipBut" onClick={(event) => {
+                        <button className="quizFlipBut" onClick={(event) => {
                             flipCurrentCard(event)
                         }}>Flip Card</button>
                         <div>
@@ -232,9 +232,8 @@ export const QuizViewModal = ({quizSelection, setShowQuizViewModal, updateQuiz})
                                     <div className="numbertext">{currentNumberOfCard} / {quizSelection.flashcards.length}</div>
                                         {cardView}
                                     <div className="quizButtons">
-                                        <button onClick={(event) => {speakToUser(event)}} className="button is-primary is-rounded is-outlined quizSpeak">Speak<img className="speakParrot" src="https://img.icons8.com/ios/50/000000/parrot-speaking.png"/></button>
-                                        <button onClick={(event) => {listenToAnswer(event)}} className="button is-primary is-rounded is-outlined quizTestSelf">Answer<img className="pandaMic" src="./images/pandaMicrophone.jpg" alt="pandaMic"/></button>
-                                        {/* <button onClick={(event) => {listenToAnswer(event)}} className="button is-primary is-rounded is-outlined quizTestSelf">Answer<img className="micIcon" src="https://img.icons8.com/fluent/48/000000/foreign-language-sound.png"/></button> */}
+                                        <button onClick={(event) => {speakToUser(event)}} className="button is-rounded quizSpeak">Speak<img className="speakParrot" src="https://img.icons8.com/ios/50/000000/parrot-speaking.png"/></button>
+                                        <button onClick={(event) => {listenToAnswer(event)}} className="button is-rounded quizTestSelf">Answer<img className="pandaMic" src="./images/pandaMicrophone.jpg" alt="pandaMic"/></button>
                                     </div>
                                 </div>
 

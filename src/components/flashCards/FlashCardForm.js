@@ -184,20 +184,20 @@ export const FlashCardForm = () => {
 
 
     return (
-        <>
+        <div className="deckDetailDiv">
             <form className="cardForm">
                 <h2 className="cardForm__title">New Card</h2>
-                <div className="card">
-                    <div className="card-image">
+                <div className="card_form">
+                    <div className="card-image_form">
                             <textarea className="transOutput" disabled id="frontSide" value={`${translatedWord} ${transliteratedWord}`} placeholder="Translation..." onChange={handleControlledInputChange}></textarea>
                     </div>
-                    <div className="card-content">
+                    <div className="card-content_form">
                         <div className="media">
                             <div className="media-content">
                                 <input id="backSide" className="title is-4 textInput" placeholder="Enter Text..." value={typedPhrase} onChange={(event) => {
                                         userEnteringWord(event)
                                     }} />
-                                <div class="select is-rounded select is-success">
+                                <div class="select is-rounded select is-primary">
                                     <select className="langSelect" onChange={(event) => {selectLanguage(event)}}>
                                         <option className="langOption" value="ko--Kore">Korean</option>
                                         <option className="langOption" value="ja--Jpan">Japanese</option>
@@ -206,22 +206,22 @@ export const FlashCardForm = () => {
                                     </select>
                                 </div>
                                 <div className="speechBut">
-                                    <button className="listenButton" onClick={(event) => {listenToUser(event)}}>Listen To Me<img src="https://img.icons8.com/fluent/48/000000/foreign-language-sound.png"/></button>
-                                    <button onClick={(event) => {speakToUser(event)}} className="speakButton">Speak<img src="https://img.icons8.com/ios/50/000000/parrot-speaking.png"/></button>
+                                    <button className="button is-rounded listenButton" onClick={(event) => {listenToUser(event)}}>Listen To Me<img className="listen_icon" src="https://img.icons8.com/fluent/48/000000/foreign-language-sound.png"/></button>
+                                    <button onClick={(event) => {speakToUser(event)}} className="button is-rounded speakButton">Speak<img className="speak_icon" src="https://img.icons8.com/ios/50/000000/parrot-speaking.png"/></button>
                                 </div>
                             </div>
                         </div>
-                        <button className="translateButton" onClick={(event) => {translateWord(event)}}>Translate<img src="https://img.icons8.com/color/48/000000/language.png"/></button>
+                        <button className="button is-rounded translateButton" onClick={(event) => {translateWord(event)}}>Translate<img className="trans_icon" src="https://img.icons8.com/color/48/000000/language.png"/></button>
                         <div className="content">
-                            <button className="cancel_btn" onClick={(event) => {handleClickCancel(event)}}>Cancel</button>
-                            <button className="handleCard__btn" onClick={(event) => {handleClickSaveCard(event)}}>
+                            <button className="button is-rounded cancel_btn" onClick={(event) => {handleClickCancel(event)}}>Cancel</button>
+                            <button className="button is-rounded handleCard__btn" onClick={(event) => {handleClickSaveCard(event)}}>
                                 Add Card  
                             </button>
                         </div>
                     </div>
                 </div>
             </form>
-        </>
+        </div>
     )
 };
 

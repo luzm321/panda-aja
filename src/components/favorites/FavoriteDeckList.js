@@ -15,7 +15,7 @@ export const FavoriteDeckList = () => {
     }, []);
 
     return (
-        <>
+        <div className="faveDiv">
             <h1 className="faveHeader">My Favorite Decks</h1><img className="faveGif" src="https://i.pinimg.com/originals/4a/82/e2/4a82e26bd1988b8f08fafc10892b8cd0.gif" />
 
             {
@@ -23,7 +23,7 @@ export const FavoriteDeckList = () => {
                     return <FavoriteDeck key={favoriteDeck.id} favoriteDeck={favoriteDeck} />
                 })
             }   
-        </>
+        </div>
     )
 };
 

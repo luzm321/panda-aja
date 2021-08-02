@@ -26,13 +26,14 @@ export const FavoriteDeck = ({ favoriteDeck }) => {
                         <p className="card-header-title">{favoriteDeck.deck.topic}</p>
                     </header>
                 </div>
-                <div className="card-content"></div>
-                <div className="content"></div>
-                <div className="faveDeck__description">Description: {favoriteDeck.deck.description}</div>
+                <div className="card-content-fave">
+                    <div className="content"></div>
+                    <div className="faveDeck__description">Description: {favoriteDeck.deck.description}</div>
+                </div>
                 <footer className="card-footer">
                     <a onClick={() => {removeFaveDeck()}} className="card-footer-item">
                             Unfavorite
-                        <img className="unfavoriteIcon" src="./images/coloredFingerHeart.jpg"/>
+                        <img className="unFavoriteIcon" src="./images/coloredFingerHeart.jpg"/>
                     </a>
                 </footer>
             </div>

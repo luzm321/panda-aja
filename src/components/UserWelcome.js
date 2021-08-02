@@ -5,7 +5,9 @@ export const UserWelcome = ({ userName }) => {
 
     return (
         <>
-          <h3 className="greeting">Welcome, {userName}!</h3>
+          <div className="greetingDiv">
+            <h3 className="greeting">Welcome, {userName}!</h3>
+          </div>
         </>
     );
 };

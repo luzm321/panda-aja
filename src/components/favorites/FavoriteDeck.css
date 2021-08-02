@@ -1,21 +1,70 @@
 .faveHeader {
     text-align: center;
-    font-size: 30px;
+    font-size: 35px;
     margin-top: 2em;
+    color: rgb(207, 233, 233);
+}
+
+.faveDiv {
+    margin: 0;
+    padding: 0;
+    background-image: url("https://i.pinimg.com/originals/4a/49/62/4a4962b4f409e463854c03573af13035.jpg");
+    min-height: 730px;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    overflow: hidden;
 }
 
 .faveGif {
     width: 100px;
     height: auto;
-    mix-blend-mode: multiply;
     cursor: pointer;
     border-radius: 70px;
     margin: 2em 0 2em 44.5em;
+    opacity: 0.9;
+}
+
+.faveGif:hover {
+    transform: scaleX(-1);
+}
+
+.faveDiv {
+    background-color: rgb(232, 240, 240);
 }
 
 .faveDeck__description {
     text-align: center;
-    margin-bottom: 2em;
-    margin-top: -1em;
+    padding-bottom: 2em;
+    margin-top: -1.6em;
+    padding-top: 2em;
     font-size: 20px;
+    background-color: rgb(192, 211, 211);
+}
+
+.card-content-fave {
+    background-color: rgb(232, 240, 240);
+}
+
+.unFavoriteIcon {
+    mix-blend-mode: multiply;
+    width: 40px;
+    border-radius: 3em;
+    margin-left: 7px;
+    transition: all .2s ease-in-out;
+}
+
+.unFavoriteIcon:hover {
+    transform: scale(1.1);
+}
+
+.card-footer-item {
+    transition: all .2s ease-in-out;
+    background-color: rgb(232, 240, 240);
+}
+
+.card-footer-item:hover {
+    transform: scale(1.1);
+    border-radius: 4em;
 }

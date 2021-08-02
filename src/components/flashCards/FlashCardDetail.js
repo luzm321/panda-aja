@@ -202,7 +202,7 @@ export const FlashCardDetail = () => {
     };
 
     return (
-        <>
+        <div className="deckDetailDiv">
             <h1 className="cardViewHeader">Flashcard View</h1>
 
             <label className="flipToggle">Flip Card</label>
@@ -231,31 +231,26 @@ export const FlashCardDetail = () => {
                 parseInt(sessionStorage.getItem("pandaAja_user")) === flashcard.userId ?
                 <>
                 
-                    <div className="card">
-                        <footer className="card-footer">
-                            <a onClick={(event) => {speakToUser(event)}} className="card-footer-item">Speak<img src="https://img.icons8.com/ios/50/000000/parrot-speaking.png"/></a>
-                            <a onClick={(event) => {listenToAnswer(event)}} className="card-footer-item">Test Self<img src="https://img.icons8.com/office/40/000000/microphone--v1.png"/></a>
-                        </footer>
+                    <div className="buttonsDiv">
+                        <button onClick={(event) => {speakToUser(event)}} className="button is-rounded speak">Speak<img className="speakButIconPic" src="https://img.icons8.com/ios/50/000000/parrot-speaking.png"/></button>
+                        <button onClick={(event) => {listenToAnswer(event)}} className="button is-rounded listen">Test Self<img className="testSelfIconPic" src="https://img.icons8.com/office/40/000000/microphone--v1.png"/></button>
+                        
                     </div>
-                    <div className="card">
-                        <footer className="card-footer">
-                            <a onClick={() => {handleEdit(flashcard)}} className="card-footer-item">Edit<img className="pencilIcon" src="https://img.icons8.com/ios-glyphs/30/000000/pencil--v1.png"/></a>
-                            <a onClick={() => {handleDeleteCard()}} className="card-footer-item">Delete<img className="trashIcon" src="https://img.icons8.com/material/24/000000/trash--v1.png"/></a>
-                        </footer>
+                    <div className="buttonsDiv">
+                        <button onClick={() => {handleEdit(flashcard)}} className="button is-rounded edit">Edit<img className="pencilIconPic" src="https://img.icons8.com/ios-glyphs/30/000000/pencil--v1.png"/></button>
+                        <button onClick={() => {handleDeleteCard()}} className="button is-rounded remove">Delete<img className="trashIconPic" src="https://img.icons8.com/material/24/000000/trash--v1.png"/></button>
                     </div>
                 </>
                 :
                 <>
-                    <div className="card">
-                        <footer className="card-footer">
-                            <a onClick={(event) => {speakToUser(event)}} className="card-footer-item">Speak<img src="https://img.icons8.com/ios/50/000000/parrot-speaking.png"/></a>
-                            <a onClick={(event) => {listenToAnswer(event)}} className="card-footer-item">Test Self<img src="https://img.icons8.com/office/40/000000/microphone--v1.png"/></a>
-                        </footer>
+                    <div className="buttonsDiv">
+                        <button onClick={(event) => {speakToUser(event)}} className="button is-rounded speak">Speak<img className="speakButIconPic" src="https://img.icons8.com/ios/50/000000/parrot-speaking.png"/></button>
+                        <button onClick={(event) => {listenToAnswer(event)}} className="button is-rounded listen">Test Self<img className="testSelfIconPic" src="https://img.icons8.com/office/40/000000/microphone--v1.png"/></button>
                     </div>
                 </>
             }
 
-            <button className="return__btn" onClick={(event) => {handleClickReturnToCards(event)}}>Return to Flashcards</button>
-        </>
+            <button className="button is-rounded return__btn" onClick={(event) => {handleClickReturnToCards(event)}}>Return to Flashcards</button>
+        </div>
     )
 };
