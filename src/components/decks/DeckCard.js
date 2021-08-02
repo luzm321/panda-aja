@@ -54,7 +54,7 @@ export const DeckCard = ({ deck, isFavorite, favoriteDeck }) => {
           </p>
         </header>
       </div>
-      <div className="card-content">
+      <div className="card-content-deck">
         <div className="content">
           <div className="deck__description">Description: { deck.description }</div>
           
@@ -63,15 +63,15 @@ export const DeckCard = ({ deck, isFavorite, favoriteDeck }) => {
       { deck.userId === parseInt(sessionStorage.getItem("pandaAja_user")) ?
         isFavorite ?
         <footer className="card-footer">
-        <a onClick={() => {removeFaveDeck()}} className="card-footer-item">Unfavorite<img className="unfavoriteIcon" src="./images/coloredFingerHeart.jpg"/></a>
-        <a onClick={() => {history.push(`/decks/edit/${deck.id}`)}} className="card-footer-item">Edit<img className="pencilIcon" src="https://img.icons8.com/ios-glyphs/30/000000/pencil--v1.png"/></a>
-        <a onClick={() => {handleDeleteDeck()}} className="card-footer-item">Delete<img className="trashIcon" src="https://img.icons8.com/material/24/000000/trash--v1.png"/></a>
+        <a onClick={() => {removeFaveDeck()}} className="button card-footer-item-deck">Unfavorite<img className="unfavoriteIconDeck" src="./images/coloredFingerHeart.jpg"/></a>
+        <a onClick={() => {history.push(`/decks/edit/${deck.id}`)}} className="button card-footer-item-deck">Edit<img className="pencilIconDeck" src="https://img.icons8.com/ios-glyphs/30/000000/pencil--v1.png"/></a>
+        <a onClick={() => {handleDeleteDeck()}} className="button card-footer-item-deck">Delete<img className="trashIconDeck" src="https://img.icons8.com/material/24/000000/trash--v1.png"/></a>
         </footer>
         :
         <footer className="card-footer">
-        <a onClick={() => {saveFaveDeck()}} className="card-footer-item">Favorite<img className="favoriteIcon" src="./images/emptyFingerHeart.jpg"/></a>
-        <a onClick={() => {history.push(`/decks/edit/${deck.id}`)}} className="card-footer-item">Edit<img className="pencilIcon" src="https://img.icons8.com/ios-glyphs/30/000000/pencil--v1.png"/></a>
-        <a onClick={() => {handleDeleteDeck()}} className="card-footer-item">Delete<img className="trashIcon" src="https://img.icons8.com/material/24/000000/trash--v1.png"/></a>
+        <a onClick={() => {saveFaveDeck()}} className="button card-footer-item-deck">Favorite<img className="favoriteIconDeck" src="./images/emptyFingerHeart.jpg"/></a>
+        <a onClick={() => {history.push(`/decks/edit/${deck.id}`)}} className="button card-footer-item-deck">Edit<img className="pencilIconDeck" src="https://img.icons8.com/ios-glyphs/30/000000/pencil--v1.png"/></a>
+        <a onClick={() => {handleDeleteDeck()}} className="button card-footer-item-deck">Delete<img className="trashIconDeck" src="https://img.icons8.com/material/24/000000/trash--v1.png"/></a>
         </footer>
         :
         null

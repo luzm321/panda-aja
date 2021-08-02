@@ -1,4 +1,55 @@
 /* Styling for deck list */
+
+.decks {
+     /* margin: 0;
+    padding: 0; */
+    background-image: url("https://i.pinimg.com/originals/4a/49/62/4a4962b4f409e463854c03573af13035.jpg");
+    min-height: 730px;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    overflow: hidden;
+}
+
+
+.deckPageDiv {
+  /* margin: 0;
+ padding: 0; */
+ background-image: url("https://i.pinimg.com/originals/4a/49/62/4a4962b4f409e463854c03573af13035.jpg");
+ /* min-height: 730px; */
+ background-attachment: fixed;
+ background-position: center;
+ background-repeat: no-repeat;
+ background-size: cover;
+ overflow: hidden;
+}
+
+/* ul {
+  background-color: rgb(199, 242, 243);
+} */
+
+.greeting {
+  background-image: url("https://i.pinimg.com/originals/4a/49/62/4a4962b4f409e463854c03573af13035.jpg");
+    /* min-height: 730px; */
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    overflow: hidden;
+    color: rgb(207, 233, 233);
+}
+
+#allDecks_1 {
+  background-color: rgb(233, 243, 243);
+  border: 2px solid rgb(64, 109, 105);
+}
+
+#myDecks_1 {
+  background-color: rgb(207, 233, 233);
+  border: 2px solid rgb(31, 30, 30);
+}
+
 .deck {
     width: 25%;
     height: auto;
@@ -11,10 +62,19 @@
 .deck__description {
   text-align: center;
   font-size: 20px;
+  margin-top: 3em;
 }
 
 .addDeckBut {
     margin: 3em 42.5em;
+    padding: 1.5em 3em;
+    font-family: 'Kaushan Script', cursive;
+    transition: all .2s ease-in-out;
+    background-color: rgb(207, 233, 233);
+}
+
+.addDeckBut:hover {
+  transform: scale(1.2);
 }
 
 .createIcon {
@@ -24,10 +84,22 @@
 
 .trashIcon {
     margin-left: 7px;
+    /* transition: all .2s ease-in-out; */
 }
+
+/* .trashIcon:hover {
+  transform: scale(1.2);
+} */
 
 .pencilIcon {
     margin-left: 7px;
+    width: 35px;
+}
+
+.pencilIconDeck {
+  margin-left: 7px;
+  margin-top: 5px;
+  width: 35px;
 }
 
 .favoriteIcon {
@@ -37,32 +109,79 @@
     margin-left: -1.4em;
 }
 
+.favoriteIconDeck {
+  mix-blend-mode: multiply;
+  width: 66.5px;
+  border-radius: 80px;
+  margin-left: -1em;
+}
+
 .unfavoriteIcon {
     mix-blend-mode: multiply;
     width: 40px;
 }
 
-.card-footer-item {
-  margin-left: 1em;
+.unfavoriteIconDeck {
+  mix-blend-mode: multiply;
+  width: 40px;
+}
+
+.card-content-deck {
+  background-color: rgb(191, 211, 211);
+  border: 1px solid rgb(69, 170, 162);
+  height: 150px;
+}
+
+.card-footer-item-deck {
+  /* margin-left: 1em; */
+  background-color: rgb(232, 240, 240);
+  transition: all .2s ease-in-out;
+  padding: 2em;
+}
+
+.card-footer-item-deck:hover {
+  transform: scale(1.1);
+  border: 2px solid rgb(69, 170, 162);
+}
+
+.card-footer {
+  background-color: rgb(207, 233, 233);
+  border: 1px solid rgb(69, 170, 162);
 }
 
 .card-header-title {
     justify-content: center;
     align-items: center;
     font-size: 25px;
+    background-color: rgb(232, 240, 240);
+    border: 1px solid rgb(69, 170, 162);
 }
 
 .addCardBut {
   cursor: pointer;
   margin: 2em 0 3em 59.5em;
+  font-family: 'Kaushan Script', cursive;
 }
 
 /* Styling for deck creation form */
+
+.deckForm {
+     margin: 0;
+    padding: 0;
+    background-image: url("https://i.pinimg.com/originals/4a/49/62/4a4962b4f409e463854c03573af13035.jpg");
+    min-height: 585px;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    overflow: hidden;
+}
 
 .deckForm__title {
   text-align: center;
   font-size: 35px;
   margin: 2em 0;
+  color: rgb(207, 233, 233);
 }
 
 .deckFormField {
@@ -71,10 +190,15 @@
 
 .deckFormLabel {
   margin-right: 1em;
+  font-size: 22px;
+  color: rgb(207, 233, 233);
 }
 
 .form-control {
   border-radius: 5px;
+  font-family: 'Kaushan Script', cursive;
+  width: 20%;
+  margin-bottom: 1em;
 }
 
 .deckFormButtons {
@@ -85,37 +209,118 @@
 .handleDeck__btn {
   cursor: pointer;
   margin-left: 0.5em;
+  transition: all .2s ease-in-out;
+  font-family: 'Kaushan Script', cursive;
+  background-color: rgb(207, 233, 233);
+}
+
+.handleDeck__btn:hover {
+  transform: scale(1.2);
+  color: rgb(207, 233, 233);
+  background-color: rgb(69, 170, 162);
+}
+
+.cancel__btnForm {
+  cursor: pointer;
+  margin-left: 0.5em;
+  margin-right: 1em;
+  transition: all .2s ease-in-out;
+  font-family: 'Kaushan Script', cursive;
+  background-color: rgb(207, 233, 233);
+}
+
+.cancel__btnForm:hover {
+  transform: scale(1.2);
+  color: rgb(207, 233, 233);
+  background-color: rgb(69, 170, 162);
 }
 
 /* Styling for deck detail view */
 
+.deckDetailDiv {
+    margin: 0;
+    padding: 0;
+    background-image: url("https://i.pinimg.com/originals/4a/49/62/4a4962b4f409e463854c03573af13035.jpg");
+    min-height: 730px;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    overflow: hidden;
+}
+
 .flashCardHeader {
   text-align: center;
   margin: 1em;
-  font-size: 40px;
+  font-size: 45px;
+  color: rgb(207, 233, 233);
 }
 
 .addCardButton {
   cursor: pointer;
-  margin: 3em 0 3em 53em;
+  margin: 3em 0 3em 43.5em;
+  font-family: 'Kaushan Script', cursive;
+  transition: all .2s ease-in-out;
+  background-color: rgb(207, 233, 233);
+}
+
+.addCardButton:hover {
+  transform: scale(1.2);
+  color: rgb(207, 233, 233);
+  background-color: rgb(69, 170, 162);
 }
 
 .return__button {
   cursor: pointer;
-  margin: 4em 2em 3em 53em;
+  margin: 3em 2em 3em 37.5em;
+  font-family: 'Kaushan Script', cursive;
+  font-size: 18px;
+  transition: all .2s ease-in-out;
+  background-color: rgb(207, 233, 233);
+}
+
+.return__button:hover {
+  transform: scale(1.2);
+  color: rgb(207, 233, 233);
+  background-color: rgb(69, 170, 162);
 }
 
 .cancel__btn {
   cursor: pointer;
+  transition: all .2s ease-in-out;
+  margin-right: 1em;
+  font-family: 'Kaushan Script', cursive;
+}
+
+.cancel__btn:hover {
+  transform: scale(1.2);
 }
 
 .showDetailBut {
   cursor: pointer;
   margin: 2em 0;
+  font-family: 'Kaushan Script', cursive;
+  transition: all .2s ease-in-out;
+  background-color: rgb(207, 233, 233);
+}
+
+.showDetailBut:hover {
+  transform: scale(1.1);
+  color: rgb(207, 233, 233);
+  background-color: rgb(69, 170, 162);
 }
 
 .flipBut {
   cursor: pointer;
+  font-family: 'Kaushan Script', cursive;
+  transition: all .2s ease-in-out;
+  background-color: rgb(207, 233, 233);
+}
+
+.flipBut:hover {
+  transform: scale(1.1);
+  color: rgb(207, 233, 233);
+  background-color: rgb(69, 170, 162);
 }
 
 .card {
@@ -126,11 +331,34 @@
   text-align: center;
 }
 
+.listen_icon {
+  width: 40px;
+  margin-left: 5px;
+  padding: 5px;
+}
+
+.speak_icon {
+  width: 50px;
+  margin-left: 5px;
+  padding: 10px;
+}
+
+.trans_icon {
+  width: 40px;
+  margin-left: 5px;
+  padding: 5px;
+}
+
+.card-content-detail {
+  text-align: center;
+  margin-top: 1.5em;
+}
+
 /* The flip card container - set the width and height to whatever you want. We have added the border property to demonstrate that the flip itself goes out of the box on hover (remove perspective if you don't want the 3D effect */
 .flip-card {
     background-color: transparent;
-    width: 300px;
-    height: 200px;
+    width: 370px;
+    height: 270px;
     border: 1px solid rgb(69, 170, 162);
     perspective: 1000px; /* Remove this if you don't want the 3D effect */
     cursor: pointer;
@@ -166,15 +394,15 @@
   
   /* Style the front side (fallback if image is missing) */
   .flip-card-front {
-    background-color: #bbb;
+    background-color: rgb(207, 233, 233);
     font-size: 3em;
     color: black;
   }
   
   /* Style the back side */
   .flip-card-back {
-    background-color: white;
+    background-color: rgb(159, 209, 205);
     font-size: 3em;
-    color: black;
+    color: rgb(71, 70, 70);
     transform: rotateY(180deg);
   }

@@ -35,12 +35,12 @@ export const DeckDetail = () => {
     };
 
     return (
-        <>
+        <div className="deckDetailDiv">
             <h1 className="flashCardHeader">My Flashcards</h1>
             {/* Ternary below conditionally renders add new card affordance only if the current logged in user matches the deck userId or the deck id from sessionStorage */}
             {
                 parseInt(sessionStorage.getItem("pandaAja_user")) === currentDeck.userId ? 
-                    <button className="addCardButton" onClick={() => {history.push(`/decks/detail/${sessionStorage.getItem("lastDeckView")}/create`)}}>
+                    <button className="button is-rounded addCardButton" onClick={() => {history.push(`/decks/detail/${sessionStorage.getItem("lastDeckView")}/create`)}}>
                         Add New Card
                     </button>
                 :
@@ -53,12 +53,12 @@ export const DeckDetail = () => {
                         assignCurrentCard(flashCard);
                         }}>
                             <br></br>
-                            <button className="flipBut" onClick={(event) => {toggleCardSide(event, flashCard)}}>Flip Card</button>
+                            <button className="button is-rounded flipBut" onClick={(event) => {toggleCardSide(event, flashCard)}}>Flip Card</button>
                             {flashCard.isFlipped ? 
                             <div className="flip-card">
                                 <div className="flip-card-inner">
                                     <div className="card flip-card-front">
-                                        <div className="card-content">
+                                        <div className="card-content-detail">
                                                 <div className="">
                                                     <h1>{flashCard.frontSide}</h1>
                                                     <h2>{flashCard.transliteration}</h2>
@@ -66,7 +66,7 @@ export const DeckDetail = () => {
                                         </div>
                                     </div>
                                     <div className="card flip-card-back">
-                                        <div className="card-content">
+                                        <div className="card-content-detail">
                                             <h1>{flashCard.backSide}</h1>
                                         </div>
                                     </div>
@@ -76,14 +76,14 @@ export const DeckDetail = () => {
                             <div className="flip-card">
                                     <div className="flip-card-inner">
                                         <div className="card flip-card-front">
-                                            <div className="card-content">
+                                            <div className="card-content-detail">
                                                     <div className="">
                                                         <h1>{flashCard.backSide}</h1>
                                                     </div>
                                             </div>
                                         </div>
                                         <div className="card flip-card-back">
-                                            <div className="card-content">
+                                            <div className="card-content-detail">
                                                 <h1>{flashCard.frontSide}</h1>
                                                 <h2>{flashCard.transliteration}</h2>
                                             </div>
@@ -93,7 +93,7 @@ export const DeckDetail = () => {
                             }
                             
                             <Link to={`/decks/detail/${sessionStorage.getItem("lastDeckView")}/flashcard/${flashCard.id}`}>
-                                <button className="showDetailBut" onClick={() => {assignCurrentCard(flashCard);sessionStorage.setItem("currentCard", JSON.stringify(flashCard));}}>
+                                <button className="button is-rounded showDetailBut" onClick={() => {assignCurrentCard(flashCard);sessionStorage.setItem("currentCard", JSON.stringify(flashCard));}}>
                                     Show Card Detail
                                 </button>
                             </Link>
@@ -101,7 +101,7 @@ export const DeckDetail = () => {
                 })
             }
             
-            <button className="return__button" onClick={(event) => {handleClickReturnToDecks(event)}}>Return to Decks</button>
-        </>
+            <button className="button is-rounded return__button" onClick={(event) => {handleClickReturnToDecks(event)}}>Return to Decks</button>
+        </div>
     )
 };

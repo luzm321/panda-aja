@@ -6,69 +6,95 @@
 
 .cardViewHeader {
   text-align: center;
-  font-size: 40px;
+  font-size: 42px;
   margin: 1em;
+  color: rgb(207, 233, 233);
 }
 
 .cardFrontHeader {
   text-align: center;
-  font-size: 25px;
+  font-size: 27px;
   margin-top: 1.5em;
+  color: rgb(207, 233, 233);
 }
 
 .cardBackHeader {
   text-align: center;
-  font-size: 25px;
+  font-size: 27px;
   margin-top: 1.5em;
+  color: rgb(207, 233, 233);
 }
 
 .flipToggle {
   margin: 5em 1em 5em 32.6em;
   font-size: 21px;
   cursor: pointer;
+  color: rgb(207, 233, 233);
+}
+
+.flipBut {
+  font-family: 'Kaushan Script', cursive;
+  margin-bottom: 10px;
+  transition: all .2s ease-in-out;
+  color: black;
+}
+
+.flipBut:hover {
+  transform: scale(1.1);
 }
 
 .cardFrontDiv {
   text-align: center;
-  margin: 5em 0 2em 33.5em;
-  border: 1px solid rgb(69, 170, 162);
+  margin: 4em 0 3em 33.5em;
+  border: 2px solid black;
   border-radius: 20px;
   padding: 3em;
   width: 30%;
   cursor: pointer;
+  background-color: rgb(207, 233, 233);;
 }
 
 .cardBackDiv {
   text-align: center;
-  margin: 5em 0 2em 33.5em;
-  border: 1px solid rgb(69, 170, 162);
+  margin: 4em 0 3em 33.5em;
+  border: 2px solid black;
   border-radius: 20px;
   padding: 3em;
   width: 30%;
   cursor: pointer;
+  background-color: rgb(159, 209, 205);
 }
 
 .frontHangeul {
-  font-size: 30px;
-  color: rgb(95, 165, 159);
+  font-size: 45px;
+  color: black;
   text-align: center;
 }
 
 .frontPhonetic {
-  font-size: 30px;
-  color: rgb(62, 131, 125);
+  font-size: 45px;
+  color: black;
   text-align: center;
 }
 
 .backEnglish {
-  font-size: 30px;
-  color: rgb(88, 182, 226);
+  font-size: 45px;
+  color: rgb(71, 70, 70);
   text-align: center;
 }
 
 .handleCard__btn {
   cursor: pointer;
   font-family: 'Kaushan Script', cursive;
+  transition: all .2s ease-in-out;
+  background-color: rgb(207, 233, 233);
+  margin-bottom: 1em;
+}
+
+.handleCard__btn:hover {
+  transform: scale(1.1);
+  background-color: rgb(69, 170, 162);
+  color: rgb(207, 233, 233);
 }
 
 .listenBut {
@@ -94,42 +120,188 @@
 
 .cardForm__title {
   text-align: center;
-  font-size: 30px;
+  font-size: 35px;
+  color: rgb(207, 233, 233);
 }
 
 .return__btn {
   cursor: pointer;
-  margin: 2em 0 4em 52em;
-}
-
-.card-footer-item {
+  margin: 2em 0 4em 42em;
+  font-family: 'Kaushan Script', cursive;
   transition: all .2s ease-in-out;
+  background-color: rgb(207, 233, 233);;
 }
 
-.card-footer-item:hover {
+.return__btn:hover {
   transform: scale(1.2);
+  background-color: rgb(69, 170, 162);
+  color: rgb(207, 233, 233);
+}
+
+.card-footer-item-but {
+  transition: all .2s ease-in-out;
+  background-color: rgb(207, 233, 233);
+  width: 20%;
+  /* padding: 2em; */
+}
+
+.card-footer-item-but:hover {
+  transform: scale(1.2);
+}
+
+.buttonsDiv {
+  text-align: center;
+}
+
+.speakDiv {
+  background-color: rgb(207, 233, 233);
+  border: 1px solid black;
+}
+
+.testSelfDiv {
+  background-color: rgb(207, 233, 233);
+}
+
+.speak {
+  border-radius: 10px;
+  margin-right: 1em;
+  cursor: pointer;
+  font-family: 'Kaushan Script', cursive;
+  transition: all .2s ease-in-out;
+  padding: 1.5em 0;
+  background-color: rgb(207, 233, 233);
+}
+
+.speak:hover {
+  transform: scale(1.1);
+  background-color: rgb(69, 170, 162);
+  color: rgb(207, 233, 233);
+}
+
+.listen {
+  border-radius: 10px;
+  margin-right: 1em;
+  cursor: pointer;
+  font-family: 'Kaushan Script', cursive;
+  transition: all .2s ease-in-out;
+  padding: 1.5em 0;
+  background-color: rgb(207, 233, 233);
+}
+
+.listen:hover {
+  transform: scale(1.1);
+  background-color: rgb(69, 170, 162);
+  color: rgb(207, 233, 233);
+}
+
+.edit {
+  border-radius: 10px;
+  margin: 1em 2em 0.5em 0;
+  cursor: pointer;
+  font-family: 'Kaushan Script', cursive;
+  transition: all .2s ease-in-out;
+  padding: 1em 0;
+  border: 1px solid black;
+  background-color: rgb(207, 233, 233);;
+}
+
+.edit:hover {
+  transform: scale(1.2);
+  background-color: rgb(69, 170, 162);
+  color: rgb(207, 233, 233);
+}
+
+.remove {
+  border-radius: 10px;
+  margin: 1em 1em 0.5em 1.5em;
+  cursor: pointer;
+  font-family: 'Kaushan Script', cursive;
+  transition: all .2s ease-in-out;
+  padding: 1em 0;
+  border: 1px solid black;
+  background-color: rgb(207, 233, 233);
+}
+
+.remove:hover {
+  transform: scale(1.2);
+  background-color: rgb(69, 170, 162);
+  color: rgb(207, 233, 233);
+}
+
+.speakButIconPic {
+  margin: 1em 7px;
+  padding: 10px 0;
+}
+
+.testSelfIconPic {
+  margin: 1em 0;
+  padding: 10px 0;
+}
+
+.content {
+  margin-top: 2em;
 }
 
 /* Styling for card creation form */
 
-.card-content {
-  text-align: center;
+.card_form {
+    /* margin: 0;
+    padding: 0; */
+    background-image: url("https://i.pinimg.com/originals/4a/49/62/4a4962b4f409e463854c03573af13035.jpg");
+    /* min-height: 100px; */
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    overflow: hidden;
 }
 
-.card-image {
+.card-content_form {
+  text-align: center;
+    /* margin: 0;
+    padding: 0; */
+    background-image: url("https://i.pinimg.com/originals/4a/49/62/4a4962b4f409e463854c03573af13035.jpg");
+    /* min-height: 730px; */
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    overflow: hidden;
+}
+
+.card-image_form {
   text-align: center;
   margin: 3em 0 3em 0;
+    /* margin: 0;
+    padding: 0; */
+    background-image: url("https://i.pinimg.com/originals/4a/49/62/4a4962b4f409e463854c03573af13035.jpg");
+    /* min-height: 730px; */
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    overflow: hidden;
 }
 
 .media-content {
-  margin-top: -2em;
+  /* margin-top: -2em; */
+    /* margin: 0;
+    padding: 0; */
+    background-image: url("https://i.pinimg.com/originals/4a/49/62/4a4962b4f409e463854c03573af13035.jpg");
+    /* min-height: 730px; */
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    overflow: hidden;
 }
 
 .textInput {
   border-radius: 10px;
   border: 1px solid rgb(69, 170, 162);
+  height: 39px;
   text-align: center;
-  color:rgb(123, 167, 163);
+  color:rgb(124, 161, 161);
   margin-right: 0.5em;
   font-family: 'Kaushan Script', cursive;
 }
@@ -141,13 +313,17 @@
 .listenButton {
   border-radius: 10px;
   margin-right: 1em;
+  margin-bottom: 0.5em;
   cursor: pointer;
   font-family: 'Kaushan Script', cursive;
   transition: all .2s ease-in-out;
+  background-color: rgb(207, 233, 233);
 }
 
 .listenButton:hover {
   transform: scale(1.1);
+  background-color: rgb(69, 170, 162);
+  color: rgb(207, 233, 233);
 }
 
 .speakButton {
@@ -155,37 +331,57 @@
   cursor: pointer;
   font-family: 'Kaushan Script', cursive;
   transition: all .2s ease-in-out;
+  background-color: rgb(207, 233, 233);
 }
 
 .speakButton:hover {
   transform: scale(1.1);
+  background-color: rgb(69, 170, 162);
+  color: rgb(207, 233, 233);
 }
 
 .translateButton {
   cursor: pointer;
   border-radius: 12px;
-  margin-bottom: 1em;
+  margin: 1.5em 0 1em 0;
   font-family: 'Kaushan Script', cursive;
   transition: all .2s ease-in-out;
+  background-color: rgb(207, 233, 233);
 }
 
 .translateButton:hover {
   transform: scale(1.1);
+  background-color: rgb(69, 170, 162);
+  color: rgb(207, 233, 233);
 }
 
 .cancel_btn {
   cursor: pointer;
   margin-right: 1em;
   font-family: 'Kaushan Script', cursive;
+  transition: all .2s ease-in-out;
+  background-color: rgb(207, 233, 233);
+  
+}
+
+.cancel_btn:hover {
+  transform: scale(1.1);
+  background-color: rgb(69, 170, 162);
+  color: rgb(207, 233, 233);
 }
 
 .transOutput {
   margin: 1em 0 0 0;
   border-radius: 10px;
-  border: 1px solid rgb(69, 170, 162);
+  border: 2px solid rgb(69, 170, 162);
   width: 350px;
   height: 70px;
   resize: none;
+  font-size: 23px;
+  text-align: center;
+  font-family: 'Kaushan Script', cursive;
+  color: rgb(124, 161, 161);
+  background-color: rgb(255, 255, 255);
 }
 
 

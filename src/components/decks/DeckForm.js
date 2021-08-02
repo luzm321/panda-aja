@@ -109,18 +109,18 @@ export const DeckForm = () => {
           <fieldset className="deckFormField">
             <div className="form-group">
               <label className="deckFormLabel" htmlFor="topic">Deck Topic:</label>
-              <input type="text" id="topic" required autoFocus className="form-control" placeholder="Deck topic..." value={deck.topic} onChange={handleControlledInputChange} />
+              <input type="text" id="topic" required autoFocus className="input is-rounded form-control" placeholder="Deck topic..." value={deck.topic} onChange={handleControlledInputChange} />
             </div>
           </fieldset>
           <fieldset className="deckFormField">
             <div className="form-group">
               <label className="deckFormLabel" htmlFor="description">Description:</label>
-              <input type="text" id="description" required autoFocus className="form-control" placeholder="Deck description..." value={deck.description} onChange={handleControlledInputChange} />
+              <input type="text" id="description" required autoFocus className="input is-rounded form-control" placeholder="Deck description..." value={deck.description} onChange={handleControlledInputChange} />
             </div>
           </fieldset>
           <div className="deckFormButtons"> 
-            <button className="cancel__btn" onClick={(event) => {handleClickCancel(event)}}>Cancel</button>
-            <button className="handleDeck__btn" disabled={isLoading} onClick={(event) => {handleClickSaveDeck(event)}}>
+            <button className="button is-rounded cancel__btnForm" onClick={(event) => {handleClickCancel(event)}}>Cancel</button>
+            <button className="button is-rounded handleDeck__btn" disabled={isLoading} onClick={(event) => {handleClickSaveDeck(event)}}>
               { deckId ? "Save Deck" : "Add Deck" }
             </button>
           </div>

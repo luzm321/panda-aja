@@ -12,7 +12,7 @@ export const QuizDetail = ({quizSelection, setShowQuizViewModal}) => {
                 <h2>Description: {quizSelection.currentDeck?.description}</h2>
                 <h3># of Cards in Deck: {quizSelection.flashcards.length}</h3>
             </div>
-            <button onClick={() => {setShowQuizViewModal(true)}}className="startQuizBut">
+            <button className="button is-rounded startQuizBut" onClick={() => {setShowQuizViewModal(true)}}>
                 Start Quiz
             </button>
         </>

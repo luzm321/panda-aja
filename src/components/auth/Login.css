@@ -1,4 +1,199 @@
+/* Styling for login */
+
 .dialog {
     min-width: 15rem;
     min-height: 5rem;
+}
+
+/* The calc() function takes a single expression as its parameter, with the expression's result used as the value to calculate the width of a <div> element. */
+.avatar {
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    top: -50px;
+    left: calc(50% - 50px);
+    cursor: pointer;
+    border-radius: 100px;
+}
+
+.appHeader {
+    margin: 0;
+    padding: 0 0 20px;
+    text-align: center;
+    font-size: 40px;
+    cursor: pointer;
+}
+
+.container--login {
+    width: 320px;
+    height: 420px;
+    background: #000;
+    color: #fff;
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    box-sizing: border-box;
+    border-radius: 40px;
+    padding: 70px 30px;
+    opacity: 0.80;
+    cursor: pointer;
+}
+
+.loginDiv {
+     /* margin: 0;
+    padding: 0; */
+    background-image: url("https://i.pinimg.com/originals/4a/49/62/4a4962b4f409e463854c03573af13035.jpg");
+    min-height: 730px;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    overflow: hidden;
+}
+
+.log_label {
+    margin: 0;
+    margin-top: 1em;
+    padding: 0;
+    font-weight: 400;
+    font-size: 25px;
+    cursor: pointer;
+    font-family: 'Kaushan Script', cursive;
+}
+
+.log_input {
+    width: 100%;
+    margin-bottom: 0 0 20px 0;
+    font-size: 20px;
+    border: none;
+    border-bottom: 1px solid #fff;
+    background: transparent;
+    outline: none;
+    height: 40px;
+    color: whitesmoke;
+    font-family: 'Kaushan Script', cursive;
+}
+
+#loginButton {
+    border: none;
+    outline: none;
+    height: 40px;
+    background: rgb(69, 170, 162);
+    color: #fff;
+    font-size: 22px;
+    border-radius: 50px;
+    width: 90%;
+    cursor: pointer;
+    font-family: 'Kaushan Script', cursive;
+    margin: 1.1em 0 0.4em 0.57em;
+    transition: all .2s ease-in-out;
+}
+
+#loginButton:hover {
+    transform: scale(1.1);
+    color:rgb(69, 170, 162);
+    background-color: whitesmoke;
+}
+
+.logDiv {
+    display: flex;
+    margin-bottom: 5px;
+}
+
+.logIcon {
+    color:rgb(83, 182, 189);
+    background: rgb(83, 182, 189);
+    border-radius: 50px;
+    width: 20px;
+    height: 20px;
+    margin: 10px 10px 0 0;
+}
+
+/* Styling for registration */
+
+.container--register {
+    text-align: center;
+    width: 400px;
+    height: 420px;
+    background: #000;
+    color: #fff;
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    box-sizing: border-box;
+    border-radius: 40px;
+    padding: 70px 30px;
+    opacity: 0.80;
+    cursor: pointer;
+}
+
+.registerHeader {
+    margin: 0;
+    padding: 0 0 20px;
+    text-align: center;
+    font-size: 27px;
+    cursor: pointer;
+}
+
+.link--register a {
+    margin-bottom: 1em;
+    margin-left: 3.2em;
+    padding-bottom: 1em;
+}
+
+.link--register a:hover {
+    color: rgb(83, 182, 189);
+    text-decoration: underline;
+}
+
+.reg_label {
+    margin-top: 1em;
+    padding: 0;
+    font-weight: 100;
+    font-size: 20px;
+    cursor: pointer;
+    font-family: 'Kaushan Script', cursive;
+    margin-left: -2em;
+    margin-right: 0.5em;
+}
+
+.reg_input {
+    width: 50%;
+    margin-bottom: 0 0 20px 0;
+    font-size: 20px;
+    border: none;
+    border-bottom: 1px solid #fff;
+    background: transparent;
+    outline: none;
+    height: 40px;
+    color: whitesmoke;
+    font-family: 'Kaushan Script', cursive;
+}
+
+.fieldDiv {
+    text-align: left;
+    margin-left: 5em;
+}
+
+.registerBut {
+    border: none;
+    outline: none;
+    height: 40px;
+    background: rgb(69, 170, 162);
+    color: #fff;
+    font-size: 22px;
+    border-radius: 50px;
+    width: 70%;
+    cursor: pointer;
+    font-family: 'Kaushan Script', cursive;
+    margin: 1em 0 0.4em 0;
+    transition: all .2s ease-in-out;
+}
+
+.registerBut:hover {
+    transform: scale(1.1);
+    color:rgb(69, 170, 162);
+    background-color: whitesmoke;
 }

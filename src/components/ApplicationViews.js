@@ -12,6 +12,7 @@ import { FlashCardDetail } from "./flashCards/FlashCardDetail";
 import { DeckForm } from "./decks/DeckForm";
 import { FlashCardForm } from "./flashCards/FlashCardForm";
 import { Quiz } from "./quizzes/Quiz";
+import { StudyTips } from "./studyTips/StudyTips";
 
 
 
@@ -75,6 +76,10 @@ export const ApplicationViews = () => {
                     </FlashCardProvider>
                 </UserProvider>
             </DeckProvider>
+
+            <Route exact path="/studyTips">
+                <StudyTips />
+            </Route>
         </>
     )
 };

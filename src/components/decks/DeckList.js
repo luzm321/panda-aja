@@ -43,7 +43,7 @@ export const DeckList = () => {
     // ensures the create new deck affordance is only rendered on the myDecks view
     let createNewDeckButton;
     if (myDecksTab === "is-active") {
-      createNewDeckButton = <button className="button is-primary addDeckBut" onClick={() => {history.push("/decks/create")}}>
+      createNewDeckButton = <button className="button is-rounded addDeckBut" onClick={() => {history.push("/decks/create")}}>
                                 Create New Deck <img className="createIcon" src="https://img.icons8.com/color-glass/48/000000/wrench.png"/>
                             </button>
     } else {
@@ -54,7 +54,7 @@ export const DeckList = () => {
     let i = 0;
 
     return (
-      <>
+      <div className="deckPageDiv">
         {
           users.map(user => {
             if (user.id === parseInt(sessionStorage.getItem("pandaAja_user"))) {
@@ -117,6 +117,6 @@ export const DeckList = () => {
             })
           }          
         </div>
-      </>
+      </div>
   )
 };

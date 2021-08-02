@@ -75,7 +75,7 @@ export const Quiz = () => {
             <h1 className="quizHeader">Quiz Self</h1>
             <div className="deckDropdown">
                 <label className="quizLabel" htmlFor="deckTopicSelect">Select Deck: </label>
-                <div className="select is-rounded select is-success">
+                <div className="select is-rounded select is-primary">
                     <select onChange={(event) => {
                         // Need to use JSON.parse() method on the event.target.value because we need to extract the data without strings for the id
                         //and event object which will contain the chosen deck object itself

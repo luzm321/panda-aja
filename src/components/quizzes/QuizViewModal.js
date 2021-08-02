@@ -1,7 +1,9 @@
 import React, { useState, useContext, useEffect }from "react";
 import { DeckContext } from "../decks/DeckProvider";
 import { FlashCardContext } from "../flashCards/FlashCardProvider";
-import { QuizFlashCard } from "./QuizFlashCard";
+// import { QuizFlashCard } from "./QuizFlashCard";
+import { speak } from "../speech/SpeechSynthesisHelper";
+import { createRecognitionEvent } from "../speech/SpeechRecognitionHelper";
 import "./Quiz.css";
 
 
@@ -10,7 +12,7 @@ export const QuizViewModal = ({quizSelection, setShowQuizViewModal, updateQuiz})
     const {patchFlashCard, getFlashCards} = useContext(FlashCardContext);
     const {getDecks} = useContext(DeckContext);
     let numberOfCards = quizSelection.flashcards.length - 1; //need to subtract 1 because position in array is zero index
-    let flashCardsArray = quizSelection.flashcards;
+    let flashCardsArray = quizSelection.flashcards; //storing flashcards property of quizSelection prop into a new variable for use in this component
     const [counter, setCounter] = useState(0)
     const [currentFlashCard, setCurrentFlashCard] = useState(flashCardsArray[counter]);
     const [currentNumberOfCard, setCurrentNumberOfCard] = useState(1);
@@ -133,13 +135,95 @@ export const QuizViewModal = ({quizSelection, setShowQuizViewModal, updateQuiz})
         </>
     };
 
+    // this function is invoked when the user clicks on the speak button:
+    const speakToUser = (event) => {
+        console.log("event", event, "current flashcard", currentFlashCard)
+        event.preventDefault();
+        if (flashCardsArray[counter].isFlipped) {
+            // speak() function from SpeechSynthesisHelper creates the speech synthesis event, passing the phrase and language code as parameters.
+            //flashCardsArray[counter] contains the most current card being displayed (flipped or un-flipped)
+            speak(flashCardsArray[counter].frontSide, flashCardsArray[counter].frontSideLang)
+        } else {
+            speak(flashCardsArray[counter].backSide, flashCardsArray[counter].backSideLang)
+        } 
+    };
+
+    // array of some of the language country codes the web speech API and app starts out with:
+    const [langCountryCodeArray] = useState(["en-US", "ko-KR", "es-MX", "ja-JP"]);
+    // creating state for current language country code for speech recognition:
+    const [currentLangCountryCode, setCurrentLangCountryCode] = useState("");
+ 
+    // function that finds the current language country code in the array above to match what is spoken for speech recognition
+    const findLangCountryCode = (languageCode) => {
+        return langCountryCodeArray.find((countryCode) => {
+            if (countryCode.includes(languageCode)) {
+                return countryCode;
+            }
+        });
+    };
+
+    // this function is invoked when user clicks on the test self button to check if correct answer is given for the opposite side of card:
+    const listenToAnswer = (event) => {
+        event.preventDefault();
+            let countryCode;
+            let recognitionEvent;
+            // if flash card is currently on the front side, then start the recognition event 
+            if ( flashCardsArray[counter].isFlipped ) {
+                countryCode  = findLangCountryCode(flashCardsArray[counter].backSideLang);
+                console.log("countryCode", countryCode)
+                recognitionEvent = createRecognitionEvent(countryCode);
+                recognitionEvent.start();
+                recognitionEvent.onresult = (event) => {
+                    let answerGiven = event.results[0][0].transcript;
+                    if (answerGiven.includes(flashCardsArray[counter].backSide.toLowerCase())) {
+                    // if the answer the user gave matches the translated phrase/language on the back side of the card, then code below runs:
+                        //if current index of card is greater or equal to the total length of cards in array (at last position), then app will say:
+                        if (currentNumberOfCard >= quizSelection.flashcards.length) {
+                            speak("Great Job! You got it right, you're done with the quiz!", "en");
+                        } else {
+                        //else if index is less than total length of cards in array (not at last card in deck), then app will say:
+                            speak("Great Job! You got it right, proceed to the next card", "en");
+                        }
+                    } else {
+                        // if what the user said doesn't match the phrase/language on the back side of the card, then code below runs and app will
+                        //repeat what the user said:
+                        speak(`Please try again, you said`, "en");
+                        speak(`${answerGiven}`, flashCardsArray[counter].backSideLang);
+                    }
+                }
+            } else {
+                  // else if flash card is currently on the back side, then start the recognition event 
+                countryCode  = findLangCountryCode(flashCardsArray[counter].frontSideLang);
+                recognitionEvent = createRecognitionEvent(countryCode);
+                recognitionEvent.start();
+                recognitionEvent.onresult = (event) => {
+                    let answerGiven = event.results[0][0].transcript;
+                    if (answerGiven.includes(flashCardsArray[counter].frontSide.toLowerCase())) {
+                    // if the answer the user gave matches the translated phrase/language on the front side of the card, then code below runs:
+                        //if current index of card is greater or equal to the total length of cards in array (at last position), then app will say:
+                          if (currentNumberOfCard >= quizSelection.flashcards.length) {
+                            speak("Great Job! You got it right, you're done with the quiz!", "en");
+                        } else {
+                        //else if index is less than total length of cards in array (not at last card in deck), then app will say:
+                            speak("Great Job! You got it right, proceed to the next card", "en");
+                        }
+                    } else {
+                        // if what the user said doesn't match the phrase/language on the front side of the card, then code below runs and app will
+                        //repeat what the user said:
+                        speak(`Please try again, you said`, "en");
+                        speak(`${answerGiven}`, flashCardsArray[counter].frontSideLang);
+                    }
+            }
+        };
+    };
+
     return (
         <>
             <div className="modal is-active">
-                <div className="modal-background"></div>
+                <div className="modal-background quizModalBgd"></div>
                     <div className="modal-content">
-                        <h1>My Quiz</h1>
-                        <button onClick={(event) => {
+                        <h1 className="quizViewHeader">~My Quiz~</h1>
+                        <button className="quizFlipBut" onClick={(event) => {
                             flipCurrentCard(event)
                         }}>Flip Card</button>
                         <div>
@@ -147,7 +231,10 @@ export const QuizViewModal = ({quizSelection, setShowQuizViewModal, updateQuiz})
                                 <div className="fade">
                                     <div className="numbertext">{currentNumberOfCard} / {quizSelection.flashcards.length}</div>
                                         {cardView}
-                                    <div className="text">Caption Text</div>
+                                    <div className="quizButtons">
+                                        <button onClick={(event) => {speakToUser(event)}} className="button is-rounded quizSpeak">Speak<img className="speakParrot" src="https://img.icons8.com/ios/50/000000/parrot-speaking.png"/></button>
+                                        <button onClick={(event) => {listenToAnswer(event)}} className="button is-rounded quizTestSelf">Answer<img className="pandaMic" src="./images/pandaMicrophone.jpg" alt="pandaMic"/></button>
+                                    </div>
                                 </div>
 
                                 <a className="prev" onClick={() => {showPreviousCard();showPreviousCardNumber()}}>&#10094;</a>
