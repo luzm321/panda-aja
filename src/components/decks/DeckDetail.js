@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useHistory, Link } from "react-router-dom";
 import { FlashCardContext } from "../flashCards/FlashCardProvider";
 import { DeckContext } from "./DeckProvider";
@@ -8,12 +8,25 @@ import { DeckContext } from "./DeckProvider";
 export const DeckDetail = () => {
 
     const { getAllCardsInThisDeck, userDeckFlashCards, assignCurrentCard, currentCard, patchFlashCard } = useContext(FlashCardContext);
-    const { currentDeck } = useContext(DeckContext);
+    const { currentDeck, searchCardTerms } = useContext(DeckContext);
+
+    // Since no longer ALWAYS displaying all of the cards:
+    const [ filteredCards, setFilteredCards ] = useState([])
     const history = useHistory();
 
+    // searchTerms will cause a change
     useEffect(() => {
-        getAllCardsInThisDeck(currentDeck.id);
-    }, []);
+        if (searchCardTerms !== "") {
+            // If the search field is not blank, display matching flashcards by transliteration property
+            const subset = userDeckFlashCards.filter(flashcard => flashcard.transliteration.toLowerCase().includes(searchCardTerms))
+            setFilteredCards(subset)
+          } else {
+          // If the search field is blank, display all flashcards
+          setFilteredCards(userDeckFlashCards)
+          getAllCardsInThisDeck(currentDeck.id);
+          }
+        
+    }, [searchCardTerms, userDeckFlashCards]);
 
      //Reroute to deck list/profile page on click
      const handleClickReturnToDecks = (event) => {
@@ -48,7 +61,7 @@ export const DeckDetail = () => {
             }
 
             {
-                userDeckFlashCards.map((flashCard) => {
+                filteredCards.map((flashCard) => {
                     return <div className="flashCardDiv" onMouseOver={() => {
                         assignCurrentCard(flashCard);
                         }}>
