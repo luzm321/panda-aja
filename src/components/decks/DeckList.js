@@ -10,20 +10,31 @@ import { FavoriteDeckContext } from "../favorites/FavoriteDeckProvider";
 
 export const DeckList = () => {
 
-    const { decks, getDecks } = useContext(DeckContext);
+    const { decks, getDecks, searchTerms } = useContext(DeckContext);
     const { users, getUsers } = useContext(UserContext);
     const { getUserFavoriteDecks, favoriteDecks } = useContext(FavoriteDeckContext);
     let [ myDecksTab, setMyDecksTab ] = useState("is-active");
     let [ allDecksTab, setAllDecksTab ] = useState("");
 
+    // Since no longer ALWAYS displaying all of the decks:
+    const [ filteredDecks, setFilteredDecks ] = useState([])
     const history = useHistory();
 
     // Empty dependency array - useEffect only runs after first render
+    // searchTerms will cause a change
     useEffect(() => {
-        getUsers()
-        .then(getDecks)
-        .then(getUserFavoriteDecks)
-    }, []);
+      if (searchTerms !== "") {
+        // If the search field is not blank, display matching decks
+        const subset = decks.filter(deck => deck.topic.toLowerCase().includes(searchTerms))
+        setFilteredDecks(subset)
+      } else {
+      // If the search field is blank, display all decks
+      setFilteredDecks(decks)
+      getUsers()
+      .then(getDecks)
+      .then(getUserFavoriteDecks)
+      }
+    }, [searchTerms, decks]);
 
     // handler function for myDecks and allDecks views to conditionally render the active tab 
     const tabClicked = (event) => {
@@ -84,7 +95,7 @@ export const DeckList = () => {
           {createNewDeckButton}
 
           {
-            decks.map(deck => {
+            filteredDecks.map(deck => {
               // matching id of deck to userFavorite deckId
               let favoritedDecks = favoriteDecks.filter((userFavorite) => {
                 if (deck.id === userFavorite.deckId) {

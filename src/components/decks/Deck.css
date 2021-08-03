@@ -406,3 +406,52 @@
     color: rgb(71, 70, 70);
     transform: rotateY(180deg);
   }
+
+  /* Styling for search bar */
+
+.searchDiv {
+  background-image: url("https://i.pinimg.com/originals/4a/49/62/4a4962b4f409e463854c03573af13035.jpg");
+  /* min-height: 730px; */
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  overflow: hidden;
+}
+
+.searchBar {
+  display: flex;
+  font-size: 30px;
+  margin: 3em 0 2em 19.5em;
+}
+
+.search {
+  color: rgb(207, 233, 233);
+  margin-right: 0.5em;
+  margin-left: -1em;
+}
+
+.searchIcon {
+  margin-left: 0.5em;
+  width: 35px;
+  transition: all .2s ease-in-out;
+  cursor: pointer;
+}
+
+.searchIcon:hover {
+  transform: scale(1.4);
+}
+
+.input--wide {
+  border-radius: 20px;
+  font-family: 'Kaushan Script', cursive;
+  text-align: center;
+  font-size: 21px;
+  width: 200px;
+  border: 4px solid rgb(159, 209, 205);
+  transition: all .2s ease-in-out;
+}
+
+.input--wide:hover {
+  transform: scale(1.1);
+}
