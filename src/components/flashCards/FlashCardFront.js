@@ -42,10 +42,10 @@ export const FlashCardFront = ({uneditedCardState, updatedCardState, handleInput
                     {/* Edit card view */}
                     <h1 className="cardFrontHeader">Flashcard Front</h1>
                     <div className="cardFrontDiv">
-                        <textarea disabled placeholder="Translated Text..." value={translatedWord}></textarea>
+                        <textarea className="trans_output" disabled placeholder="Translation..." value={translatedWord}></textarea>
                         <input className="frontHangeul" id="frontSide" defaultValue={currentCard.frontSide} onChange={(event) => {handleInputChange(event)}} />
                         <h2 className="frontPhonetic" defaultValue={currentCard.transliteration}>{transliteration}</h2>
-                        <select className="langSelect" onChange={(event) => {
+                        <select className="langSelection" onChange={(event) => {
                             let languageCode = event.target.value.split("--")[0];
                             let languageTransliterationCode = event.target.value.split("--")[1];
                             setLanguageCode(languageCode);
@@ -54,7 +54,7 @@ export const FlashCardFront = ({uneditedCardState, updatedCardState, handleInput
                             <option className="langSelect" value="ko--Kore">Korean</option>
                             <option className="langSelect" value="en--Latn">English</option>
                         </select>
-                        <button className="translateBut" onClick={() => {
+                        <button className="button is-rounded translateBut" onClick={() => {
                             console.log('updated card state on translate', updatedCardState, currentCard);
                             console.log('language code', languageCode)
                             detectLanguage(updatedCardState.frontSide).then((languageCodeDetected) => {
@@ -73,7 +73,7 @@ export const FlashCardFront = ({uneditedCardState, updatedCardState, handleInput
                                 });
                             })
                         }}>Translate</button> 
-                        <button className="update__button" onClick={() => {
+                        <button className="button is-rounded update__button" onClick={() => {
                             console.log('updated card state on save', updatedCardState, currentCard)
                             if (translatedWord.length !== 0 && transliteration.length !== 0) {
                                 updatedCardState["backSide"] = translatedWord;
@@ -86,7 +86,7 @@ export const FlashCardFront = ({uneditedCardState, updatedCardState, handleInput
                             console.log('updated card', updatedCardState);
                             saveEditCard(updatedCardState);
                         }}>Save</button>
-                        <button className="cancel__btn" onClick={(event) => {handleClickCancel(event)}}>Cancel</button>                
+                        <button className="button is-rounded cancel__btn" onClick={(event) => {handleClickCancel(event)}}>Cancel</button>                
                     </div>
                 </>
                 :

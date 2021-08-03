@@ -67,8 +67,12 @@
 
 .frontHangeul {
   font-size: 45px;
-  color: black;
-  text-align: center;
+  color:rgb(90, 102, 102);
+  padding-left: 0.70em;
+  font-family: 'Kaushan Script', cursive;
+  margin: 0.5em;
+  border-radius: 10px;
+  width: 80%;
 }
 
 .frontPhonetic {
@@ -79,8 +83,12 @@
 
 .backEnglish {
   font-size: 45px;
-  color: rgb(71, 70, 70);
+  color: rgb(41, 40, 40);
   text-align: center;
+  font-family: 'Kaushan Script', cursive;
+  margin: 0.5em;
+  border-radius: 10px;
+  width: 80%;
 }
 
 .handleCard__btn {
@@ -103,15 +111,65 @@
 
 .translateBut {
   cursor: pointer;
+  background-color: rgb(176, 190, 190);
+  font-family: 'Kaushan Script', cursive;
+  transition: all .2s ease-in-out;
+  color: black;
+  font-size: 15px;
+  margin: 0 5px 0 5px;
+  
+}
+
+.translateBut:hover {
+  transform: scale(1.1);
+  background-color: rgb(69, 170, 162);
+  color: rgb(207, 233, 233);
+}
+
+.langSelection {
+  cursor: pointer;
+  border: 1px solid rgb(69, 170, 162);
+  font-size: 20px;
+  font-family: 'Kaushan Script', cursive;
+  border-radius: 20px;
+  margin: 0 0.5em 0 -0.8em;
 }
 
 .langSelect {
+  font-family: 'Kaushan Script', cursive;
   cursor: pointer;
-  border: 1px solid rgb(69, 170, 162);
 }
 
 .update__button {
   cursor: pointer;
+  background-color: rgb(176, 190, 190);
+  font-family: 'Kaushan Script', cursive;
+  transition: all .2s ease-in-out;
+  color: black;
+  font-size: 15px;
+  margin: 0 5px 0 5px;
+}
+
+.update__button:hover {
+  transform: scale(1.1);
+  background-color: rgb(69, 170, 162);
+  color: rgb(207, 233, 233);
+}
+
+.cancel__btn {
+  cursor: pointer;
+  background-color: rgb(176, 190, 190);
+  font-family: 'Kaushan Script', cursive;
+  transition: all .2s ease-in-out;
+  color: black;
+  font-size: 15px;
+  margin: 0 0 0 5px;
+}
+
+.cancel__btn:hover {
+  transform: scale(1.1);
+  background-color: rgb(69, 170, 162);
+  color: rgb(207, 233, 233);
 }
 
 .speakBut {
@@ -306,10 +364,6 @@
   font-family: 'Kaushan Script', cursive;
 }
 
-.langSelect {
-  font-family: 'Kaushan Script', cursive;
-}
-
 .listenButton {
   border-radius: 10px;
   margin-right: 1em;
@@ -371,6 +425,20 @@
 }
 
 .transOutput {
+  margin: 1em 0 0 0;
+  border-radius: 10px;
+  border: 2px solid rgb(69, 170, 162);
+  width: 350px;
+  height: 70px;
+  resize: none;
+  font-size: 23px;
+  text-align: center;
+  font-family: 'Kaushan Script', cursive;
+  color: rgb(124, 161, 161);
+  background-color: rgb(255, 255, 255);
+}
+
+.trans_output {
   margin: 1em 0 0 0;
   border-radius: 10px;
   border: 2px solid rgb(69, 170, 162);
