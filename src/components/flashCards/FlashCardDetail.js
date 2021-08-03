@@ -6,6 +6,7 @@ import { FlashCardBack } from "./FlashCardBack";
 import { speak } from "../speech/SpeechSynthesisHelper";
 import { createRecognitionEvent } from "../speech/SpeechRecognitionHelper";
 import "./FlashCard.css";
+import Swal from "sweetalert2";
 
 
 
@@ -97,15 +98,23 @@ export const FlashCardDetail = () => {
         setUpdatedCard(newCard);
     };
 
-     //Edit Flashcard function:
+     //Edit Flashcard function with sweetalert2 npm alert for form validation implemented:
      const saveEditCard = () => {
          // ensuring user does not delete data and try to save:
         if (updatedCard.frontSide.length === 0 || updatedCard.backSide.length === 0) {
-            alert("You cannot save an empty card! 🙅");
+            Swal.fire({
+                title: "You cannot save an empty card! 🙅",
+                icon: "info",
+                confirmButtonColor: "#20B2AA"
+            });
         } else {
             // ensuring user does not try to edit data without doing any changes to it:
             if (updatedCard.frontSide === flashcard.frontSide || updatedCard.backSide === flashcard.backSide) {
-                alert("You cannot save an empty card! 🙅");
+                Swal.fire({
+                    title: "You cannot save an unedited card! 🙅",
+                    icon: "info",
+                    confirmButtonColor: "#20B2AA"
+                });
             } else {
                 assignCurrentCard(updatedCard);
                 sessionStorage.setItem("currentCard", JSON.stringify(updatedCard));
@@ -116,12 +125,28 @@ export const FlashCardDetail = () => {
     };
 
 
-    // Function for deleting a card:
+    // Function for deleting a card with sweetalert2 npm alert for form validation implemented:
     const handleDeleteCard = () => {
-        deleteFlashCard(flashCardId)
-          .then(() => {
-            history.push(`/decks/detail/${sessionStorage.getItem("lastDeckView")}`)
-          })
+        Swal.fire({
+            title: "Are you certain you want to delete this card?",
+            icon: "warning",
+            confirmButtonColor: "#20B2AA",
+            showCancelButton: true,
+            cancelButtonColor: "#CD5C5C",
+            confirmButtonText: "Yes, I'm certain!"
+        }).then((response) => {
+            if (response.isConfirmed) {
+                deleteFlashCard(flashCardId).then(() => {
+                    Swal.fire(
+                        'Deleted!',
+                        'Card has been removed from deck!',
+                        'success'
+                    )
+                }).then(() => {
+                    history.push(`/decks/detail/${sessionStorage.getItem("lastDeckView")}`)
+                })
+            };
+        });
     };
 
      //Reroute to deck detail page/flashcards list on click

@@ -110,6 +110,28 @@
     margin: 10px 10px 0 0;
 }
 
+.userNotExist {
+    text-align: center;
+    font-size: 18px;
+}
+
+.button--close {
+    font-size: 16px;
+    margin-left: 4.5em;
+    border-radius: 10px;
+    color:rgb(39, 38, 38);
+    background: rgb(83, 182, 189);
+    font-family: 'Kaushan Script', cursive;
+    cursor: pointer;
+    transition: all .2s ease-in-out;
+}
+
+.button--close:hover {
+    transform: scale(1.1);
+    color:rgb(69, 170, 162);
+    background-color: whitesmoke;
+}
+
 /* Styling for registration */
 
 .container--register {

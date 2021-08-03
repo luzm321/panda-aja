@@ -5,6 +5,7 @@ import { DeckContext } from "./DeckProvider";
 import { FavoriteDeckContext } from "../favorites/FavoriteDeckProvider";
 import { useHistory } from "react-router-dom";
 import "./Deck.css";
+import Swal from "sweetalert2";
 
 
 export const DeckCard = ({ deck, isFavorite, favoriteDeck }) => {
@@ -14,11 +15,28 @@ export const DeckCard = ({ deck, isFavorite, favoriteDeck }) => {
 
 	const history = useHistory();
 
+  // Function for deleting a deck with sweetalert2 npm alert for form validation implemented:
   const handleDeleteDeck = () => {
-    deleteDeck(deck.id)
-      .then(() => {
-        history.push("/decks")
-      })
+      Swal.fire({
+        title: "Are you certain you want to delete this deck?",
+        icon: "warning",
+        confirmButtonColor: "#20B2AA",
+        showCancelButton: true,
+        cancelButtonColor: "#CD5C5C",
+        confirmButtonText: "Yes, I'm certain!"
+      }).then((response) => {
+        if (response.isConfirmed) {
+          deleteDeck(deck.id).then(() => {
+            Swal.fire(
+              'Deleted!',
+              'Deck has been removed from list!',
+              'success'
+            )
+          }).then(() => {
+            history.push("/decks")
+          });
+        };
+      });
   };
 
   const saveFaveDeck = () => {

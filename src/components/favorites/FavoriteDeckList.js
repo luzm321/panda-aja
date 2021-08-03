@@ -7,7 +7,6 @@ import "./FavoriteDeck.css";
 export const FavoriteDeckList = () => {
 
     const { favoriteDecks, getFavoriteDecks } = useContext(FavoriteDeckContext);
-    // const [faveDeck, setFaveDeck] = useState([]);
 
      // Empty dependency array - useEffect only runs after first render
     useEffect(() => {
@@ -20,7 +19,8 @@ export const FavoriteDeckList = () => {
 
             {
                 favoriteDecks.map(favoriteDeck => {
-                    return <FavoriteDeck key={favoriteDeck.id} favoriteDeck={favoriteDeck} />
+                    if (favoriteDeck.userId === parseInt(sessionStorage.getItem("pandaAja_user")))
+                        return <FavoriteDeck key={favoriteDeck.id} favoriteDeck={favoriteDeck} />
                 })
             }   
         </div>

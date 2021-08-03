@@ -44,7 +44,7 @@ export const Register = () => {
                         .then(createdUser => {
                             if (createdUser.hasOwnProperty("id")) {
                                 sessionStorage.setItem("pandaAja_user", createdUser.id)
-                                history.push("/")
+                                history.push("/decks")
                             }
                         })
                 }
