@@ -2,6 +2,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useHistory, useParams } from 'react-router-dom';
 import { DeckContext } from "./DeckProvider";
+import Swal from "sweetalert2";
 
 
 export const DeckForm = () => {
@@ -81,17 +82,29 @@ export const DeckForm = () => {
         const description = deck.description
 
         if (topic === "" || description === "") {
-        window.alert("Please provide values for both input fields. 👇")
+          Swal.fire({
+            title: "Please provide values for both input fields. 👇",
+            icon: "info",
+            confirmButtonColor: "#20B2AA"
+          });
         } else {
           setIsLoading(true);
 
           if (deckId) {
               //PUT - update
               saveEditDeck(event)
-              alert("Deck Updated! 😊")
+              Swal.fire({
+                title: "Deck Updated! 😊",
+                icon: "info",
+                confirmButtonColor: "#20B2AA"
+              });
           } else {
               saveNewDeck(event)
-              alert("New Deck Created! 😊")
+              Swal.fire({
+                title: "New Deck Created! 😊",
+                icon: "info",
+                confirmButtonColor: "#20B2AA"
+              });
           }
         };
     };

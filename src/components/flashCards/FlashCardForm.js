@@ -5,6 +5,7 @@ import { FlashCardContext } from "../flashCards/FlashCardProvider";
 import { DeckContext } from "../decks/DeckProvider"; 
 import { createRecognitionEvent } from "./../speech/SpeechRecognitionHelper";
 import { speak } from "../speech/SpeechSynthesisHelper";
+import Swal from "sweetalert2";
 
 
 // this is an array of some of the languageCountryCodes for the speech recognition from the web speech api
@@ -88,12 +89,20 @@ export const FlashCardForm = () => {
         const transliteration = card.transliteration
 
         if (frontSide === "" || backSide === "") {
-            window.alert("Please provide values for all input fields. 👇")
+            Swal.fire({
+                title: "Please provide values for all input fields. 👇",
+                icon: "info",
+                confirmButtonColor: "#20B2AA"
+            });
         } else {
     
             if (window.location.href.includes("create")) {
                 saveNewCard(event)
-                alert("New Card Created! 😊")
+                Swal.fire({
+                    title: "New Card Created! 😊",
+                    icon: "info",
+                    confirmButtonColor: "#20B2AA"
+                });
             } 
         };
     };
