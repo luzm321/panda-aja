@@ -8,6 +8,7 @@ export const DeckProvider = (props) => {
     const [decks, setDecks] = useState([]);
     const [currentDeck, setCurrentDeck] = useState({});
     const [ searchTerms, setSearchTerms ] = useState("") //state variable for search deck feature
+    const [ searchCardTerms, setSearchCardTerms ] = useState("") //state variable for search flashcard feature
 
     const getDecks = () => {
         return fetch("http://localhost:8088/decks?_expand=user")
@@ -55,7 +56,8 @@ export const DeckProvider = (props) => {
 
     return (
         <DeckContext.Provider value={{
-            decks, getDecks, addDeck, deleteDeck, getDeckById, updateDeck, currentDeck, assignCurrentDeck, searchTerms, setSearchTerms
+            decks, getDecks, addDeck, deleteDeck, getDeckById, updateDeck, currentDeck, assignCurrentDeck, searchTerms, setSearchTerms,
+            searchCardTerms, setSearchCardTerms
         }}>
             {props.children}
         </DeckContext.Provider>

@@ -14,6 +14,7 @@ import { FlashCardForm } from "./flashCards/FlashCardForm";
 import { Quiz } from "./quizzes/Quiz";
 import { StudyTips } from "./studyTips/StudyTips";
 import { DeckSearch } from "./decks/DeckSearch";
+import { CardSearch } from "./decks/CardSearch";
 
 
 
@@ -38,6 +39,7 @@ export const ApplicationViews = () => {
                             </Route>
                             
                             <Route exact path="/decks/detail/:deckId(\d+)">
+                                <CardSearch />
                                 <DeckDetail />
                             </Route>
 
