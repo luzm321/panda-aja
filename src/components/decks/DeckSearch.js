@@ -12,14 +12,16 @@ export const DeckSearch = () => {
     const { setSearchTerms } = useContext(DeckContext);
 
     return (
-        <>
+        <div className="searchDiv">
             <div className="searchBar">
-                <div className="search">Deck search:</div>
+                <div className="search">Deck search:
+                    <img className="searchIcon" src="https://img.icons8.com/ultraviolet/48/4a90e2/search--v1.png" alt="search icon"/>
+                </div>
                 <input type="text"
                     className="input--wide"
                     onKeyUp={(event) => setSearchTerms(event.target.value)}
-                    placeholder="Search for a deck... " />
+                    placeholder="Search for a deck..." />
             </div>
-        </>
+        </div>
     )
 };

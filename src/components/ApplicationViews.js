@@ -13,6 +13,7 @@ import { DeckForm } from "./decks/DeckForm";
 import { FlashCardForm } from "./flashCards/FlashCardForm";
 import { Quiz } from "./quizzes/Quiz";
 import { StudyTips } from "./studyTips/StudyTips";
+import { DeckSearch } from "./decks/DeckSearch";
 
 
 
@@ -32,6 +33,7 @@ export const ApplicationViews = () => {
                         <FavoriteDeckProvider>
 
                             <Route exact path="/decks">
+                                <DeckSearch />
                                 <DeckList />
                             </Route>
                             
