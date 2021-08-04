@@ -1,70 +1,101 @@
-# Getting Started with Create React App
+# Panda-Aja!
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+![Panda-Aja! Logo](./public/images/panda-aja.PNG "Panda-Aja!")
 
-## Available Scripts
+## Setup: Follow these steps exactly:
 
-In the project directory, you can run:
+1. Use terminal to clone this repository
+1. `cd` into the directory it creates
+```
+git clone git@github.com:luzm321/panda-aja.git
+cd panda-aja
+```
+1. Create an `api` directory outside of the project directory.
+1. In the `api` directory, create a copy of the `database.json.example` and remove the `.example` extension.
+1. Run `json-server -p 8088 -w database.json` from the `api` directory.
+1. Run `npm install` and wait for all dependencies to be installed.
+1. Run `npm start` to verify that installation was successful.
 
-### `npm start`
+> **Note:** Your `database.json` file is already in the `.gitignore` file for this project, so it will never be added to the repo or pushed to Github.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Panda-Aja! Proxy Server:
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+1. Please go this this github repository link: https://github.com/luzm321/panda-aja-proxy-server to access the proxy server that needs to be ran and served along with the Panda-Aja! app and the JSON server database on separate ports in the terminal in order for the API fetch calls to work.
+1. Use terminal to clone the proxy server repository: git clone git@github.com:luzm321/panda-aja-proxy-server.git
+1. cd panda-aja-proxy-server
+```
+1. The proxy server should be served on port: localhost 3000 (type in terminal: node server.js -p 3000 -w).
+```
 
-### `npm test`
+## What is Panda-Aja!?
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+**Note:** Meaning behind name: In certain cultures, Pandas can symbolize resilience, strength, luck, and they are adorable! Meanwhile, Aja! is a South Korean motivational chant of encouragement to oneself or others that signifies “You can do it!” because learning a new language can be challenging.
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Panda-Aja! is a flashcard-based, Korean language learning application with a flipping system and mechanism that features an innovative and fun approach to learning the Korean language through meaningful and user-friendly interface. 
+The app integrates various forms of user interaction by implementing speech and text functionality via Web Speech API for text-to-speech (speech synthesis) and speech-to-text (speech recognition).
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+The app is built with the ReactJS library and supplemented with the Web Speech API, Microsoft Translator Text external API, SweetAlert2 npm, and node fetch proxy server. Furthermore, Panda-Aja! is designed to be a CRUD app and is supported by a flat data-structure utilizing JSON Server along with being styled with Bulma framework and CSS.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+This application is built for my Front-End/Client-Side Capstone project for Nashville Software School.
 
-### `npm run eject`
+The following are examples of how the resources in your API should look once it is populated with data from the application.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+**Note:** This version of Panda-Aja! has mock authentication and does not provide secure storage. Please do not store sensitive information in this database!
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### users
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+```json
+{
+      "id": 1,
+      "name": "Luz Angelique Madrazo",
+      "username": "luzm321",
+      "password": "panda",
+      "email": "luz@madrazo.com"
+    }
+```
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+### decks
 
-## Learn More
+```json
+{
+      "id": 1,
+      "topic": "Animals",
+      "description": "Learning the Animals in Korean.",
+      "userId": 1
+    }
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### flashCards
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```json
+{
+      "id": 1,
+      "userId": 1,
+      "deckId": 1,
+      "frontSide": "새",
+      "frontSideLang": "ko",
+      "backSideLang": "en",
+      "backSide": "bird",
+      "transliteration": "sae",
+      "isFlipped": true
+    }
+```
+### favoriteDecks
 
-### Code Splitting
+```json
+{
+      "id": 1,
+      "userId": 1,
+      "deckId": 1
+    }
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
 
-### Analyzing the Bundle Size
+![Deck View](./public/images/deckCard.PNG "Deck view for Panda-Aja!")
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+![Flashcard Front Side](./public/images/flashcardFront.PNG "flashcard front side for Panda-Aja!")
+![Flashcard Front Side Detail View](./public/images/flashcardDetailFront "flashcard front side detail view for Panda-Aja!")
 
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+![Flashcard Back Side](./public/images/flashcardBack.PNG "flashcard back side for Panda-Aja!")
+![Flashcard Back Side Detail View](./public/images/flashcardDetailBack.PNG "flashcard back side detail view for Panda-Aja!")
