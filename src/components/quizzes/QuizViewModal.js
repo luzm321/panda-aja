@@ -256,7 +256,7 @@ export const QuizViewModal = ({quizSelection, setShowQuizViewModal, updateQuiz})
                     setCounter(0) //resets counter/current index position of card back to the first position when modal closes and user wants
                     //to take another quiz
                     setCurrentFlashCard(flashCardsArray[0]);
-                    setShowQuizViewModal(false)}}className="modal-close is-large" aria-label="close"></button>
+                    setShowQuizViewModal(false)}}className="modal-close is-large closeBut" aria-label="close"></button>
             </div> 
         </> 
     )

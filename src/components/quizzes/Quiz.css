@@ -234,6 +234,10 @@
   border-radius: 15px;
 }
 
+.closeBut {
+  background-color:rgb(80, 138, 201);
+}
+
 /* Position the "next button" to the right */
 .next {
   right: 0;
