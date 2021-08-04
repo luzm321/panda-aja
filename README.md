@@ -20,12 +20,15 @@ cd panda-aja
 
 ## Panda-Aja! Proxy Server:
 
-1. Please go this this github repository link: https://github.com/luzm321/panda-aja-proxy-server to access the proxy server that needs to be ran and served along with the Panda-Aja! app and the JSON server database on separate ports in the terminal in order for the API fetch calls to work.
-1. Use terminal to clone the proxy server repository: git clone git@github.com:luzm321/panda-aja-proxy-server.git
-1. cd panda-aja-proxy-server
+1. Please go to this github repository link: https://github.com/luzm321/panda-aja-proxy-server to access the proxy server that needs to be ran and served along with the Panda-Aja! app and the JSON server database on separate ports in the terminal in order for the API fetch calls to work.
+1. Use terminal to clone the proxy server repository: 
 ```
+git clone git@github.com:luzm321/panda-aja-proxy-server.git
+cd panda-aja-proxy-server
+```
+
 1. The proxy server should be served on port: localhost 3000 (type in terminal: node server.js -p 3000 -w).
-```
+
 
 ## What is Panda-Aja!?
 
