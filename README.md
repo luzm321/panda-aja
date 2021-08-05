@@ -94,8 +94,20 @@ The following are examples of how the resources in your API should look once it 
 
 ![Deck View](./public/images/deckCard.PNG "Deck view for Panda-Aja!")
 
+
 ![Flashcard Front Side](./public/images/flashcardFront.PNG "flashcard front side for Panda-Aja!")
+
+
 ![Flashcard Front Side Detail View](./public/images/flashcardDetailFront "flashcard front side detail view for Panda-Aja!")
 
+
 ![Flashcard Back Side](./public/images/flashcardBack.PNG "flashcard back side for Panda-Aja!")
+
+
 ![Flashcard Back Side Detail View](./public/images/flashcardDetailBack.PNG "flashcard back side detail view for Panda-Aja!")
+
+
+![Quiz Deck Selection Detail View](./public/images/quizSelectionDetail.PNG "quiz deck selection detail view for Panda-Aja!")
+
+
+![Quiz Modal View](./public/images/quizModalView.PNG "quiz modal view for Panda-Aja!")
