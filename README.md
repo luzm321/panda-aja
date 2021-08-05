@@ -20,12 +20,15 @@ cd panda-aja
 
 ## Panda-Aja! Proxy Server:
 
-1. Please go this this github repository link: https://github.com/luzm321/panda-aja-proxy-server to access the proxy server that needs to be ran and served along with the Panda-Aja! app and the JSON server database on separate ports in the terminal in order for the API fetch calls to work.
-1. Use terminal to clone the proxy server repository: git clone git@github.com:luzm321/panda-aja-proxy-server.git
-1. cd panda-aja-proxy-server
+1. Please go to this github repository link: https://github.com/luzm321/panda-aja-proxy-server to access the proxy server that needs to be ran and served along with the Panda-Aja! app and the JSON server database on separate ports in the terminal in order for the API fetch calls to work.
+1. Use terminal to clone the proxy server repository: 
 ```
+git clone git@github.com:luzm321/panda-aja-proxy-server.git
+cd panda-aja-proxy-server
+```
+
 1. The proxy server should be served on port: localhost 3000 (type in terminal: node server.js -p 3000 -w).
-```
+
 
 ## What is Panda-Aja!?
 
@@ -91,23 +94,36 @@ The following are examples of how the resources in your API should look once it 
     }
 ```
 
+### Deck View:
 
 ![Deck View](./public/images/deckCard.PNG "Deck view for Panda-Aja!")
 
 
+### Flashcard Front Side View:
+
 ![Flashcard Front Side](./public/images/flashcardFront.PNG "flashcard front side for Panda-Aja!")
 
 
-![Flashcard Front Side Detail View](./public/images/flashcardDetailFront "flashcard front side detail view for Panda-Aja!")
-
+### Flashcard Back Side View:
 
 ![Flashcard Back Side](./public/images/flashcardBack.PNG "flashcard back side for Panda-Aja!")
 
 
+### Flashcard Front Side Detail View:
+
+![Flashcard Front Side Detail View](./public/images/flashcardDetailFront.PNG "flashcard front side detail view for Panda-Aja!")
+
+
+### Flashcard Back Side Detail View:
+
 ![Flashcard Back Side Detail View](./public/images/flashcardDetailBack.PNG "flashcard back side detail view for Panda-Aja!")
 
 
+### Quiz Deck Selection Detail View:
+
 ![Quiz Deck Selection Detail View](./public/images/quizSelectionDetail.PNG "quiz deck selection detail view for Panda-Aja!")
 
+
+### Quiz Modal View:
 
 ![Quiz Modal View](./public/images/quizModalView.PNG "quiz modal view for Panda-Aja!")
