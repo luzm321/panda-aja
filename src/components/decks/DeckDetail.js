@@ -14,16 +14,19 @@ export const DeckDetail = () => {
     const [ filteredCards, setFilteredCards ] = useState([])
     const history = useHistory();
 
-    // searchTerms will cause a change
+    useEffect(() => {
+        getAllCardsInThisDeck(currentDeck.id);
+    }, []);
+
+    // searchCardTerms will cause a change
     useEffect(() => {
         if (searchCardTerms !== "") {
             // If the search field is not blank, display matching flashcards by transliteration property
             const subset = userDeckFlashCards.filter(flashcard => flashcard.transliteration.toLowerCase().includes(searchCardTerms))
             setFilteredCards(subset)
           } else {
-          // If the search field is blank, display all flashcards
-          setFilteredCards(userDeckFlashCards)
-          getAllCardsInThisDeck(currentDeck.id);
+            // If the search field is blank, display all flashcards
+            setFilteredCards(userDeckFlashCards)
           }
         
     }, [searchCardTerms, userDeckFlashCards]);
@@ -74,13 +77,14 @@ export const DeckDetail = () => {
                                         <div className="card-content-detail">
                                                 <div className="">
                                                     <h1>{flashCard.frontSide}</h1>
-                                                    <h2>{flashCard.transliteration}</h2>
+                                                    {flashCard.frontSideLang !== "en" ? <h2>{flashCard.transliteration}</h2> : null}
                                                 </div>
                                         </div>
                                     </div>
                                     <div className="card flip-card-back">
                                         <div className="card-content-detail">
                                             <h1>{flashCard.backSide}</h1>
+                                            {flashCard.backSideLang !== "en" ? <h2>{flashCard.transliteration}</h2> : null}
                                         </div>
                                     </div>
                                 </div>
@@ -92,13 +96,14 @@ export const DeckDetail = () => {
                                             <div className="card-content-detail">
                                                     <div className="">
                                                         <h1>{flashCard.backSide}</h1>
+                                                        {flashCard.backSideLang !== "en" ? <h2>{flashCard.transliteration}</h2> : null}
                                                     </div>
                                             </div>
                                         </div>
                                         <div className="card flip-card-back">
                                             <div className="card-content-detail">
                                                 <h1>{flashCard.frontSide}</h1>
-                                                <h2>{flashCard.transliteration}</h2>
+                                                {flashCard.frontSideLang !== "en" ? <h2>{flashCard.transliteration}</h2> : null}
                                             </div>
                                         </div>
                                     </div>

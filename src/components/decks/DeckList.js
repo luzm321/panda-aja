@@ -21,6 +21,12 @@ export const DeckList = () => {
     const history = useHistory();
 
     // Empty dependency array - useEffect only runs after first render
+    useEffect(() => {
+      getUsers()
+      getDecks()
+      getUserFavoriteDecks()
+    }, []);
+
     // searchTerms will cause a change
     useEffect(() => {
       if (searchTerms !== "") {
@@ -28,11 +34,8 @@ export const DeckList = () => {
         const subset = decks.filter(deck => deck.topic.toLowerCase().includes(searchTerms))
         setFilteredDecks(subset)
       } else {
-      // If the search field is blank, display all decks
-      setFilteredDecks(decks)
-      getUsers()
-      .then(getDecks)
-      .then(getUserFavoriteDecks)
+        // If the search field is blank, display all decks
+        setFilteredDecks(decks)
       }
     }, [searchTerms, decks]);
 
