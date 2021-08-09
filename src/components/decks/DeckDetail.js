@@ -52,7 +52,7 @@ export const DeckDetail = () => {
 
     return (
         <div className="deckDetailDiv">
-            <h1 className="flashCardHeader">My Flashcards</h1>
+            <h1 className="flashCardHeader">Flashcards</h1>
             {/* Ternary below conditionally renders add new card affordance only if the current logged in user matches the deck userId or the deck id from sessionStorage */}
             {
                 parseInt(sessionStorage.getItem("pandaAja_user")) === currentDeck.userId ? 

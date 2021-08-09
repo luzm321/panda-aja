@@ -116,6 +116,7 @@ export const FlashCardProvider = (props) => {
             },
             body: JSON.stringify(scoreObj)
         })
+        .then(getScores)
     };
 
     const getScores = () => {

@@ -1,25 +1,25 @@
 import React, { useState, useContext, useEffect }from "react";
 import { DeckContext } from "../decks/DeckProvider";
 import { FlashCardContext } from "../flashCards/FlashCardProvider";
-// import { QuizFlashCard } from "./QuizFlashCard";
 import { speak } from "../speech/SpeechSynthesisHelper";
 import { createRecognitionEvent } from "../speech/SpeechRecognitionHelper";
+import Swal from "sweetalert2";
 import "./Quiz.css";
 
 
 export const QuizViewModal = ({quizSelection, setShowQuizViewModal, updateQuiz}) => {
 
-    const {patchFlashCard, getFlashCards, postDeckScore} = useContext(FlashCardContext);
+    const {patchFlashCard, postDeckScore} = useContext(FlashCardContext);
     const {getDecks} = useContext(DeckContext);
     let numberOfCards = quizSelection.flashcards.length - 1; //need to subtract 1 because position in array is zero index
     let flashCardsArray = quizSelection.flashcards; //storing flashcards property of quizSelection prop into a new variable for use in this component
     const [counter, setCounter] = useState(0)
     const [currentFlashCard, setCurrentFlashCard] = useState(flashCardsArray[counter]);
     const [currentNumberOfCard, setCurrentNumberOfCard] = useState(1);
-    const [state, setState] = useState(true);
     const [quizScoreState, setQuizScoreState] = useState({})
     const [totalScore, setTotalScore] = useState(0);
     const [quizCompleted, setQuizCompleted] = useState(false);
+    const [totalScoreSaved, setTotalScoreSaved] = useState(false);
 
 
     useEffect(() => {
@@ -42,8 +42,17 @@ export const QuizViewModal = ({quizSelection, setShowQuizViewModal, updateQuiz})
             console.log('quiz completed');
             //will only save/post score to database if quizScoreState is not null and quizCompleted state is true
             saveScore()
+            setTotalScoreSaved(true);
         }
-    }, [quizScoreState, quizCompleted])
+        if (totalScoreSaved) {
+                Swal.fire({
+                    title: `Your score is: ${totalScore}%! 😊`,
+                    icon: "info",
+                    confirmButtonColor: "#20B2AA"
+                });
+                setTotalScore(0); // reset total score state to zero
+        }
+    }, [quizScoreState, quizCompleted, totalScoreSaved]); // dependency array watches for changes in these states
 
     // function that shows next card in queue:
     const showNextCard = () => {
@@ -228,7 +237,6 @@ export const QuizViewModal = ({quizSelection, setShowQuizViewModal, updateQuiz})
             }
             postDeckScore(scoreObj);
             setQuizScoreState({}); //once quiz is completed and score is saved/posted to database, reset state to empty obj
-            setTotalScore(0); // also reset total score state to zero
         }
     };
 
@@ -301,7 +309,6 @@ export const QuizViewModal = ({quizSelection, setShowQuizViewModal, updateQuiz})
                 <div className="modal-background quizModalBgd"></div>
                     <div className="modal-content">
                         <h1 className="quizViewHeader">~My Quiz~</h1>
-                        <button onClick={() => {console.log("score state", quizScoreState, totalScore); console.log('thing', Object.values(quizScoreState).includes(null)) }}>state</button>
                         <button className="quizFlipBut" onClick={(event) => {
                             flipCurrentCard(event)
                         }}>Flip Card</button>

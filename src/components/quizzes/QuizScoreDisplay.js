@@ -12,12 +12,15 @@ export const QuizScoreDisplay = () => {
         getScores()
     }, []);
 
+    // sort scores array by completion date from newest score to oldest score:
+    const sortedScores = scores.sort((a, b) => a.completionDate > b.completionDate ? -1 : 1)
+
     return (
         <>
             <h1 className="scoreHistoryHeader">Quiz Score History</h1>
 
             {
-                scores.map(score => {
+                sortedScores.map(score => {
                     if (score.userId === parseInt(sessionStorage.getItem("pandaAja_user")))
                         return <QuizScoreDetail key={score.id} score={score} />
                 })
