@@ -107,10 +107,20 @@ export const FlashCardProvider = (props) => {
         setCurrentCard(currentlySelectedCard);
     };
 
+    const postDeckScore = (scoreObj) => {
+        return fetch("http://localhost:8088/scores", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(scoreObj)
+        })
+    };
+
     return (
         <FlashCardContext.Provider value={{
             flashCards, getFlashCards, addFlashCard, deleteFlashCard, getFlashCardById, updateFlashCard, getAllCardsInThisDeck,  getAllCardsInThisDeckForQuiz, userDeckFlashCards,
-            assignCurrentCard, currentCard, patchFlashCard
+            assignCurrentCard, currentCard, patchFlashCard, postDeckScore
         }}>
             {props.children}
         </FlashCardContext.Provider>
