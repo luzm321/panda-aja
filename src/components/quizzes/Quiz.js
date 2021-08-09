@@ -2,8 +2,9 @@ import React, { useContext, useEffect, useState } from "react";
 import { DeckContext } from "../decks/DeckProvider";
 import { FlashCardContext } from "../flashCards/FlashCardProvider";
 import { QuizDetail } from "./QuizDetail";
-import "./Quiz.css"
 import { QuizViewModal } from "./QuizViewModal";
+import { QuizScoreDisplay } from "./QuizScoreDisplay";
+import "./Quiz.css";
 
 
 
@@ -98,6 +99,7 @@ export const Quiz = () => {
                     }
                 </div>
             </div>
+            <QuizScoreDisplay />
         </div>
     )
 

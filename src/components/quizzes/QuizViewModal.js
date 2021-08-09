@@ -27,10 +27,10 @@ export const QuizViewModal = ({quizSelection, setShowQuizViewModal, updateQuiz})
         getDecks();
         const quizScoreStateCopy = {...quizScoreState}
         flashCardsArray.forEach((card) => {
-            quizScoreStateCopy[flashCardsArray.indexOf(card)] = null;
-            setQuizScoreState(quizScoreStateCopy);
+            quizScoreStateCopy[flashCardsArray.indexOf(card)] = null; //looping through cards array and creating index prop with initial value of null for each card
+            setQuizScoreState(quizScoreStateCopy); //setting copy of quiz score state to update state
         })
-    },[])
+    }, []);
 
     useEffect(() => {
         if (!Object.values(quizScoreState).includes("pass", "fail")) {
@@ -38,8 +38,9 @@ export const QuizViewModal = ({quizSelection, setShowQuizViewModal, updateQuiz})
         } else {
             recordTotalScore();
         }
-        if (!Object.values(quizScoreState).includes(null) && quizCompleted) {
+        if (!Object.values(quizScoreState).includes(null) && quizCompleted) { 
             console.log('quiz completed');
+            //will only save/post score to database if quizScoreState is not null and quizCompleted state is true
             saveScore()
         }
     }, [quizScoreState, quizCompleted])
@@ -204,7 +205,7 @@ export const QuizViewModal = ({quizSelection, setShowQuizViewModal, updateQuiz})
         let score = 0;
         for (let cardScore in quizScoreState) {
             if (quizScoreState[cardScore] === "pass") {
-                score++
+                score++ //increment score by 1 if value of property in quizScoreState obj equates to "pass" with each iteration through object
             }
         }
         let totalScore = score / maxScore * 100

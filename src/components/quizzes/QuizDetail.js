@@ -1,5 +1,5 @@
-import React, { useContext, useEffect, useState } from "react";
-import { QuizViewModal } from "./QuizViewModal";
+import React from "react";
+// import { QuizViewModal } from "./QuizViewModal";
 
 
 export const QuizDetail = ({quizSelection, setShowQuizViewModal}) => {
