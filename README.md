@@ -94,6 +94,20 @@ The following are examples of how the resources in your API should look once it 
     }
 ```
 
+### Capstone ERD (Entity Relationship Diagram):
+
+Link: https://dbdiagram.io/d/60ef769a4ed9be1c05cd30bd
+
+![Capstone ERD](./public/images/PandaAjaERD.PNG "Capstone ERD for Panda-Aja!")
+
+
+### Capstone Wireframe:
+
+Link: https://miro.com/app/board/o9J_l6-l4q4=/
+
+![Wireframe](./public/images/PandaAjaWireframe.PNG "Wireframe for Panda-Aja!")
+
+
 ### Deck View:
 
 ![Deck View](./public/images/deckCard.PNG "Deck view for Panda-Aja!")
