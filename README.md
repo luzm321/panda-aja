@@ -127,3 +127,8 @@ The following are examples of how the resources in your API should look once it 
 ### Quiz Modal View:
 
 ![Quiz Modal View](./public/images/quizModalView.PNG "quiz modal view for Panda-Aja!")
+
+
+### Quiz Score History View:
+
+![Quiz Score History View](./public/images/quizScoreHistory.PNG "quiz score history view for Panda-Aja!")
