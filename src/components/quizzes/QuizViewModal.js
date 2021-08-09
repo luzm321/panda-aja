@@ -1,28 +1,58 @@
 import React, { useState, useContext, useEffect }from "react";
 import { DeckContext } from "../decks/DeckProvider";
 import { FlashCardContext } from "../flashCards/FlashCardProvider";
-// import { QuizFlashCard } from "./QuizFlashCard";
 import { speak } from "../speech/SpeechSynthesisHelper";
 import { createRecognitionEvent } from "../speech/SpeechRecognitionHelper";
+import Swal from "sweetalert2";
 import "./Quiz.css";
 
 
 export const QuizViewModal = ({quizSelection, setShowQuizViewModal, updateQuiz}) => {
 
-    const {patchFlashCard, getFlashCards} = useContext(FlashCardContext);
+    const {patchFlashCard, postDeckScore} = useContext(FlashCardContext);
     const {getDecks} = useContext(DeckContext);
     let numberOfCards = quizSelection.flashcards.length - 1; //need to subtract 1 because position in array is zero index
     let flashCardsArray = quizSelection.flashcards; //storing flashcards property of quizSelection prop into a new variable for use in this component
     const [counter, setCounter] = useState(0)
     const [currentFlashCard, setCurrentFlashCard] = useState(flashCardsArray[counter]);
     const [currentNumberOfCard, setCurrentNumberOfCard] = useState(1);
-    const [state, setState] = useState(true);
+    const [quizScoreState, setQuizScoreState] = useState({})
+    const [totalScore, setTotalScore] = useState(0);
+    const [quizCompleted, setQuizCompleted] = useState(false);
+    const [totalScoreSaved, setTotalScoreSaved] = useState(false);
 
 
     useEffect(() => {
         console.log('quiz', quizSelection.flashcards);
         getDecks();
-    },[])
+        const quizScoreStateCopy = {...quizScoreState}
+        flashCardsArray.forEach((card) => {
+            quizScoreStateCopy[flashCardsArray.indexOf(card)] = null; //looping through cards array and creating index prop with initial value of null for each card
+            setQuizScoreState(quizScoreStateCopy); //setting copy of quiz score state to update state
+        })
+    }, []);
+
+    useEffect(() => {
+        if (!Object.values(quizScoreState).includes("pass", "fail")) {
+            
+        } else {
+            recordTotalScore();
+        }
+        if (!Object.values(quizScoreState).includes(null) && quizCompleted) { 
+            console.log('quiz completed');
+            //will only save/post score to database if quizScoreState is not null and quizCompleted state is true
+            saveScore()
+            setTotalScoreSaved(true);
+        }
+        if (totalScoreSaved) {
+                Swal.fire({
+                    title: `Your score is: ${totalScore}%! 😊`,
+                    icon: "info",
+                    confirmButtonColor: "#20B2AA"
+                });
+                setTotalScore(0); // reset total score state to zero
+        }
+    }, [quizScoreState, quizCompleted, totalScoreSaved]); // dependency array watches for changes in these states
 
     // function that shows next card in queue:
     const showNextCard = () => {
@@ -162,6 +192,54 @@ export const QuizViewModal = ({quizSelection, setShowQuizViewModal, updateQuiz})
         });
     };
 
+    const handleScore = (passOrFail) => {
+        let scoreQuizStateCopy = {...quizScoreState}
+        // check if the user has already answered current card
+            if (scoreQuizStateCopy[counter] === null) {
+                if (passOrFail === "pass") {
+                    scoreQuizStateCopy[counter] = "pass";
+                    setQuizScoreState(scoreQuizStateCopy);
+                } else {
+                    scoreQuizStateCopy[counter] = "fail";
+                    setQuizScoreState(scoreQuizStateCopy);
+                }
+            } else {
+    
+            }
+    }
+
+    const recordTotalScore = () => {
+        console.log('state', quizScoreState);
+        let maxScore = flashCardsArray.length;
+        let score = 0;
+        for (let cardScore in quizScoreState) {
+            if (quizScoreState[cardScore] === "pass") {
+                score++ //increment score by 1 if value of property in quizScoreState obj equates to "pass" with each iteration through object
+            }
+        }
+        let totalScore = score / maxScore * 100
+        setTotalScore(totalScore);
+    };
+
+    //function that saves and posts quiz score after completion
+    const saveScore = () => {
+        let newArray = Object.values(quizScoreState);
+        console.log("?", !newArray.includes("pass", "fail"));
+        if (!newArray.includes("pass", "fail")) { 
+            // if user didn't answer anything, which means user changed his/her mind
+        } else {
+            // but if they answered at least one then record it
+            let scoreObj = {
+                userId: parseInt(sessionStorage.getItem("pandaAja_user")), 
+                deckId: quizSelection.deckId,
+                percentageScore: totalScore,
+                completionDate: new Date().toLocaleDateString()
+            }
+            postDeckScore(scoreObj);
+            setQuizScoreState({}); //once quiz is completed and score is saved/posted to database, reset state to empty obj
+        }
+    };
+
     // this function is invoked when user clicks on the test self button to check if correct answer is given for the opposite side of card:
     const listenToAnswer = (event) => {
         event.preventDefault();
@@ -179,14 +257,18 @@ export const QuizViewModal = ({quizSelection, setShowQuizViewModal, updateQuiz})
                     // if the answer the user gave matches the translated phrase/language on the back side of the card, then code below runs:
                         //if current index of card is greater or equal to the total length of cards in array (at last position), then app will say:
                         if (currentNumberOfCard >= quizSelection.flashcards.length) {
+                            handleScore("pass"); // update quiz score state to pass
+                            setQuizCompleted(true);
                             speak("Great Job! You got it right, you're done with the quiz!", "en");
                         } else {
                         //else if index is less than total length of cards in array (not at last card in deck), then app will say:
+                            handleScore("pass");  // update quiz score state to pass
                             speak("Great Job! You got it right, proceed to the next card", "en");
                         }
                     } else {
                         // if what the user said doesn't match the phrase/language on the back side of the card, then code below runs and app will
                         //repeat what the user said:
+                        handleScore("fail"); // update quiz score state to fail
                         speak(`Please try again, you said`, "en");
                         speak(`${answerGiven}`, flashCardsArray[counter].backSideLang);
                     }
@@ -202,14 +284,18 @@ export const QuizViewModal = ({quizSelection, setShowQuizViewModal, updateQuiz})
                     // if the answer the user gave matches the translated phrase/language on the front side of the card, then code below runs:
                         //if current index of card is greater or equal to the total length of cards in array (at last position), then app will say:
                           if (currentNumberOfCard >= quizSelection.flashcards.length) {
+                            handleScore("pass"); // update quiz score state to pass
+                            setQuizCompleted(true);
                             speak("Great Job! You got it right, you're done with the quiz!", "en");
                         } else {
                         //else if index is less than total length of cards in array (not at last card in deck), then app will say:
+                            handleScore("pass");  // update quiz score state to pass
                             speak("Great Job! You got it right, proceed to the next card", "en");
                         }
                     } else {
                         // if what the user said doesn't match the phrase/language on the front side of the card, then code below runs and app will
                         //repeat what the user said:
+                        handleScore("fail"); // update quiz score state to fail
                         speak(`Please try again, you said`, "en");
                         speak(`${answerGiven}`, flashCardsArray[counter].frontSideLang);
                     }
@@ -256,7 +342,9 @@ export const QuizViewModal = ({quizSelection, setShowQuizViewModal, updateQuiz})
                     setCounter(0) //resets counter/current index position of card back to the first position when modal closes and user wants
                     //to take another quiz
                     setCurrentFlashCard(flashCardsArray[0]);
-                    setShowQuizViewModal(false)}}className="modal-close is-large closeBut" aria-label="close"></button>
+                    setShowQuizViewModal(false)
+                    saveScore()
+                }}className="modal-close is-large closeBut" aria-label="close"></button>
             </div> 
         </> 
     )

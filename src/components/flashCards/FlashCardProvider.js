@@ -8,6 +8,7 @@ export const FlashCardProvider = (props) => {
     const [flashCards, setFlashCards] = useState([]);
     const [userDeckFlashCards, setCardsInTheDeck] = useState([]);
     const [currentCard, setCurrentCard] = useState(JSON.parse(sessionStorage.getItem("currentCard")));
+    const [scores, setScores] = useState([]);
 
 
     const getFlashCards = () => {
@@ -107,10 +108,27 @@ export const FlashCardProvider = (props) => {
         setCurrentCard(currentlySelectedCard);
     };
 
+    const postDeckScore = (scoreObj) => {
+        return fetch("http://localhost:8088/scores", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(scoreObj)
+        })
+        .then(getScores)
+    };
+
+    const getScores = () => {
+        return fetch("http://localhost:8088/scores?_expand=deck&_expand=user")
+        .then(res => res.json())
+        .then(setScores)
+    };
+
     return (
         <FlashCardContext.Provider value={{
             flashCards, getFlashCards, addFlashCard, deleteFlashCard, getFlashCardById, updateFlashCard, getAllCardsInThisDeck,  getAllCardsInThisDeckForQuiz, userDeckFlashCards,
-            assignCurrentCard, currentCard, patchFlashCard
+            assignCurrentCard, currentCard, patchFlashCard, postDeckScore, scores, getScores
         }}>
             {props.children}
         </FlashCardContext.Provider>
