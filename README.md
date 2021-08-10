@@ -30,6 +30,11 @@ cd panda-aja-proxy-server
 1. The proxy server should be served on port: localhost 3000 (type in terminal: node server.js -p 3000 -w).
 
 
+## Inspiration for creating Panda-Aja!
+
+I have been interested in South Korean culture for approximately 15 years with regard to Korean pop music, Korean cuisine, and Korean dramas/shows/movies. At times, it is cumbersome having to wait a while for a particular show/drama/movie/music to have english subtitles/translation before I can enjoy watching/listening to them. This has been the driving catalyst that inspired me to build a fun and innovative Korean language learning application that will solve this problem so that I (and others who may want to use my app for similar purposes) can better understand the language. Learning a new language can be difficult and I wanted to make a simple app that facilitates the process and journey of embarking on this feat in a way that makes the application user-friendly with regard to having a meaningful user experience and interface.
+
+
 ## What is Panda-Aja!?
 
 **Note:** Meaning behind name: In certain cultures, Pandas can symbolize resilience, strength, luck, and they are adorable! Meanwhile, Aja! is a South Korean motivational chant of encouragement to oneself or others that signifies “You can do it!” because learning a new language can be challenging.
