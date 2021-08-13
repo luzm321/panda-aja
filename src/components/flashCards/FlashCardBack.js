@@ -1,8 +1,9 @@
 import React, { useContext, useState} from "react";
-import { useHistory } from "react-router-dom";
 import { FlashCardContext } from "../flashCards/FlashCardProvider";
 import { translatePhrase, transliteratePhrase, detectLanguage } from "./TranslationProvider";
 // import "./FlashCard.css";
+import { FlipInYAnimation, RubberBandAnimation } from "../animations/AnimationHelper";
+import {StyleRoot} from 'radium';
 
 
 
@@ -14,7 +15,6 @@ export const FlashCardBack = ({uneditedCardState, updatedCardState, handleInputC
     const [ languageTransliterationCode, setTransliterationCode ] = useState("Kore");
     const [ transliteration, setTransliteration ] = useState("");
 
-    const history = useHistory();
 
     let transliterationText;
     if (currentCard.transliteration.length !== 0 && currentCard.backSideLang !== "en") { 
@@ -31,14 +31,14 @@ export const FlashCardBack = ({uneditedCardState, updatedCardState, handleInputC
     };
 
     return (
-        <> 
+        <StyleRoot> 
         {/* Ternary below conditionally renders either the unedited vs the updated views of card based on state of uneditedCardState */}
             {
                 uneditedCardState === true ?
-                <>
+                <div>
                     {/* Edit card view */}
-                    <h1 className="cardBackHeader">Flashcard Back</h1>
-                    <div className="cardBackDiv">
+                    <h1 className="cardBackHeader" style={RubberBandAnimation(2)}>Flashcard Back</h1>
+                    <div className="cardBackDiv" style={FlipInYAnimation(2)}>
                         <textarea className="trans_output" disabled placeholder="Translation..." value={translatedWord}></textarea>
                         <input className="backEnglish" id="backSide" defaultValue={currentCard.backSide} onChange={(event) => {handleInputChange(event)}} />
                         <select className="langSelection" onChange={(event) => {
@@ -84,18 +84,18 @@ export const FlashCardBack = ({uneditedCardState, updatedCardState, handleInputC
                         }}>Save</button>
                         <button className="button is-rounded cancel__btn" onClick={(event) => {handleClickCancel(event)}}>Cancel</button>               
                     </div>
-                </>
+                </div>
                 :
-                <>
+                <div>
                     {/* Unedited card view */}
-                    <h1 className="cardBackHeader">Flashcard Back</h1>
-                    <div className="cardBackDiv">   
+                    <h1 className="cardBackHeader" style={RubberBandAnimation(2)}>Flashcard Back</h1>
+                    <div className="cardBackDiv" style={FlipInYAnimation(2)}>   
                         <h1 className="backEnglish">{currentCard.backSide}</h1>   
                         {transliterationText}               
                     </div>   
-                </>
+                </div>
             }
-        </>
+        </StyleRoot>
     )
 };
 

@@ -1,8 +1,9 @@
 import React, { useContext, useState, useEffect} from "react";
-import { useHistory } from "react-router-dom";
 import { FlashCardContext } from "../flashCards/FlashCardProvider";
 import { translatePhrase, transliteratePhrase, detectLanguage } from "./TranslationProvider";
 // import "./FlashCard.css";
+import { FlipInYAnimation, RubberBandAnimation } from "../animations/AnimationHelper";
+import {StyleRoot} from 'radium';
 
 
 
@@ -14,7 +15,6 @@ export const FlashCardFront = ({uneditedCardState, updatedCardState, handleInput
     const [ languageTransliterationCode, setTransliterationCode ] = useState("Kore");
     const [ transliteration, setTransliteration ] = useState("");
 
-    const history = useHistory();
 
     useEffect(() => {
         getAllCardsInThisDeck(parseInt(sessionStorage.getItem("lastDeckView")))
@@ -34,14 +34,14 @@ export const FlashCardFront = ({uneditedCardState, updatedCardState, handleInput
     };
 
     return (
-        <> 
+        <StyleRoot> 
         {/* Ternary below conditionally renders either the unedited vs the updated views of card based on state of uneditedCardState */}
             {
                 uneditedCardState === true ?
-                <>
+                <div>
                     {/* Edit card view */}
-                    <h1 className="cardFrontHeader">Flashcard Front</h1>
-                    <div className="cardFrontDiv">
+                    <h1 className="cardFrontHeader" style={RubberBandAnimation(2)}>Flashcard Front</h1>
+                    <div className="cardFrontDiv" style={FlipInYAnimation(2)}>
                         <textarea className="trans_output" disabled placeholder="Translation..." value={translatedWord}></textarea>
                         <input className="frontHangeul" id="frontSide" defaultValue={currentCard.frontSide} onChange={(event) => {handleInputChange(event)}} />
                         <h2 className="frontPhonetic" defaultValue={currentCard.transliteration}>{transliteration}</h2>
@@ -88,18 +88,18 @@ export const FlashCardFront = ({uneditedCardState, updatedCardState, handleInput
                         }}>Save</button>
                         <button className="button is-rounded cancel__btn" onClick={(event) => {handleClickCancel(event)}}>Cancel</button>                
                     </div>
-                </>
+                </div>
                 :
-                <>
+                <div>
                     {/* Unedited card view */}
-                    <h1 className="cardFrontHeader">Flashcard Front</h1>
-                    <div className="cardFrontDiv">   
+                    <h1 className="cardFrontHeader" style={RubberBandAnimation(2)}>Flashcard Front</h1>
+                    <div className="cardFrontDiv" style={FlipInYAnimation(2)}>   
                         <h1 className="frontHangeul">{currentCard.frontSide}</h1>
                         {transliterationText} 
                     </div>   
-                </>
+                </div>
             }
-        </>
+        </StyleRoot>
     )
 };
 
