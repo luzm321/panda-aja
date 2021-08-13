@@ -5,6 +5,8 @@ import { speak } from "../speech/SpeechSynthesisHelper";
 import { createRecognitionEvent } from "../speech/SpeechRecognitionHelper";
 import Swal from "sweetalert2";
 import "./Quiz.css";
+import { FlipAnimation } from "../animations/AnimationHelper";
+import { StyleRoot } from 'radium';
 
 
 export const QuizViewModal = ({quizSelection, setShowQuizViewModal, updateQuiz}) => {
@@ -20,6 +22,7 @@ export const QuizViewModal = ({quizSelection, setShowQuizViewModal, updateQuiz})
     const [totalScore, setTotalScore] = useState(0);
     const [quizCompleted, setQuizCompleted] = useState(false);
     const [totalScoreSaved, setTotalScoreSaved] = useState(false);
+    const [animation, setAnimation] = useState(FlipAnimation(.7)); // state for flip animation from npm with initial value
 
 
     useEffect(() => {
@@ -52,7 +55,12 @@ export const QuizViewModal = ({quizSelection, setShowQuizViewModal, updateQuiz})
                 });
                 setTotalScore(0); // reset total score state to zero
         }
-    }, [quizScoreState, quizCompleted, totalScoreSaved]); // dependency array watches for changes in these states
+        // this is needed for the animation to display each time you flip or change cards
+        // this will make it so it re-renders and so the animation shows again
+        if (Object.keys(animation).length === 0) {
+            setAnimation(FlipAnimation(.7));
+        }
+    }, [quizScoreState, quizCompleted, totalScoreSaved, animation]); // dependency array watches for changes in these states
 
     // function that shows next card in queue:
     const showNextCard = () => {
@@ -63,11 +71,13 @@ export const QuizViewModal = ({quizSelection, setShowQuizViewModal, updateQuiz})
             setCounter(0)
             let currentCard = flashCardsArray[counter];
             setCurrentFlashCard(currentCard);
+            setAnimation({}); // resetting animation state to an empty obj so that setAnimation code in conditional in useEffect hook above runs
         // else, add 1 to the current count and proceed to the next card in the array the set the state with updated data
         } else {
             setCounter(counter + 1);
             let currentCard = flashCardsArray[counter];
             setCurrentFlashCard(currentCard);
+            setAnimation({}); // resetting animation state to an empty obj so that setAnimation code in conditional in useEffect hook above runs
         }
     };
 
@@ -80,12 +90,14 @@ export const QuizViewModal = ({quizSelection, setShowQuizViewModal, updateQuiz})
             setCounter(numberOfCards)
             let currentCard = flashCardsArray[numberOfCards];
             setCurrentFlashCard(currentCard);
+            setAnimation({}); // resetting animation state to an empty obj so that setAnimation code in conditional in useEffect hook above runs
         } else {
             // else if counter is more than 0 (on the second position in array), then subtract one from index to go back to previous card position
             // and set the current card:
             setCounter(counter - 1);
             let currentCard = flashCardsArray[counter];
             setCurrentFlashCard(currentCard);
+            setAnimation({}); // resetting animation state to an empty obj so that setAnimation code in conditional in useEffect hook above runs
         }
     };
 
@@ -122,6 +134,7 @@ export const QuizViewModal = ({quizSelection, setShowQuizViewModal, updateQuiz})
         let propertyToChange = {
             isFlipped: !isFlippedProperty
         }
+        setAnimation({});
         patchFlashCard(propertyToChange, cardId); //using patch method to change the boolean value of isFlipped in database to opposite of initial value
         updateQuiz(quizSelection); //this function updates the state in the quiz module/component that forces a re-render, this allows the 
         //QuizViewModal to re-render and show the flipped card. This function is being invoked here component after being passed as a prop from Quiz component
@@ -131,7 +144,7 @@ export const QuizViewModal = ({quizSelection, setShowQuizViewModal, updateQuiz})
     let transliterationFront;
     // if the current card's language code property being displayed is not english (it's Korean), then show the transliteration on the same side
     if (flashCardsArray[counter].frontSideLang !== "en") {
-        transliterationFront = <p className="transFront">{flashCardsArray[counter].transliteration}</p>;
+        transliterationFront = <p className="transFront" style={animation}>{flashCardsArray[counter].transliteration}</p>;
     // else don't show the transliteration (phonetic)
     } else {
         transliterationFront = null
@@ -140,7 +153,7 @@ export const QuizViewModal = ({quizSelection, setShowQuizViewModal, updateQuiz})
     // transliteration conditional rendering for back side of card with same logic as above:
     let transliterationBack;
     if (flashCardsArray[counter].backSideLang !== "en") {
-        transliterationBack = <p className="transBack">{flashCardsArray[counter].transliteration}</p>;
+        transliterationBack = <p className="transBack" style={animation}>{flashCardsArray[counter].transliteration}</p>;
     } else {
         transliterationBack = null
     };
@@ -149,19 +162,24 @@ export const QuizViewModal = ({quizSelection, setShowQuizViewModal, updateQuiz})
     let cardView;
     // if the card's isFlipped property is true and korean word/phrase is in the front side, show transliteration:
     if (flashCardsArray[counter].isFlipped) {
+        // passing animation state as value of style within div in conditional below to render the flip animation to card element:
         cardView = <>
-        <br/>
-        <p className="card__front">{flashCardsArray[counter].frontSide}</p>
-            {transliterationFront}
-        <br/>
+            <br/>
+                <div style={animation}>
+                    <p className="card__front" >{flashCardsArray[counter].frontSide}</p>
+                    {transliterationFront}
+                </div>
+            <br/>
         </>
     } else {
         // else if isFlipped prop is false and korean word/phrase in the backside, then show transliteration:
         cardView = <>
-        <br/>
-        <p className="card__back">{flashCardsArray[counter].backSide}</p>
-            {transliterationBack}
-        <br/>
+            <br/>
+                <div style={animation}>
+                    <p className="card__back">{flashCardsArray[counter].backSide}</p>
+                    {transliterationBack}
+                </div>
+            <br/>
         </>
     };
 
@@ -304,7 +322,7 @@ export const QuizViewModal = ({quizSelection, setShowQuizViewModal, updateQuiz})
     };
 
     return (
-        <>
+        <StyleRoot>
             <div className="modal is-active">
                 <div className="modal-background quizModalBgd"></div>
                     <div className="modal-content">
@@ -313,7 +331,7 @@ export const QuizViewModal = ({quizSelection, setShowQuizViewModal, updateQuiz})
                             flipCurrentCard(event)
                         }}>Flip Card</button>
                         <div>
-                            <div className="slideshow-container">
+                            <div className="slideshow-container modalContent">
                                 <div className="fade">
                                     <div className="numbertext">{currentNumberOfCard} / {quizSelection.flashcards.length}</div>
                                         {cardView}
@@ -346,6 +364,6 @@ export const QuizViewModal = ({quizSelection, setShowQuizViewModal, updateQuiz})
                     saveScore()
                 }}className="modal-close is-large closeBut" aria-label="close"></button>
             </div> 
-        </> 
+        </StyleRoot> 
     )
 };

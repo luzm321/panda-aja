@@ -334,3 +334,8 @@
 .tableBody {
   border-radius: 20px;
 }
+
+.modalContent {
+  overflow: hidden;
+  height: 20em;
+}
