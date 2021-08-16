@@ -2,6 +2,8 @@
 
 ![Panda-Aja! Logo](./public/images/panda-aja.PNG "Panda-Aja!")
 
+<p text-align="center"><img src="./public/images/panda-aja.PNG" alt="Panda-Aja!" width="320px" height="200px" /></p>
+
 ## Setup: Follow these steps exactly:
 
 1. Use terminal to clone this repository

@@ -12,8 +12,9 @@ export const QuizScoreDisplay = () => {
         getScores()
     }, []);
 
-    // sort scores array by completion date from newest score to oldest score:
-    const sortedScores = scores.sort((a, b) => a.completionDate > b.completionDate ? -1 : 1)
+    // sort scores array by completion date from newest score to oldest score in descending order:
+    // converting string to a date, then doing the comparison:
+    const sortedScores = scores.sort((a, b) => new Date(b.completionDate) - new Date(a.completionDate)); 
 
     return (
         <>
