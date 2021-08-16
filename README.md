@@ -1,8 +1,11 @@
-# Panda-Aja!
+<table align="center"><tr><td>
+      <img src="./public/images/pandaAja.PNG" alt="Panda-Aja!" width="300px" height="100px" />
+</td></tr></table>
 
-![Panda-Aja! Logo](./public/images/panda-aja.PNG "Panda-Aja!")
+<table align="center"><tr><td>
+      <img src="./public/images/panda-aja.PNG" alt="Panda-Aja!" width="300px" height="300px" />
+</td></tr></table>
 
-<p text-align="center"><img src="./public/images/panda-aja.PNG" alt="Panda-Aja!" width="320px" height="200px" /></p>
 
 ## Setup: Follow these steps exactly:
 
@@ -39,19 +42,25 @@ I have been interested in South Korean culture for approximately 15 years with r
 
 ## What is Panda-Aja!?
 
-**Note:** Meaning behind name: In certain cultures, Pandas can symbolize resilience, strength, luck, and they are adorable! Meanwhile, Aja! is a South Korean motivational chant of encouragement to oneself or others that signifies “You can do it!” because learning a new language can be challenging.
+> **Note:** Meaning behind name: In certain cultures, Pandas can symbolize resilience, strength, luck, and they are adorable! Meanwhile, Aja! is a South Korean motivational chant of encouragement to oneself or others that signifies “You can do it!” because learning a new language can be challenging.
 
 
 Panda-Aja! is a flashcard-based, Korean language learning application with a flipping system and mechanism that features an innovative and fun approach to learning the Korean language through meaningful and user-friendly interface. 
 The app integrates various forms of user interaction by implementing real-time text translation, speech, and text functionality via Web Speech API for text-to-speech (speech synthesis) and speech-to-text (speech recognition). Users can create, view, edit, filter (via a search bar feature), and delete a deck that includes a topic and description along with the same CRUD functionality for the flashcards within each designated deck. The user can also favorite/unfavorite a deck which renders in the Favorite Decks page and can review helpful study advice materials to learn Korean more efficiently in the Study Tips page. Furthermore, the app also incorporates a quiz functionality so that users can test their learned knowledge of a chosen deck topic and its corresponding flashcards with scores immediately available for viewing upon quiz completion via an alert and through the quiz score history section on the quizzes page for progress tracking.
 
+This application is built for my Front-End/Client-Side Capstone project for Nashville Software School.
+
+
+## Tech Stack:
+
 The app is built with the ReactJS library and supplemented with the Web Speech API, Microsoft Translator Text external API, SweetAlert2 npm, react-animations npm with radium npm for the animations, and node fetch proxy server. Furthermore, Panda-Aja! is designed to be a CRUD app and is supported by a flat data-structure utilizing JSON Server along with being styled with Bulma framework and CSS.
 
-This application is built for my Front-End/Client-Side Capstone project for Nashville Software School.
+
+## API Resources:
 
 The following are examples of how the resources in your API should look once it is populated with data from the application.
 
-**Note:** This version of Panda-Aja! has mock authentication and does not provide secure storage. Please do not store sensitive information in this database!
+> **Note:** This version of Panda-Aja! has mock authentication and does not provide secure storage. Please do not store sensitive information in this database!
 
 ### users
 
@@ -114,55 +123,79 @@ The following are examples of how the resources in your API should look once it 
     }
 ```
 
-### Capstone ERD (Entity Relationship Diagram):
+## Capstone ERD (Entity Relationship Diagram):
 
 Link: https://dbdiagram.io/d/60ef769a4ed9be1c05cd30bd
 
 ![Capstone ERD](./public/images/PandaAjaERD.PNG "Capstone ERD for Panda-Aja!")
 
 
-### Capstone Wireframe:
+## Capstone Wireframe:
 
 Link: https://miro.com/app/board/o9J_l6-l4q4=/
 
 ![Wireframe](./public/images/PandaAjaWireframe.PNG "Wireframe for Panda-Aja!")
 
 
-### Deck View:
+## Deck View:
 
-![Deck View](./public/images/deckCard.PNG "Deck view for Panda-Aja!")
-
-
-### Flashcard Front Side View:
-
-![Flashcard Front Side](./public/images/flashcardFront.PNG "flashcard front side for Panda-Aja!")
+<!-- ![Deck View](./public/images/deckCard.PNG "Deck view for Panda-Aja!") -->
+<table><tr><td>
+      <img src="./public/images/deckCard.PNG" alt="Deck View" width="520px" height="500px" />
+</td></tr></table>
 
 
-### Flashcard Back Side View:
+## Flashcard Front Side View:
 
-![Flashcard Back Side](./public/images/flashcardBack.PNG "flashcard back side for Panda-Aja!")
-
-
-### Flashcard Front Side Detail View:
-
-![Flashcard Front Side Detail View](./public/images/flashcardDetailFront.PNG "flashcard front side detail view for Panda-Aja!")
+<!-- ![Flashcard Front Side](./public/images/flashcardFront.PNG "flashcard front side for Panda-Aja!") -->
+<table><tr><td>
+      <img src="./public/images/flashcardFront.PNG" alt="Flashcard Front View" width="520px" height="500px" />
+</td></tr></table>
 
 
-### Flashcard Back Side Detail View:
+## Flashcard Back Side View:
 
-![Flashcard Back Side Detail View](./public/images/flashcardDetailBack.PNG "flashcard back side detail view for Panda-Aja!")
-
-
-### Quiz Deck Selection Detail View:
-
-![Quiz Deck Selection Detail View](./public/images/quizSelectionDetail.PNG "quiz deck selection detail view for Panda-Aja!")
+<!-- ![Flashcard Back Side](./public/images/flashcardBack.PNG "flashcard back side for Panda-Aja!") -->
+<table><tr><td>
+      <img src="./public/images/flashcardBack.PNG" alt="Flashcard Back View" width="520px" height="500px" />
+</td></tr></table>
 
 
-### Quiz Modal View:
+## Flashcard Front Side Detail View:
 
-![Quiz Modal View](./public/images/quizModalView.PNG "quiz modal view for Panda-Aja!")
+<!-- ![Flashcard Front Side Detail View](./public/images/flashcardDetailFront.PNG "flashcard front side detail view for Panda-Aja!") -->
+<table><tr><td>
+      <img src="./public/images/flashcardDetailFront.PNG" alt="Card Front Detail View" width="520px" height="500px" />
+</td></tr></table>
 
 
-### Quiz Score History View:
+## Flashcard Back Side Detail View:
 
-![Quiz Score History View](./public/images/quizScoreHistory.PNG "quiz score history view for Panda-Aja!")
+<!-- ![Flashcard Back Side Detail View](./public/images/flashcardDetailBack.PNG "flashcard back side detail view for Panda-Aja!") -->
+<table><tr><td>
+      <img src="./public/images/flashcardDetailBack.PNG" alt="Card Back Detail View" width="520px" height="500px" />
+</td></tr></table>
+
+
+## Quiz Deck Selection Detail View:
+
+<!-- ![Quiz Deck Selection Detail View](./public/images/quizSelectionDetail.PNG "quiz deck selection detail view for Panda-Aja!") -->
+<table><tr><td>
+      <img src="./public/images/quizSelectionDetail.PNG" alt="Quiz Selection View" width="520px" height="500px" />
+</td></tr></table>
+
+
+## Quiz Modal View:
+
+<!-- ![Quiz Modal View](./public/images/quizModalView.PNG "quiz modal view for Panda-Aja!") -->
+<table><tr><td>
+      <img src="./public/images/quizModalView.PNG" alt="Quiz Modal View" width="520px" height="500px" />
+</td></tr></table>
+
+
+## Quiz Score History View:
+
+<!-- ![Quiz Score History View](./public/images/quizScoreHistory.PNG "quiz score history view for Panda-Aja!") -->
+<table><tr><td>
+      <img src="./public/images/quizScoreHistory.PNG" alt="Quiz Score History" width="520px" height="500px" />
+</td></tr></table>
