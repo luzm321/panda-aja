@@ -41,9 +41,9 @@ I have been interested in South Korean culture for approximately 15 years with r
 
 
 Panda-Aja! is a flashcard-based, Korean language learning application with a flipping system and mechanism that features an innovative and fun approach to learning the Korean language through meaningful and user-friendly interface. 
-The app integrates various forms of user interaction by implementing speech and text functionality via Web Speech API for text-to-speech (speech synthesis) and speech-to-text (speech recognition).
+The app integrates various forms of user interaction by implementing real-time text translation, speech, and text functionality via Web Speech API for text-to-speech (speech synthesis) and speech-to-text (speech recognition). Users can create, view, edit, filter (via a search bar feature), and delete a deck that includes a topic and description along with the same CRUD functionality for the flashcards within each designated deck. The user can also favorite/unfavorite a deck which renders in the Favorite Decks page and can review helpful study advice materials to learn Korean more efficiently in the Study Tips page. Furthermore, the app also incorporates a quiz functionality so that users can test their learned knowledge of a chosen deck topic and its corresponding flashcards with scores immediately available for viewing upon quiz completion via an alert and through the quiz score history section on the quizzes page for progress tracking.
 
-The app is built with the ReactJS library and supplemented with the Web Speech API, Microsoft Translator Text external API, SweetAlert2 npm, and node fetch proxy server. Furthermore, Panda-Aja! is designed to be a CRUD app and is supported by a flat data-structure utilizing JSON Server along with being styled with Bulma framework and CSS.
+The app is built with the ReactJS library and supplemented with the Web Speech API, Microsoft Translator Text external API, SweetAlert2 npm, react-animations npm with radium npm for the animations, and node fetch proxy server. Furthermore, Panda-Aja! is designed to be a CRUD app and is supported by a flat data-structure utilizing JSON Server along with being styled with Bulma framework and CSS.
 
 This application is built for my Front-End/Client-Side Capstone project for Nashville Software School.
 
@@ -89,6 +89,7 @@ The following are examples of how the resources in your API should look once it 
       "isFlipped": true
     }
 ```
+
 ### favoriteDecks
 
 ```json
@@ -96,6 +97,18 @@ The following are examples of how the resources in your API should look once it 
       "id": 1,
       "userId": 1,
       "deckId": 1
+    }
+```
+
+### scores
+
+```json
+{
+      "userId": 1,
+      "deckId": 2,
+      "percentageScore": 100,
+      "completionDate": "8/8/2021",
+      "id": 1
     }
 ```
 
