@@ -137,6 +137,11 @@ Link: https://miro.com/app/board/o9J_l6-l4q4=/
 ![Wireframe](./public/images/PandaAjaWireframe.PNG "Wireframe for Panda-Aja!")
 
 
+## Demo/Video Walkthrough Panda-Aja!
+
+Youtube Link: https://youtu.be/yjuZSmVLu4o
+
+
 ## Deck View:
 
 <!-- ![Deck View](./public/images/deckCard.PNG "Deck view for Panda-Aja!") -->
